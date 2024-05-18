@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.dialog {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.dialogContent {
+  position: relative;
+  background-color: $panel-bg;
+  border-radius: 8px;
+  padding: $gap3;
+  pointer-events: painted;
+}
+
+.dialogCloseButtonWrap {
+  position: absolute;
+  cursor: pointer;
+  background-color: $text;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -1rem;
+  right: -1rem;
+}
+
+.dialogCloseButton {
+  color: $text-reverse;
+  cursor: pointer;
+}

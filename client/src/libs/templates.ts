@@ -1,0 +1,287 @@
+const defaultAstTemplate = {
+  uuid: "5c5094a8-96a0-4467-aea4-5dec09b80582",
+  type: "div",
+  events: {},
+  props: {
+    className: "",
+    style: {
+      width: "100%",
+      height: "100%",
+      display: "block",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "white",
+      paddingTop: "",
+      paddingRight: "",
+      paddingBottom: "",
+      paddingLeft: "",
+    },
+    attributes: { datanodetype: "" },
+  },
+  children: [
+    {
+      uuid: "b5b07684-e11f-40fe-b15a-8ba3089f4d02",
+      parent: "5c5094a8-96a0-4467-aea4-5dec09b80582",
+      type: "div",
+      events: {},
+      props: {
+        className: "",
+        style: {
+          width: "100%",
+          height: "auto",
+          color: "white",
+          backgroundColor: "black",
+          paddingTop: "10px",
+          paddingRight: "10px",
+          paddingBottom: "10px",
+          paddingLeft: "10px",
+        },
+        attributes: { datanodetype: "" },
+      },
+      children: [
+        {
+          uuid: "561773be-c7c9-4458-9cfb-c3db5972e5e9",
+          parent: "b5b07684-e11f-40fe-b15a-8ba3089f4d02",
+          type: "h1",
+          events: {},
+          props: {
+            className: "",
+            style: { color: "" },
+            attributes: { datanodetype: "" },
+          },
+          children: [],
+          content: "web-editor.js",
+        },
+        {
+          uuid: "02fe962d-49c5-430c-a5e9-32d3afc2003a",
+          parent: "b5b07684-e11f-40fe-b15a-8ba3089f4d02",
+          type: "span",
+          events: {},
+          props: {
+            className: "",
+            style: { height: "", display: "block", paddingTop: "" },
+            attributes: { datanodetype: "" },
+          },
+          children: [],
+          content: "this is a online web editor for anyone.",
+        },
+      ],
+      content: "",
+    },
+    {
+      uuid: "c6b146c2-ed3b-4330-afa7-a1a6a413d3ef",
+      parent: "5c5094a8-96a0-4467-aea4-5dec09b80582",
+      type: "div",
+      events: {},
+      props: {
+        className: "",
+        style: {
+          width: "100%",
+          height: "300px",
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          backgroundColor: "#706AE1",
+        },
+        attributes: { datanodetype: "" },
+      },
+      children: [
+        {
+          uuid: "c11eac0b-e6a1-46f4-835d-b6e18428e79e",
+          parent: "c6b146c2-ed3b-4330-afa7-a1a6a413d3ef",
+          type: "div",
+          events: {},
+          props: {
+            className: "",
+            style: {
+              width: "200px",
+              height: "300px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              backgroundColor: "#10149D",
+            },
+            attributes: { datanodetype: "" },
+          },
+          children: [
+            {
+              uuid: "e4ccf460-2bd0-4ebc-a840-d2d9af0efc36",
+              parent: "c11eac0b-e6a1-46f4-835d-b6e18428e79e",
+              type: "span",
+              events: {},
+              props: {
+                className: "",
+                style: { display: "block" },
+                attributes: { datanodetype: "" },
+              },
+              children: [],
+              content: "very fast",
+            },
+          ],
+          content: "",
+        },
+        {
+          uuid: "d6d1a991-505c-40d5-a1ec-f8a03b57f7fa",
+          parent: "c6b146c2-ed3b-4330-afa7-a1a6a413d3ef",
+          type: "div",
+          events: {},
+          props: {
+            className: "",
+            style: {
+              width: "200px",
+              height: "300px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              backgroundColor: "#10149D",
+            },
+            attributes: { datanodetype: "" },
+          },
+          children: [
+            {
+              uuid: "c1b1b1d8-d567-4e36-9db9-045ce5dfc1dd",
+              parent: "d6d1a991-505c-40d5-a1ec-f8a03b57f7fa",
+              type: "span",
+              events: {},
+              props: {
+                className: "",
+                style: { display: "block" },
+                attributes: { datanodetype: "" },
+              },
+              children: [],
+              content: "very convenient",
+            },
+          ],
+          content: "",
+        },
+        {
+          uuid: "9966f585-8f05-439d-b565-02e9b0f5ca0d",
+          parent: "c6b146c2-ed3b-4330-afa7-a1a6a413d3ef",
+          type: "div",
+          events: {},
+          props: {
+            className: "",
+            style: {
+              width: "200px",
+              height: "300px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#10149D",
+            },
+            attributes: { datanodetype: "" },
+          },
+          children: [
+            {
+              uuid: "fe82460d-fb3f-486e-b096-ea2b581ddb44",
+              parent: "9966f585-8f05-439d-b565-02e9b0f5ca0d",
+              type: "span",
+              events: {},
+              props: {
+                className: "",
+                style: { display: "block", color: "white" },
+                attributes: { datanodetype: "" },
+              },
+              children: [],
+              content: "very easy to use",
+            },
+          ],
+          content: "",
+        },
+      ],
+      content: "",
+    },
+  ],
+  content: "",
+};
+
+const blogAstTemplate = {
+  uuid: "67ec50d6-e64c-41a6-bfd2-105ea6454151",
+  type: "div",
+  events: {},
+  props: {
+    className: "",
+    style: {
+      width: "100%",
+      height: "100%",
+      display: "block",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "white",
+      paddingTop: "",
+      paddingRight: "",
+      paddingBottom: "",
+      paddingLeft: "",
+    },
+    attributes: { datanodetype: "" },
+  },
+  children: [
+    {
+      uuid: "31dddaa4-6f35-4027-b383-c5d28fbea8ec",
+      parent: "67ec50d6-e64c-41a6-bfd2-105ea6454151",
+      type: "div",
+      events: {},
+      props: {
+        className: "",
+        style: {
+          width: "100%",
+          height: "auto",
+          color: "white",
+          backgroundColor: "black",
+          paddingTop: "10px",
+          paddingRight: "10px",
+          paddingBottom: "10px",
+          paddingLeft: "10px",
+        },
+        attributes: { datanodetype: "" },
+      },
+      children: [
+        {
+          uuid: "10a8f617-2dce-4205-9b34-e8065479d744",
+          parent: "31dddaa4-6f35-4027-b383-c5d28fbea8ec",
+          type: "h1",
+          events: {},
+          props: {
+            className: "",
+            style: { color: "" },
+            attributes: { datanodetype: "" },
+          },
+          children: [],
+          content: "web-editor.js",
+        },
+        {
+          uuid: "d36256e6-5a88-49f5-a3ef-2197ce02652c",
+          parent: "31dddaa4-6f35-4027-b383-c5d28fbea8ec",
+          type: "span",
+          events: {},
+          props: {
+            className: "",
+            style: { height: "", display: "block", paddingTop: "" },
+            attributes: { datanodetype: "" },
+          },
+          children: [],
+          content: "this is a online web editor for anyone.",
+        },
+      ],
+      content: "",
+    },
+  ],
+  content: "",
+};
+
+export const pageTemplateMap = {
+  default: {
+    uuid: "727cd85f-c49d-4a74-a25e-1e04c11b60ba",
+    title: "default-template",
+    ast: defaultAstTemplate,
+  },
+  blog: {
+    uuid: "0171f267-1b13-4053-baa6-7b69c7dcd0b8",
+    title: "blog-template",
+    ast: blogAstTemplate,
+  },
+};
+
+export const pageTemplates = [pageTemplateMap.default, pageTemplateMap.blog];

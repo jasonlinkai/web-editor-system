@@ -1,0 +1,37 @@
+@import "../../../../../variables";
+
+.astTreePanelArea {
+  padding: $gap2;
+  overflow: scroll;
+}
+.astTreePanelItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.astTreePanelItemStartTag {
+  color: $label;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+.astTreePanelItemStartTagSelected {
+  color: $selected;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+
+.astTreePanelItemContent {
+  color: $label;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+.astTreePanelItemContentSelected {
+  color: $selected;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+
+.astTreePanelItemEndTag {
+  color: $label;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+.astTreePanelItemEndTagSelected {
+  color: $selected;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}

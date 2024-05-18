@@ -1,0 +1,17 @@
+@import "../../../../variables";
+
+.actionBar {
+  width: 100%;
+  background-color: $panel-bg;
+  border-bottom: 1px solid $panel-border;
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.actionBarArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

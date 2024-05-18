@@ -1,0 +1,39 @@
+@import "../../variables";
+
+.selectWrap {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.selectLabel {
+  flex: 1;
+  color: $label;
+  text-align: left;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+
+.select {
+  flex: 1;
+  width: 100%;
+  height: 1.2rem;
+  font-size: 0.9rem;
+  appearance: none;
+  border: 1px solid $panel-border;
+  padding-left: $gap2;
+  padding-right: $gap2;
+  border-radius: $gap1;
+  &:focus {
+    outline: none;
+    border: 1px solid $active;
+  }
+}
+
+.selectRightIcon {
+  position: absolute;
+  right: $gap2;
+  pointer-events: none;
+}

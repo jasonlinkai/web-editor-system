@@ -1,0 +1,31 @@
+@import "../../../../variables";
+
+.actionButton {
+  border: 1px solid $panel-border;
+  border-radius: $gap1;
+  padding: $gap1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $panel-bg;
+}
+
+.actionIcon {
+  color: $label;
+}
+
+.actionIconActive {
+  color: $active;
+}
+.actionIconDisable {
+  color: $disable;
+}
+
+
+.actionButtonActive {
+  border-color: $active;
+  color: $active;
+}
+.actionButtonDisable {
+  border-color: $disable;
+}

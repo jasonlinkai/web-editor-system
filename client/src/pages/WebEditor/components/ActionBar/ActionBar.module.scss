@@ -1,0 +1,23 @@
+@import '../../../../variables';
+
+.actionBar {
+  width: 100%;
+  background-color: $panel-bg;
+  border-bottom: 1px solid $panel-border;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionBarLeftArea {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}
+
+.actionBarRightArea {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}

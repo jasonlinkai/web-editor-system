@@ -1,0 +1,123 @@
+@import "../../../../variables";
+@import "../../../../utils";
+
+.panel {
+  width: 225px;
+  border: 1px solid $panel-border;
+  border-radius: $gap1;
+}
+
+.panelHeader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panelHeaderToggleButton {
+  position: absolute;
+  right: $gap3;
+}
+
+.panelTitle {
+  @include h2();
+}
+
+.panelArea {
+  padding: $gap3;
+  padding-top: 0;
+}
+
+.panelAreaClose {
+  display: none;
+}
+
+.panelItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $gap2;
+}
+
+.panelItemLabel {
+  @include h3();
+  &::after {
+    display: block;
+    content: '';
+    margin-top: $gap1;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid $panel-border;
+  }
+}
+
+.panelItemRowCenterArea {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.panelItemColumnArea {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  gap: $gap2;
+}
+
+.panelItemColumnCenterArea {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $gap2;
+}
+
+.panelItemRowBetweenAera {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panelItemActionRowBoxWithToolsWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panelItemActionRowBoxToolsArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $gap2;
+}
+
+.panelItemActionRowBoxToolsAreaToolButton {
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    color: $active; 
+  }
+}
+
+.panelItemActionRowBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: $gap1;
+  width: 100%;
+  border: 1px solid $panel-border;
+  border-radius: $gap1;
+  padding: $gap2;
+  &:hover {
+    border-color: $active;
+    background-color: $active;
+    color: $text-reverse;
+  }
+}
