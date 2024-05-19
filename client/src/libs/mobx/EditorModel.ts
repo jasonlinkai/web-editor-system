@@ -211,19 +211,6 @@ export const EditorModel = t
   // async actions
   //
   .actions((self) => {
-    const uploadImage = flow(function* (formData: FormData) {
-      self.setIsUploadImageLoading(true);
-      try {
-        const { data: imageUrl } = yield httpPostUploadImage(formData);
-        self.images.add(imageUrl);
-        self.setIsUploadImageLoading(false);
-        return imageUrl;
-      } catch (error) {
-        console.error("Failed to fetch uploadImage", error);
-        self.setIsUploadImageLoading(false);
-        return "";
-      }
-    });
     const fetchImages = flow(function* () {
       self.setIsFetchImagesLoading(true);
       try {
@@ -235,6 +222,21 @@ export const EditorModel = t
         console.error("Failed to fetch fetchImages", error);
         self.setIsFetchImagesLoading(false);
         return [];
+      }
+    });
+    const uploadImage = flow(function* (formData: FormData) {
+      self.setIsUploadImageLoading(true);
+      try {
+        const { data: imageUrl } = yield httpPostUploadImage(formData);
+        self.images.add(imageUrl);
+        self.setIsUploadImageLoading(false);
+        return imageUrl;
+      } catch (error) {
+        console.error("Failed to fetch uploadImage", error);
+        self.setIsUploadImageLoading(false);
+        return "";
+      } finally {
+        fetchImages();
       }
     });
     const uploadPage = flow(function* (json: string) {

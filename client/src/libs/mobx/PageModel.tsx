@@ -82,7 +82,7 @@ export const PageModel = t
     };
 
     const uploadAst = () => {
-      self.editor.uploadPage(JSON.stringify(getSnapshot(self.ast)));
+      self.editor.uploadPage(JSON.stringify(getSnapshot(self)));
     };
 
     return {
