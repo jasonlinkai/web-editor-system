@@ -2,7 +2,7 @@ import type { Database } from "sqlite3";
 import _sqlite3 from "sqlite3";
 import path from "path";
 
-const dbPath = path.resolve(__dirname, '../../index.db');
+const dbPath = path.resolve(__dirname, '../index.db');
 const sqlite3 = _sqlite3.verbose();
 
 class ServerDatabase {
