@@ -4,11 +4,15 @@ import fileUpload from "express-fileupload";
 import path from "path";
 import { v4 } from "uuid";
 import ServerDatabase from "./db";
+import passport from "passport";
+import { Strategy as OAuth2Strategy } from "passport-oauth2";
+import session from "express-session";
 
 const paths = {
   public: path.join(__dirname, "../", "./public"),
   uploads: path.join(__dirname, "../", "./public", "./uploads"),
   data: path.join(__dirname, "../", "./data"),
+  index: path.join(__dirname, "../", "./public", "./index.html"),
 };
 
 export default class Server {
@@ -29,6 +33,58 @@ export default class Server {
     app.use(express.urlencoded({ extended: true }));
     app.use(fileUpload());
     app.use("/public", express.static(paths.public));
+    app.use(
+      session({
+        secret: process.env.GOOGLE_OAUTH2_SECRET,
+        resave: false,
+        saveUninitialized: true,
+      })
+    );
+    // Initialize Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
+    passport.use(
+      new OAuth2Strategy(
+        {
+          authorizationURL: "https://accounts.google.com/o/oauth2/auth",
+          tokenURL: "https://accounts.google.com/o/oauth2/token",
+          clientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_OAUTH2_SECRET,
+          callbackURL: `https://zebra-central-incredibly.ngrok-free.app/auth/google/callback`,
+          scope: ["profile", "email"],
+        },
+        (accessToken, refreshToken, params, profile, done) => {
+          console.log("accessToken", accessToken);
+          console.log("refreshToken", refreshToken);
+          console.log("params", params);
+          console.log("profile", profile);
+          const url = `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`;
+
+          fetch(url)
+            .then((response) => response.json())
+            .then((userInfo) => {
+              console.log("User Info:", userInfo);
+              // Use userInfo here
+              // Here you would find or create a user in your database
+              const user = { googleId: profile.id, accessToken };
+              return done(null, user);
+            })
+            .catch((err) => {
+              done(err, false);
+            });
+        }
+      )
+    );
+    passport.serializeUser((user, done) => {
+      console.log("serializeUser", JSON.stringify(user));
+      done(null, user);
+    });
+
+    // Deserialize user from the sessions
+    passport.deserializeUser<number>((user, done) => {
+      console.log("deserializeUser", JSON.stringify(user));
+      done(null, user);
+    });
   }
 
   private register(app: Application): void {
@@ -99,6 +155,33 @@ export default class Server {
           }
         }
       );
+    });
+
+    app.get("/", (req, res) => {
+      res.send('<a href="/auth/google">Log in with Google</a>');
+    });
+
+    app.get("/auth/google", passport.authenticate("oauth2"));
+
+    app.get(
+      "/auth/google/callback",
+      passport.authenticate("oauth2", {
+        successRedirect: "/profile",
+        failureRedirect: "/",
+      })
+    );
+
+    app.get("/profile", (req, res) => {
+      if (!req.isAuthenticated()) {
+        return res.redirect("/");
+      }
+      res.send(`Hello ${JSON.stringify(req.user)}`);
+    });
+
+    app.get("/logout", (req, res) => {
+      req.logout(() => {
+        res.redirect("/");
+      });
     });
   }
 }

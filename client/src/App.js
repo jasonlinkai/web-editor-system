@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MobxStateTreeStoreProvider } from "@/libs/mobx/MobxStateTreeProvider";
 import Home from "@/pages/Home";
 import WebEditor from "@/pages/WebEditor";
+import Privacy from "./pages/Privacy";
+import Services from "./pages/Services";
 
 export const routes = [
   {
@@ -12,6 +14,14 @@ export const routes = [
   {
     path: "/web-editor",
     element: <WebEditor />,
+  },
+  {
+    path: "/privacy",
+    element: <Privacy />,
+  },
+  {
+    path: "/services",
+    element: <Services />,
   },
 ];
 

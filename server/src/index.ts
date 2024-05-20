@@ -1,12 +1,10 @@
-import 'dotenv/config'
+require("dotenv").config({ path: [".env.local", ".env"] });
 import express, { Application } from "express";
 import Server from "./server";
-import ServerDatabase from './db';
-
+import ServerDatabase from "./db";
 const app: Application = express();
 const serverDatabase: ServerDatabase = new ServerDatabase();
 const server: Server = new Server(app, serverDatabase);
-
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 app
   .listen(PORT, "localhost", function () {
