@@ -38,9 +38,13 @@ export default class Server {
     this.app.post(
       "/upload-image",
       this.auth.authenticateJWT,
-      async (req, res) => {
+      async (
+        req: JWTRequest<{
+          user: User;
+        }>,
+        res
+      ) => {
         try {
-          console.log("req", req.user);
           if (!req.files || Object.keys(req.files).length === 0) {
             return res.status(400).send("No files were uploaded.");
           }
@@ -51,7 +55,7 @@ export default class Server {
 
           const image = await this.serverDatabase.imageRepository.create({
             url: newFileName,
-            userId: (req.user as User).id,
+            userId: req.auth?.user.id,
           });
           return res.send({
             code: 0,
@@ -96,40 +100,51 @@ export default class Server {
       }
     );
 
-    this.app.post("/publish", this.auth.authenticateJWT, async (req, res) => {
-      try {
-        console.log("req.user", req.user);
-        const uuid = req.body.uuid;
-        const title = req.body.title;
-        const ast = JSON.stringify(req.body.ast);
-        let page = await this.serverDatabase.pageRepository.findOne({
-          where: {
-            uuid: uuid,
-          },
-        });
-        if (page) {
-          page = await page.update({
-            title,
-            ast,
+    this.app.post(
+      "/publish",
+      this.auth.authenticateJWT,
+      async (
+        req: JWTRequest<{
+          user: User;
+        }>,
+        res
+      ) => {
+        try {
+          console.log("req.user", req.user);
+          const uuid = req.body.uuid;
+          const title = req.body.title;
+          const ast = JSON.stringify(req.body.ast);
+          let page = await this.serverDatabase.pageRepository.findOne({
+            where: {
+              uuid,
+              userId: req.auth?.user.id,
+            },
           });
-        } else {
-          page = await this.serverDatabase.pageRepository.create({
-            uuid,
-            title,
-            ast,
+          if (page) {
+            page = await page.update({
+              title,
+              ast,
+            });
+          } else {
+            page = await this.serverDatabase.pageRepository.create({
+              uuid,
+              title,
+              ast,
+              userId: req.auth?.user.id,
+            });
+          }
+          return res.send({
+            code: 0,
+            message: "success",
+            data: true,
+          });
+        } catch (e) {
+          return res.status(400).send({
+            code: 400,
+            message: (e as Error).message,
           });
         }
-        return res.send({
-          code: 0,
-          message: "success",
-          data: true,
-        });
-      } catch (e) {
-        return res.status(400).send({
-          code: 400,
-          message: (e as Error).message,
-        });
       }
-    });
+    );
   }
 }
