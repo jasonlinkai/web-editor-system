@@ -3,10 +3,11 @@ import cors, { CorsOptions } from "cors";
 import fileUpload from "express-fileupload";
 import path from "path";
 import { v4 } from "uuid";
-import ServerDatabase from "./db";
+import sequelize from "./database";
 import passport from "passport";
 import { Strategy as OAuth2Strategy } from "passport-oauth2";
 import session from "express-session";
+import type { Sequelize }  from "sequelize-typescript"
 
 const paths = {
   public: path.join(__dirname, "../", "./public"),
@@ -16,9 +17,9 @@ const paths = {
 };
 
 export default class Server {
-  private serverDatabase: ServerDatabase;
-  constructor(app: Application, serverDatabase: ServerDatabase) {
-    this.serverDatabase = serverDatabase;
+  private sequelize: Sequelize;
+  constructor(app: Application, sequelize: Sequelize) {
+    this.sequelize = sequelize;
     this.config(app);
     this.register(app);
   }
@@ -100,61 +101,61 @@ export default class Server {
         if (err) {
           return res.status(500).send(err);
         }
-        this.serverDatabase.db.run(
-          `INSERT INTO images(id, url, user_id) VALUES (?, ?, ?)`,
-          [null, newFileName, 1],
-          (err) => {
-            if (err) {
-              return res.status(500).send(err);
-            } else {
-              return res.send({
-                code: 0,
-                message: "success",
-                data: newFileName,
-              });
-            }
-          }
-        );
+        // this.sequelize.run(
+        //   `INSERT INTO images(id, url, user_id) VALUES (?, ?, ?)`,
+        //   [null, newFileName, 1],
+        //   (err) => {
+        //     if (err) {
+        //       return res.status(500).send(err);
+        //     } else {
+        //       return res.send({
+        //         code: 0,
+        //         message: "success",
+        //         data: newFileName,
+        //       });
+        //     }
+        //   }
+        // );
       });
     });
 
     app.get("/uploaded-images", (req, res) => {
-      this.serverDatabase.db.all(
-        `SELECT * FROM images WHERE user_id = ?`,
-        [1],
-        (err, rows) => {
-          if (err) {
-            return res.status(500).send(err);
-          } else {
-            return res.send({
-              code: 0,
-              message: "success",
-              data: rows,
-            });
-          }
-        }
-      );
+      // this.sequelize.all(
+      //   `SELECT * FROM images WHERE user_id = ?`,
+      //   [1],
+      //   (err, rows) => {
+      //     if (err) {
+      //       return res.status(500).send(err);
+      //     } else {
+      //       return res.send({
+      //         code: 0,
+      //         message: "success",
+      //         data: rows,
+      //       });
+      //     }
+      //   }
+      // );
     });
 
     app.post("/publish", (req, res) => {
       const uuid = req.body.uuid;
       const title = req.body.title;
       const ast = JSON.stringify(req.body.ast);
-      this.serverDatabase.db.run(
-        `INSERT INTO pages(id, uuid, title, ast, user_id) VALUES (?, ?, ?, ?, ?)`,
-        [null, uuid, title, ast, 1],
-        (err) => {
-          if (err) {
-            return res.status(500).send(err);
-          } else {
-            return res.send({
-              code: 0,
-              message: "success",
-              data: true,
-            });
-          }
-        }
-      );
+      // this.sequelize.run(
+      //   `INSERT INTO pages(id, uuid, title, ast, user_id) VALUES (?, ?, ?, ?, ?)`,
+      //   [null, uuid, title, ast, 1],
+      //   (err) => {
+      //     if (err) {
+      //       return res.status(500).send(err);
+      //     } else {
+      //       return res.send({
+      //         code: 0,
+      //         message: "success",
+      //         data: true,
+      //       });
+      //     }
+      //   }
+      // );
     });
 
     app.get("/", (req, res) => {

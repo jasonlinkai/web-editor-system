@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "yarn build && node ./build/index",
     "dev": "nodemon --config nodemon.json --exec 'yarn start'",
-    "generate-database": "sqlite3 ./index.db < ./src/schema.sql"
+    "sync-database": "node ./build/database/sync.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
@@ -25,9 +25,12 @@
     "express": "^4.19.2",
     "express-fileupload": "^1.5.0",
     "express-session": "^1.18.0",
+    "mysql2": "^3.9.7",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
-    "sqlite3": "^5.1.7",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.3",
+    "sequelize-typescript": "^2.1.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "uuid": "^9.0.1"
