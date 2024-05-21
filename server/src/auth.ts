@@ -1,16 +1,25 @@
-import express, { Application } from "express";
+import { Application, Request, Response, NextFunction } from "express";
 import passport from "passport";
 import { Strategy as OAuth2Strategy } from "passport-oauth2";
 import session from "express-session";
-import { User, Page, Image } from "./database/models";
+import jwt from "jsonwebtoken";
+import { expressjwt } from "express-jwt";
+import { User } from "./database/models";
 import ServerDatabase from "./database";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export default class Auth {
   private app: Application;
   private serverDatabase: ServerDatabase;
+  public authenticateJWT: ReturnType<typeof expressjwt>;
   constructor(app: Application, serverDatabase: ServerDatabase) {
     this.app = app;
     this.serverDatabase = serverDatabase;
+    this.authenticateJWT = expressjwt({
+      secret: JWT_SECRET,
+      algorithms: ["HS256"],
+    });
   }
   config() {
     this.app.use(
@@ -20,7 +29,6 @@ export default class Auth {
         saveUninitialized: true,
       })
     );
-    // Initialize Passport
     this.app.use(passport.initialize());
     this.app.use(passport.session());
     passport.use(
@@ -39,15 +47,17 @@ export default class Auth {
             .then((response) => response.json())
             .then(async (userInfo) => {
               try {
-                const [user] = await this.serverDatabase.userRepository.findOrCreate({
-                  where: { googleId: userInfo.id },
-                  defaults: {
-                    username: userInfo.name,
-                    email: userInfo.email,
-                    avatarUrl: userInfo.picture,
-                    googleId: userInfo.id,
-                  },
-                });
+                console.log(userInfo);
+                const [user] =
+                  await this.serverDatabase.userRepository.findOrCreate({
+                    where: { googleId: userInfo.id },
+                    defaults: {
+                      username: userInfo.name,
+                      email: userInfo.email,
+                      avatarUrl: userInfo.picture,
+                      googleId: userInfo.id,
+                    },
+                  });
                 return done(null, user);
               } catch (e) {
                 return done(e);
@@ -69,32 +79,39 @@ export default class Auth {
         })
         .catch((err) => done(err));
     });
+    this.app.use(
+      (err: any, req: Request, res: Response, next: NextFunction) => {
+        if (err.name === "UnauthorizedError") {
+          res.status(401).json({ code: 401, message: err.name });
+        } else {
+          next(err);
+        }
+      }
+    );
   }
   register() {
-    this.app.get("/", (req, res) => {
-      res.send('<a href="/auth/google">Log in with Google</a>');
-    });
-
-    this.app.get("/auth/google", passport.authenticate("oauth2"));
-
+    this.app.get(
+      "/auth/google",
+      passport.authenticate("oauth2", {
+        scope: ["profile", "email"],
+      })
+    );
     this.app.get(
       "/auth/google/callback",
       passport.authenticate("oauth2", {
-        successRedirect: "/profile",
-        failureRedirect: "/",
-      })
-    );
-
-    this.app.get("/profile", (req, res) => {
-      if (!req.isAuthenticated()) {
-        return res.redirect("/");
+        failureRedirect: "http://localhost:3000/login",
+      }),
+      (req, res) => {
+        console.log("/auth/google/callback:", "req.user:", req.user);
+        const token = jwt.sign({ user: req.user }, JWT_SECRET);
+        res.redirect(`http://localhost:3000/redirect?credential=${token}`);
       }
-      res.send(`Hello ${JSON.stringify(req.user)}`);
-    });
-
-    this.app.get("/logout", (req, res) => {
-      req.logout(() => {
-        res.redirect("/");
+    );
+    this.app.get("/logout", (req) => {
+      req.logout((err) => {
+        if (err) {
+          console.error(err.message);
+        }
       });
     });
   }

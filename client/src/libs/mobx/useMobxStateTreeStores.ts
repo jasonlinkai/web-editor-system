@@ -1,8 +1,8 @@
 import React from "react";
-import { IStore } from "./RootStore";
+import { RootStoreType } from "./RootStore";
 import { StoreContext } from "./MobxStateTreeProvider";
 
-export function useStores(): IStore {
+export function useStores(): RootStoreType {
   const store = React.useContext(StoreContext);
 
   if (!store) {

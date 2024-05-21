@@ -2,7 +2,7 @@ import React from "react";
 
 // import { connectReduxDevtools } from "mst-middlewares";
 
-import { IStore, RootStore } from "./RootStore";
+import { RootStoreType, RootStore } from "./RootStore";
 import { onSnapshot } from "mobx-state-tree";
 import { pageTemplates } from "@/libs/templates";
 import { v4 as uuid } from "uuid";
@@ -31,7 +31,7 @@ const store = RootStore.create(
       }
 );
 
-export const StoreContext = React.createContext<IStore>(store);
+export const StoreContext = React.createContext<RootStoreType>(store);
 
 if (process.env.NODE_ENV === "development") {
   /* tslint:disable-next-line */

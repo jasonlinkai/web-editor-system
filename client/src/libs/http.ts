@@ -1,3 +1,6 @@
+import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
+import { RootStoreSnapshotOutType } from "./mobx/RootStore";
+
 const api = "http://localhost:3001";
 const cdnUrl = "http://localhost:3001/public/uploads";
 
@@ -15,11 +18,32 @@ interface Response<T> {
   data: T;
 }
 
+const getToken = (): string => {
+  try {
+    const rootStoreSnapshotJSON = localStorage.getItem(
+      SNAPSHOT_KEYS.ROOT_STORE
+    );
+    if (rootStoreSnapshotJSON) {
+      const rootStoreSnapshot: RootStoreSnapshotOutType = JSON.parse(
+        rootStoreSnapshotJSON
+      );
+      return `Bearer ${rootStoreSnapshot.token}`;
+    } else {
+      return "";
+    }
+  } catch (e) {
+    return "";
+  }
+};
+
 export type PostUploadImageResponse = string;
 export const httpPostUploadImage = async (formData: FormData) => {
   try {
     const response = await fetch(getApiUrlByPath("upload-image"), {
       method: "POST",
+      headers: {
+        Authorization: getToken(),
+      },
       body: formData,
     });
     const data = await response.json();
@@ -35,6 +59,9 @@ export const httpGetUploadedImages = async () => {
   try {
     const response = await fetch(getApiUrlByPath("uploaded-images"), {
       method: "GET",
+      headers: {
+        Authorization: getToken(),
+      },
     });
     const data = await response.json();
     return data as Response<GetUploadedImagesResponse>;
@@ -50,7 +77,8 @@ export const httpPostUploadPage = async (json: string) => {
     const response = await fetch(getApiUrlByPath("publish"), {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        Authorization: getToken(),
+        "Content-Type": "application/json",
       },
       body: json,
     });

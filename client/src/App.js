@@ -1,31 +1,62 @@
 import { useEffect } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { MobxStateTreeStoreProvider } from "@/libs/mobx/MobxStateTreeProvider";
 import Home from "@/pages/Home";
+import Login from "@/pages/Login";
 import WebEditor from "@/pages/WebEditor";
 import Privacy from "./pages/Privacy";
 import Services from "./pages/Services";
+import Redirect from "./pages/Redirect";
+import { useStores } from "./libs/mobx/useMobxStateTreeStores";
+
+function RequireAuth({ children }: { children: JSX.Element }) {
+  let { isAuthenticated } = useStores();
+  let location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
+}
 
 export const routes = [
   {
+    path: "/login",
+    element: Login,
+    isProtected: false,
+  },
+  {
     path: "/",
-    element: <Home />,
+    element: Home,
+    isProtected: true,
   },
   {
     path: "/web-editor",
-    element: <WebEditor />,
+    element: WebEditor,
+    isProtected: true,
+  },
+  {
+    path: "/redirect",
+    element: Redirect,
+    isProtected: false,
   },
   {
     path: "/privacy",
-    element: <Privacy />,
+    element: Privacy,
+    isProtected: false,
   },
   {
     path: "/services",
-    element: <Services />,
+    element: Services,
+    isProtected: false,
   },
 ];
-
-const router = createBrowserRouter(routes);
 
 function App() {
   console.log("App rerendered!");
@@ -38,7 +69,28 @@ function App() {
     <MobxStateTreeStoreProvider>
       <div className="App">
         <header className="App-header"></header>
-        <RouterProvider router={router} />
+        <BrowserRouter>
+          <Routes>
+            {routes.map(({ isProtected, path, element }) => {
+              const Component = element;
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    isProtected ? (
+                      <RequireAuth>
+                        <Component />
+                      </RequireAuth>
+                    ) : (
+                      <Component />
+                    )
+                  }
+                />
+              );
+            })}
+          </Routes>
+        </BrowserRouter>
       </div>
     </MobxStateTreeStoreProvider>
   );

@@ -1,0 +1,44 @@
+@import "../../variables";
+@import "../../utils";
+
+.login {
+  @include flex-column-center-center();
+  width: 100vw;
+  height: 100vh;
+  background-color: $panel-bg;
+}
+
+.loginTitle {
+  @include h1();
+}
+
+.previousWork {
+  @include flex-column-center-center();
+}
+
+.previousWorkTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: $gap3;
+  padding-bottom: $gap3;
+  color: $label;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
+}
+
+.previousWorkArea {
+  @include flex-column-center-center();
+  padding: $gap2;
+  border: 1px solid $panel-border;
+  border-radius: $gap1;
+  margin-bottom: $gap2;
+  width: 400px;
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.addNewPage {
+  color: red;
+}

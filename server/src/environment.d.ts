@@ -12,6 +12,7 @@ declare global {
       MYSQL_DATABASE_DATABASE: string;
       MYSQL_DATABASE_USERNAME: string;
       MYSQL_DATABASE_PASSWORD: string;
+      JWT_SECRET: string;
     }
   }
 }
