@@ -59,10 +59,9 @@ export default class Server {
             data: image.url,
           });
         } catch (e) {
-          return res.status(500).send({
+          return res.status(400).send({
             code: 400,
-            message: "error",
-            errorMsg: (e as Error).message,
+            message: (e as Error).message,
           });
         }
       }
@@ -89,10 +88,9 @@ export default class Server {
             data: images,
           });
         } catch (e) {
-          return res.status(500).send({
+          return res.status(400).send({
             code: 400,
-            message: "error",
-            errorMsg: (e as Error).message,
+            message: (e as Error).message,
           });
         }
       }
@@ -127,10 +125,9 @@ export default class Server {
           data: true,
         });
       } catch (e) {
-        return res.status(500).send({
+        return res.status(400).send({
           code: 400,
-          message: "error",
-          errorMsg: (e as Error).message,
+          message: (e as Error).message,
         });
       }
     });
