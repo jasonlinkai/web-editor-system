@@ -2,7 +2,7 @@
 
 ### up
 ```sh
-docker-compose --env-file=.env.local up -d
+docker-compose --env-file=.env.local up -d &&  sleep 10 && cd server && yarn sync-database && cd ..
 ```
 
 ### down

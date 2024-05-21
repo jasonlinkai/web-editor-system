@@ -1,6 +1,7 @@
-import sequelize from ".";
+import ServerDatabase from ".";
+const serverDatabase = new ServerDatabase();
 
-sequelize
+serverDatabase.sequelize
   .sync({ force: true })
   .then(() => {
     console.log("Database & tables created!");

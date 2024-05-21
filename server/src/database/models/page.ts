@@ -32,7 +32,7 @@ export class Page extends Model {
   ast!: string;
 
   @ForeignKey(() => User)
-  user_id!: number;
+  userId!: number;
 
   @BelongsTo(() => User)
   user!: User;

@@ -20,7 +20,7 @@ export class Image extends Model {
   url!: string;
 
   @ForeignKey(() => User)
-  user_id!: number;
+  userId!: number;
 
   @BelongsTo(() => User)
   user!: User;

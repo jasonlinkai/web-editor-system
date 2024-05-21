@@ -1,9 +1,11 @@
 require("dotenv").config({ path: [".env.local", ".env"] });
 import express, { Application } from "express";
 import Server from "./server";
-import sequelize from "./database";
+import ServerDataBase from "./database";
+
 const app: Application = express();
-const server: Server = new Server(app, sequelize);
+const serverDatabase = new ServerDataBase()
+const server: Server = new Server(app, serverDatabase);
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 app
   .listen(PORT, "localhost", function () {

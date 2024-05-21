@@ -33,11 +33,11 @@ export class User extends Model {
   @Column({
     type: DataTypes.STRING,
   })
-  avatar_url!: string;
+  avatarUrl!: string;
 
   @Column({
     type: DataTypes.STRING,
     unique: true,
   })
-  google_id!: string;
+  googleId!: string;
 }

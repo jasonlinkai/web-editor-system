@@ -3,11 +3,11 @@ import cors, { CorsOptions } from "cors";
 import fileUpload from "express-fileupload";
 import path from "path";
 import { v4 } from "uuid";
-import sequelize from "./database";
 import passport from "passport";
 import { Strategy as OAuth2Strategy } from "passport-oauth2";
 import session from "express-session";
-import type { Sequelize }  from "sequelize-typescript"
+import { User, Page, Image } from "./database/models";
+import ServerDatabase from "./database";
 
 const paths = {
   public: path.join(__dirname, "../", "./public"),
@@ -17,9 +17,11 @@ const paths = {
 };
 
 export default class Server {
-  private sequelize: Sequelize;
-  constructor(app: Application, sequelize: Sequelize) {
-    this.sequelize = sequelize;
+  private app: Application;
+  private serverDatabase: ServerDatabase;
+  constructor(app: Application, serverDatabase: ServerDatabase) {
+    this.app = app;
+    this.serverDatabase = serverDatabase;
     this.config(app);
     this.register(app);
   }
@@ -55,36 +57,44 @@ export default class Server {
           scope: ["profile", "email"],
         },
         (accessToken, refreshToken, params, profile, done) => {
-          console.log("accessToken", accessToken);
-          console.log("refreshToken", refreshToken);
-          console.log("params", params);
-          console.log("profile", profile);
           const url = `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`;
 
           fetch(url)
             .then((response) => response.json())
-            .then((userInfo) => {
-              console.log("User Info:", userInfo);
-              // Use userInfo here
-              // Here you would find or create a user in your database
-              const user = { googleId: profile.id, accessToken };
-              return done(null, user);
+            .then(async (userInfo) => {
+              const userRepository =
+                this.serverDatabase.sequelize.getRepository(User);
+              try {
+                const [user] = await userRepository.findOrCreate({
+                  where: { googleId: userInfo.id },
+                  defaults: {
+                    username: userInfo.name,
+                    email: userInfo.email,
+                    avatarUrl: userInfo.picture,
+                    googleId: userInfo.id,
+                  },
+                });
+                return done(null, user);
+              } catch (e) {
+                return done(e);
+              }
             })
             .catch((err) => {
-              done(err, false);
+              done(err);
             });
         }
       )
     );
     passport.serializeUser((user, done) => {
-      console.log("serializeUser", JSON.stringify(user));
-      done(null, user);
+      done(null, (user as any).id);
     });
 
-    // Deserialize user from the sessions
-    passport.deserializeUser<number>((user, done) => {
-      console.log("deserializeUser", JSON.stringify(user));
-      done(null, user);
+    passport.deserializeUser<number>((id, done) => {
+      User.findByPk(id)
+        .then((user) => {
+          done(null, user);
+        })
+        .catch((err) => done(err));
     });
   }
 

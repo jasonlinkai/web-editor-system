@@ -1,5 +1,5 @@
-### Generate database
+### ngrok for oauth2 development
 
 ```sh
-sqlite3 ./index.db < ./src/database/schema.sql
+ngrok http --domain=zebra-central-incredibly.ngrok-free.app 3001
 ```
