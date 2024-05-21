@@ -2,6 +2,7 @@
 
 declare namespace NodeJS {
   interface ProcessEnv {
-    GOOGLE_OAUTH2_CLIENT_ID: string;
+    API_URL: string;
+    CDN_URL: string;
   }
 }

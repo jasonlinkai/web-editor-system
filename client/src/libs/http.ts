@@ -1,11 +1,11 @@
 import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
 import { RootStoreSnapshotOutType } from "./mobx/RootStore";
-
-const api = "http://localhost:3001";
-const cdnUrl = "http://localhost:3001/public/uploads";
+console.log("process.env", process.env);
+const apiUrl = process.env.REACT_APP_API_URL;
+const cdnUrl = process.env.REACT_APP_CDN_URL;
 
 export const getApiUrlByPath = (path: string) => {
-  return `${api}/${path}`;
+  return `${apiUrl}/${path}`;
 };
 
 export const getStaticUrlByFilename = (filename: string) => {
@@ -46,15 +46,15 @@ export const httpPostUploadImage = async (formData: FormData) => {
       },
       body: formData,
     });
-    const data = await response.json();
-    return data as Response<PostUploadImageResponse>;
+    const data: Response<PostUploadImageResponse> = await response.json();
+    return data;
   } catch (e) {
     console.error("Error httpPostUploadImage:", e);
     throw e;
   }
 };
 
-export type GetUploadedImagesResponse = string[];
+export type GetUploadedImagesResponse = { url: string }[];
 export const httpGetUploadedImages = async () => {
   try {
     const response = await fetch(getApiUrlByPath("uploaded-images"), {
@@ -63,8 +63,8 @@ export const httpGetUploadedImages = async () => {
         Authorization: getToken(),
       },
     });
-    const data = await response.json();
-    return data as Response<GetUploadedImagesResponse>;
+    const data: Response<GetUploadedImagesResponse> = await response.json();
+    return data;
   } catch (e) {
     console.error("Error httpGetUploadedImages:", e);
     throw e;
@@ -82,8 +82,8 @@ export const httpPostUploadPage = async (json: string) => {
       },
       body: json,
     });
-    const data = await response.json();
-    return data as Response<PostUploadPageResponse>;
+    const data: Response<PostUploadPageResponse> = await response.json();
+    return data;
   } catch (e) {
     console.error("Error httpPostUploadPage:", e);
     throw e;

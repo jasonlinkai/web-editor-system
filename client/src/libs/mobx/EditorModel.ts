@@ -7,19 +7,28 @@ import {
   getSnapshot,
   detach,
   flow,
+  toGenerator,
 } from "mobx-state-tree";
 import { AstNodeModel } from "./AstNodeModel";
 import { SnippetAstNodeModel } from "./SnippetAstNodeModel";
 import { EditorLayoutModel } from "./EditorLayoutModel";
 import { getRandomColor, recursiveClearUuid } from "@/libs/utils";
-import { httpGetUploadedImages, httpPostUploadImage, httpPostUploadPage } from "@/libs/http";
+import {
+  getStaticUrlByFilename,
+  httpGetUploadedImages,
+  httpPostUploadImage,
+  httpPostUploadPage,
+} from "@/libs/http";
 import {
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
 } from "@/libs/types";
 
-import type { AstNodeModelSnapshotOutType, AstNodeModelType } from "./AstNodeModel";
+import type {
+  AstNodeModelSnapshotOutType,
+  AstNodeModelType,
+} from "./AstNodeModel";
 import type { SnippetAstNodeModelType } from "./SnippetAstNodeModel";
 import type { EditorLayoutModelType } from "./EditorLayoutModel";
 
@@ -51,7 +60,9 @@ export const EditorModel = t
   .views((self) => {
     return {
       get displayImages() {
-        return Array.from(self.images);
+        return Array.from(self.images).map((image) =>
+          getStaticUrlByFilename(image)
+        );
       },
     };
   })
@@ -100,7 +111,7 @@ export const EditorModel = t
     pushToSnippets(snippet: AstNodeModelType) {
       const snapshot = getSnapshot(snippet);
       const clearedSnapshot = recursiveClearUuid(
-        (JSON.parse(JSON.stringify(snapshot)) as AstNodeModelSnapshotOutType),
+        JSON.parse(JSON.stringify(snapshot)) as AstNodeModelSnapshotOutType,
         undefined
       );
       SnippetAstNodeModel.create(clearedSnapshot);
@@ -214,8 +225,8 @@ export const EditorModel = t
     const fetchImages = flow(function* () {
       self.setIsFetchImagesLoading(true);
       try {
-        const { data: images } = yield httpGetUploadedImages();
-        self.setImages(images);
+        const { data: images } = yield* toGenerator(httpGetUploadedImages());
+        self.setImages(images.map((image) => image.url));
         self.setIsFetchImagesLoading(false);
         return self.images;
       } catch (error) {
@@ -227,7 +238,10 @@ export const EditorModel = t
     const uploadImage = flow(function* (formData: FormData) {
       self.setIsUploadImageLoading(true);
       try {
-        const { data: imageUrl } = yield httpPostUploadImage(formData);
+        const { data: imageUrl } = yield* toGenerator(
+          httpPostUploadImage(formData)
+        );
+        console.log("imageUrl", imageUrl);
         self.images.add(imageUrl);
         self.setIsUploadImageLoading(false);
         return imageUrl;
@@ -240,10 +254,10 @@ export const EditorModel = t
       }
     });
     const uploadPage = flow(function* (json: string) {
-      console.log('json', json);
+      console.log("json", json);
       self.setIsUploadPageLoading(true);
       try {
-        const { data } = yield httpPostUploadPage(json);
+        const { data } = yield* toGenerator(httpPostUploadPage(json));
         self.setIsUploadPageLoading(false);
         return data;
       } catch (error) {
