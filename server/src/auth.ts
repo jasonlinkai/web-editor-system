@@ -47,7 +47,6 @@ export default class Auth {
             .then((response) => response.json())
             .then(async (userInfo) => {
               try {
-                console.log(userInfo);
                 const [user] =
                   await this.serverDatabase.userRepository.findOrCreate({
                     where: { googleId: userInfo.id },
@@ -102,7 +101,6 @@ export default class Auth {
         failureRedirect: "http://localhost:3000/login",
       }),
       (req, res) => {
-        console.log("/auth/google/callback:", "req.user:", req.user);
         const token = jwt.sign({ user: req.user }, JWT_SECRET);
         res.redirect(`http://localhost:3000/redirect?credential=${token}`);
       }
