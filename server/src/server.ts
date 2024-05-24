@@ -37,7 +37,7 @@ export default class Server {
 
   private config(): void {
     const corsOptions: CorsOptions = {
-      origin: [process.env.CLIENT_URL]
+      origin: [process.env.CLIENT_URL],
     };
     this.app.use(cors(corsOptions));
     this.app.use(express.json());
@@ -47,6 +47,13 @@ export default class Server {
   }
 
   private register(): void {
+    this.app.get("/test-server", (req, res) => {
+      res.send({
+        code: 0,
+        message: "success",
+        data: "test success!",
+      });
+    });
     this.app.post(
       "/upload-image",
       this.auth.authenticateJWT,

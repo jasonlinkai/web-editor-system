@@ -36,6 +36,20 @@ const getToken = (): string => {
   }
 };
 
+export type GetTestServerResponse = { url: string }[];
+export const httpGetTestServer = async () => {
+  try {
+    const response = await fetch(getApiUrlByPath("test-server"), {
+      method: "GET",
+    });
+    const data: Response<GetTestServerResponse> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpGetTestServer:", e);
+    throw e;
+  }
+};
+
 export type PostUploadImageResponse = string;
 export const httpPostUploadImage = async (formData: FormData) => {
   try {

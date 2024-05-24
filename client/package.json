@@ -44,10 +44,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "dev-build-docker": "docker build --env-file=.env.local -t dev-web-editor-client-container .",
-    "dev-run-docker": "docker run --env-file=.env.local -d -p 3000:80 dev-web-editor-client-container .",
-    "pro-build-docker": "docker build --env-file=.env -t pro-web-editor-client-container .",
-    "pro-dev-run-docker": "docker run --env-file=.env -d -p 3000:80 pro-web-editor-client-container ."
+    "dev-docker": "sh dev-run.sh",
+    "prod-docker": "sh prod-run.sh"
   },
   "eslintConfig": {
     "extends": [

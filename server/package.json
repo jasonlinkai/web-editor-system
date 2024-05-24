@@ -8,10 +8,8 @@
     "build": "tsc",
     "start": "node ./build/index",
     "dev": "nodemon --config nodemon.json --exec 'yarn build && yarn start'",
-    "dev-build-docker": "docker build --env-file=.env.local -t dev-web-editor-server-container .",
-    "dev-run-docker": "docker run --env-file=.env.local -d -p 3001:3001 dev-web-editor-server-container .",
-    "pro-build-docker": "docker build --env-file=.env -t pro-web-editor-server-container .",
-    "pro-dev-run-docker": "docker run --env-file=.env -d -p 3001:3001 pro-web-editor-server-container ."
+    "dev-docker": "sh dev-run.sh",
+    "prod-docker": "sh prod-run.sh"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",

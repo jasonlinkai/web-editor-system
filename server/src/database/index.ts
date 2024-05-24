@@ -26,7 +26,6 @@ class ServerDatabase {
   public pageRepository: Repository<Page>;
   public imageRepository: Repository<Image>;
   constructor() {
-    console.log('process.env.MYSQL_DATABASE_HOST', process.env.MYSQL_DATABASE_HOST);
     this.sequelize = new _Sequelize({
       host: process.env.MYSQL_DATABASE_HOST,
       port: Number(process.env.MYSQL_DATABASE_PORT),

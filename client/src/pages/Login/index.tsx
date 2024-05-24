@@ -1,8 +1,14 @@
 import styles from "./Login.module.scss";
 import { observer } from "mobx-react-lite";
 import { Button } from "@mui/material";
+import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
+import { useEffect } from "react";
 
 const Login = observer(() => {
+  const { testServer } = useStores();
+  useEffect(() => {
+    testServer();
+  }, [testServer]);
   return (
     <div className={styles.login}>
       <h1 className={styles.loginTitle}>web-editor.js</h1>

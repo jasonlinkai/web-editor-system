@@ -4,17 +4,25 @@ import Server from "./server";
 import ServerDataBase from "./database";
 import Auth from "./auth";
 
+const initDb = async (serverDatabase: ServerDataBase) => {
+  try {
+    await serverDatabase.sync();
+    await serverDatabase.connect();
+  } catch (e) {
+    await initDb(serverDatabase);
+  }
+};
+
 const main = async () => {
-  const app: Application = express();
   const serverDatabase = new ServerDataBase();
-  await serverDatabase.sync();
-  await serverDatabase.connect();
+  await initDb(serverDatabase);
+  const app: Application = express();
   const auth = new Auth(app, serverDatabase);
   const server: Server = new Server(app, serverDatabase, auth);
   const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 
   app
-    .listen(PORT, "localhost", function () {
+    .listen(PORT, "0.0.0.0", function () {
       console.log(`Server is running on port ${PORT}.`);
     })
     .on("error", (err: any) => {

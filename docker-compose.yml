@@ -1,0 +1,44 @@
+version: "3"
+services:
+  server:
+    container_name: web-editor-server-container
+    build: ./server
+    env_file:
+      - ./server/.env.local
+    environment:
+      - MYSQL_DATABASE_HOST=database
+    ports:
+      - 3001:3001
+    networks:
+      - app-network
+    depends_on:
+      - database
+
+  database:
+    container_name: web-editor-database-container
+    build: ./database
+    env_file:
+      - ./database/.env.local
+    ports:
+      - 3906:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  client:
+    container_name: web-editor-client-container
+    build: ./client
+    ports:
+      - 3000:80
+    networks:
+      - app-network
+    depends_on:
+      - server
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge

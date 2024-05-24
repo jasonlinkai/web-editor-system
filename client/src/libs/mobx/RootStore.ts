@@ -5,10 +5,13 @@ import {
   getSnapshot,
   SnapshotIn,
   SnapshotOut,
+  flow,
+  toGenerator,
 } from "mobx-state-tree";
 import { PageModel, PageModelType } from "./PageModel";
 import { v4 as uuid } from "uuid";
 import { recursiveClearUuid } from "../utils";
+import { httpGetTestServer } from "../http";
 
 export const RootStore = t
   .model("RootStore", {
@@ -62,6 +65,23 @@ export const RootStore = t
     };
     return {
       setIsTemplateGalleryModalVisible,
+    };
+  })
+  //
+  // async action
+  //
+  .actions((self) => {
+    const testServer = flow(function* () {
+      try {
+        const { data } = yield* toGenerator(httpGetTestServer());
+        return data;
+      } catch (error) {
+        console.error("Failed to fetch testServer", error);
+        return '';
+      }
+    });
+    return {
+      testServer,
     };
   });
 
