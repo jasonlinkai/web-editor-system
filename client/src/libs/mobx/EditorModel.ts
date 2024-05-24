@@ -71,6 +71,7 @@ export const EditorModel = t
   //
   .actions((self) => ({
     setSelectedAstNode(node: AstNodeModelType | undefined) {
+      console.log('nodenode', node);
       if (node) {
         if (!self.selectedAstNode) {
           self.selectedAstNode = node;

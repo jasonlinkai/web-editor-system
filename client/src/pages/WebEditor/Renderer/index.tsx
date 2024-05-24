@@ -90,7 +90,6 @@ const Renderer: React.FC = observer(() => {
     useCallback(
       (ev, node) => {
         ev.stopPropagation();
-        // 防止元素把自己移入自己的操作
         const jsonData = ev.dataTransfer.getData("application/json");
         const { type, data } = JSON.parse(jsonData);
         let newNode;
@@ -100,7 +99,8 @@ const Renderer: React.FC = observer(() => {
           ev.clientY
         );
         if (type === "move node") {
-          if (selectedAstNode && selectedAstNode?.uuid === node.uuid) {
+          // 防止元素把自己移入自己的操作
+          if (selectedAstNode && selectedAstNode?.uuid !== node.uuid) {
             newNode = node.moveToChildren(selectedAstNode, insertIndex);
           }
         } else if (type === "add new node") {

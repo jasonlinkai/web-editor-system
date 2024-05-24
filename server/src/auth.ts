@@ -38,7 +38,7 @@ export default class Auth {
           tokenURL: "https://accounts.google.com/o/oauth2/token",
           clientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
           clientSecret: process.env.GOOGLE_OAUTH2_SECRET,
-          callbackURL: `https://zebra-central-incredibly.ngrok-free.app/auth/google/callback`,
+          callbackURL: `http://localhost:3001/auth/google/callback`,
           scope: ["profile", "email"],
         },
         (accessToken, refreshToken, params, profile, done) => {

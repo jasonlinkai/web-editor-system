@@ -9,7 +9,7 @@ const Login = observer(() => {
       <div className={styles.previousWork}>
         <h2 className={styles.previousWorkTitle}>Please login first</h2>
       </div>
-      <a href="https://zebra-central-incredibly.ngrok-free.app/auth/google">
+      <a href={`${process.env.REACT_APP_API_URL}/auth/google`}>
         <Button>Google Login</Button>
       </a>
     </div>
