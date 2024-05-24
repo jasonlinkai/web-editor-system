@@ -13,14 +13,15 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 import { useNavigate } from "react-router-dom";
+import { getSnapshot } from "mobx-state-tree";
 
 export const actionBarHeight = 50;
 
 const ActionBar: React.FC = observer(() => {
   const navigate = useNavigate();
-  const { selectedPage, setSelectedPage } = useStores();
+  const { selectedPage, setSelectedPage, isPostPageLoading, postPage } = useStores();
   if (!selectedPage) return null;
-  const { canUndo, canRedo, undoAst, redoAst, uploadAst, editor } =
+  const { canUndo, canRedo, undoAst, redoAst, editor } =
     selectedPage;
   const {
     isLeftDrawerOpen,
@@ -29,7 +30,6 @@ const ActionBar: React.FC = observer(() => {
     setIsRightDrawerOpen,
     selectedAstNode,
     pushToSnippets,
-    isUploadPageLoading,
   } = editor;
 
   const onShortCutDelete = useCallback(
@@ -153,7 +153,9 @@ const ActionBar: React.FC = observer(() => {
       </div>
       <div className={styles.actionBarRightArea}>
         <ButtonGroup>
-          <Button disabled={isUploadPageLoading} onClick={uploadAst}>
+          <Button disabled={isPostPageLoading} onClick={() => {
+            postPage(JSON.parse(JSON.stringify(getSnapshot(selectedPage))))
+          }}>
             <MdOutlinePublish />
             Publish(p)
           </Button>

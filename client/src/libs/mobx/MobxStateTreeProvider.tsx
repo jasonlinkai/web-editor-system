@@ -20,7 +20,7 @@ const store = RootStore.create(
   memorizedRootStoreSnapshot
     ? JSON.parse(memorizedRootStoreSnapshot)
     : {
-        pages: JSON.parse(JSON.stringify(pageTemplates)),
+        pages: [],
         templates: pageTemplates.map((pageTemplate) => {
           return {
             ...pageTemplate,

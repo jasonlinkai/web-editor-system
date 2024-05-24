@@ -11,9 +11,8 @@ import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 import { observer } from "mobx-react-lite";
 
 const WebEditor: React.FC = observer(() => {
-  const { selectedPage } = useStores();
+  const { selectedPage, isPostPageLoading } = useStores();
   if (!selectedPage) return null;
-  const { isUploadPageLoading } = selectedPage.editor;
   return (
     <div id="web-editor" className={styles.webEditor}>
       <ActionBar />
@@ -27,7 +26,7 @@ const WebEditor: React.FC = observer(() => {
       </div>
       <UploadModal />
       <ImageGalleryModal />
-      <PageLoading visible={isUploadPageLoading} />
+      <PageLoading visible={isPostPageLoading} />
     </div>
   );
 });

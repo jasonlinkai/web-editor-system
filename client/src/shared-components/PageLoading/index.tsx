@@ -1,5 +1,5 @@
 import { Backdrop } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loading from "@/shared-components/Loading";
 
 interface PageLoadingProps {
   visible: boolean;
@@ -8,7 +8,7 @@ interface PageLoadingProps {
 const PageLoading: React.FC<PageLoadingProps> = ({ visible = false }) => {
   return (
     <Backdrop open={visible}>
-      <CircularProgress color="primary" />
+      <Loading color="primary" />
     </Backdrop>
   );
 };

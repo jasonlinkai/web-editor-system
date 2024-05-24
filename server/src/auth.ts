@@ -19,6 +19,14 @@ export default class Auth {
     this.authenticateJWT = expressjwt({
       secret: JWT_SECRET,
       algorithms: ["HS256"],
+    }).unless({
+      path: [
+        { url: "/public", methods: ["GET"] },
+        { url: "/test-server", methods: ["GET"] },
+        { url: "/auth/google", methods: ["GET"] },
+        { url: "/auth/google/callback", methods: ["GET"] },
+        { url: "/logout", methods: ["GET"] },
+      ],
     });
   }
   config() {
@@ -89,6 +97,13 @@ export default class Auth {
     );
   }
   register() {
+    this.app.get("/test-server", (req, res) => {
+      res.send({
+        code: 0,
+        message: "success",
+        data: "test success!",
+      });
+    });
     this.app.get(
       "/auth/google",
       passport.authenticate("oauth2", {

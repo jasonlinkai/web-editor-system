@@ -1,5 +1,5 @@
 import styles from "./Home.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
@@ -16,6 +16,7 @@ import { Button, ButtonGroup } from "@mui/material";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 import TemplateGalleryModal from "./components/TemplateGalleryModal";
 import Snackbar from "@/shared-components/SnackBar";
+import Loading from "@/shared-components/Loading";
 
 const Home = observer(() => {
   const navigate = useNavigate();
@@ -28,7 +29,12 @@ const Home = observer(() => {
     setSelectedPage,
     deletePage,
     setIsTemplateGalleryModalVisible,
+    fetchPages,
+    isFetchPagesLoading,
   } = useStores();
+  useEffect(() => {
+    fetchPages();
+  }, [fetchPages]);
   return (
     <div className={styles.home}>
       <h1 className={styles.homeTitle}>web-editor.js</h1>
@@ -36,56 +42,69 @@ const Home = observer(() => {
         <h2 className={styles.previousWorkTitle}>
           Here is your previous works
         </h2>
+        {}
         <div className={styles.previousWorkArea}>
-          <List dense={true}>
-            {pages.map((page) => {
-              return (
-                <ListItem
-                  key={page.uuid}
-                  secondaryAction={
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => {
-                        deletePage(page);
-                        setDeletePageSuccessSnackbarVisible(true);
-                      }}
+          {isFetchPagesLoading ? (
+            <Loading color="primary" />
+          ) : (
+            <>
+              <List dense={true}>
+                {pages.map((page) => {
+                  return (
+                    <ListItem
+                      key={page.uuid}
+                      secondaryAction={
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={() => {
+                            deletePage(page);
+                            setDeletePageSuccessSnackbarVisible(true);
+                          }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      }
                     >
-                      <DeleteIcon />
-                    </IconButton>
-                  }
+                      <ListItemButton
+                        role={undefined}
+                        onClick={() => {
+                          setSelectedPage(page);
+                          navigate("/web-editor");
+                        }}
+                        dense
+                      >
+                        <ListItemAvatar>
+                          <Avatar>
+                            <FolderIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={page.title}
+                          secondary={page.uuid}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}
+              </List>
+              <div className={styles.addNewPage}>
+                <ButtonGroup
+                  variant="contained"
+                  aria-label="Basic button group"
                 >
-                  <ListItemButton
-                    role={undefined}
+                  <Button
+                    startIcon={<AddIcon />}
                     onClick={() => {
-                      setSelectedPage(page);
-                      navigate("/web-editor");
+                      setIsTemplateGalleryModalVisible(true);
                     }}
-                    dense
                   >
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={page.title} secondary={page.uuid} />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </List>
-        </div>
-        <div className={styles.addNewPage}>
-          <ButtonGroup variant="contained" aria-label="Basic button group">
-            <Button
-              startIcon={<AddIcon />}
-              onClick={() => {
-                setIsTemplateGalleryModalVisible(true);
-              }}
-            >
-              add new page
-            </Button>
-          </ButtonGroup>
+                    add new page
+                  </Button>
+                </ButtonGroup>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <TemplateGalleryModal />

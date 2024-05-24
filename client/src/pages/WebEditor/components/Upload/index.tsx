@@ -37,6 +37,7 @@ const Upload = observer(({ onSuccess }: UploadProps) => {
         if (files && files[0]) {
           const file = files[0];
           const formData = new FormData();
+          formData.append("fileType", "image");
           formData.append("file", file);
           try {
             const image = await editor.uploadImage(formData);

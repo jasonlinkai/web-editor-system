@@ -1,6 +1,7 @@
+import { SnapshotOut } from "mobx-state-tree";
 import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
 import { RootStoreSnapshotOutType } from "./mobx/RootStore";
-console.log("process.env", process.env);
+import { PageModelType } from "./mobx/PageModel";
 const apiUrl = process.env.REACT_APP_API_URL;
 const cdnUrl = process.env.REACT_APP_CDN_URL;
 
@@ -36,10 +37,18 @@ const getToken = (): string => {
   }
 };
 
+const request: typeof fetch = async (...args) => {
+  const response = await fetch(...args);
+  if (response.status >= 400) {
+    throw Error(response.statusText);
+  }
+  return response;
+};
+
 export type GetTestServerResponse = { url: string }[];
 export const httpGetTestServer = async () => {
   try {
-    const response = await fetch(getApiUrlByPath("test-server"), {
+    const response = await request(getApiUrlByPath("test-server"), {
       method: "GET",
     });
     const data: Response<GetTestServerResponse> = await response.json();
@@ -50,10 +59,47 @@ export const httpGetTestServer = async () => {
   }
 };
 
+export type GetPagesServerResponse = SnapshotOut<PageModelType>[];
+export const httpGetPages = async () => {
+  try {
+    const response = await request(getApiUrlByPath("pages"), {
+      method: "GET",
+      headers: {
+        Authorization: getToken(),
+      },
+    });
+    const data: Response<GetPagesServerResponse> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpGetPages:", e);
+    throw e;
+  }
+};
+
+export type PostPageResponse = boolean;
+export const httpPostPage = async (json: string) => {
+  try {
+    const response = await request(getApiUrlByPath("page"), {
+      method: "POST",
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+      body: json,
+    });
+    console.log("response", response);
+    const data: Response<PostPageResponse> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpPostPage:", e);
+    throw e;
+  }
+};
+
 export type PostUploadImageResponse = string;
 export const httpPostUploadImage = async (formData: FormData) => {
   try {
-    const response = await fetch(getApiUrlByPath("upload-image"), {
+    const response = await request(getApiUrlByPath("upload?type=IMAGE"), {
       method: "POST",
       headers: {
         Authorization: getToken(),
@@ -68,38 +114,19 @@ export const httpPostUploadImage = async (formData: FormData) => {
   }
 };
 
-export type GetUploadedImagesResponse = { url: string }[];
-export const httpGetUploadedImages = async () => {
+export type GetImagesResponse = { url: string }[];
+export const httpGetImages = async () => {
   try {
-    const response = await fetch(getApiUrlByPath("uploaded-images"), {
+    const response = await request(getApiUrlByPath("images"), {
       method: "GET",
       headers: {
         Authorization: getToken(),
       },
     });
-    const data: Response<GetUploadedImagesResponse> = await response.json();
+    const data: Response<GetImagesResponse> = await response.json();
     return data;
   } catch (e) {
-    console.error("Error httpGetUploadedImages:", e);
-    throw e;
-  }
-};
-
-export type PostUploadPageResponse = boolean;
-export const httpPostUploadPage = async (json: string) => {
-  try {
-    const response = await fetch(getApiUrlByPath("publish"), {
-      method: "POST",
-      headers: {
-        Authorization: getToken(),
-        "Content-Type": "application/json",
-      },
-      body: json,
-    });
-    const data: Response<PostUploadPageResponse> = await response.json();
-    return data;
-  } catch (e) {
-    console.error("Error httpPostUploadPage:", e);
+    console.error("Error httpGetImages:", e);
     throw e;
   }
 };

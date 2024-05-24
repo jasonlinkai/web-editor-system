@@ -15,9 +15,8 @@ import { EditorLayoutModel } from "./EditorLayoutModel";
 import { getRandomColor, recursiveClearUuid } from "@/libs/utils";
 import {
   getStaticUrlByFilename,
-  httpGetUploadedImages,
+  httpGetImages,
   httpPostUploadImage,
-  httpPostUploadPage,
 } from "@/libs/http";
 import {
   ContainerNodeType,
@@ -46,7 +45,6 @@ export const EditorModel = t
     isFetchImagesLoading: boolean;
     isUploadImageLoading: boolean;
     isImageGalleryModalVisible: boolean;
-    isUploadPageLoading: boolean;
   }>(() => ({
     isLeftDrawerOpen: true,
     isRightDrawerOpen: true,
@@ -55,7 +53,6 @@ export const EditorModel = t
     isFetchImagesLoading: false,
     isUploadImageLoading: false,
     isImageGalleryModalVisible: false,
-    isUploadPageLoading: false,
   }))
   .views((self) => {
     return {
@@ -144,9 +141,6 @@ export const EditorModel = t
     const setIsUploadModalVisible = (visible: boolean) => {
       self.isUploadModalVisible = visible;
     };
-    const setIsUploadPageLoading = (v: boolean) => {
-      self.isUploadPageLoading = v;
-    };
     return {
       setIsLeftDrawerOpen,
       setIsRightDrawerOpen,
@@ -155,7 +149,6 @@ export const EditorModel = t
       setIsFetchImagesLoading,
       setImages,
       setIsUploadModalVisible,
-      setIsUploadPageLoading,
     };
   })
   //
@@ -226,7 +219,7 @@ export const EditorModel = t
     const fetchImages = flow(function* () {
       self.setIsFetchImagesLoading(true);
       try {
-        const { data: images } = yield* toGenerator(httpGetUploadedImages());
+        const { data: images } = yield* toGenerator(httpGetImages());
         self.setImages(images.map((image) => image.url));
         self.setIsFetchImagesLoading(false);
         return self.images;
@@ -242,7 +235,6 @@ export const EditorModel = t
         const { data: imageUrl } = yield* toGenerator(
           httpPostUploadImage(formData)
         );
-        console.log("imageUrl", imageUrl);
         self.images.add(imageUrl);
         self.setIsUploadImageLoading(false);
         return imageUrl;
@@ -254,20 +246,7 @@ export const EditorModel = t
         fetchImages();
       }
     });
-    const uploadPage = flow(function* (json: string) {
-      console.log("json", json);
-      self.setIsUploadPageLoading(true);
-      try {
-        const { data } = yield* toGenerator(httpPostUploadPage(json));
-        self.setIsUploadPageLoading(false);
-        return data;
-      } catch (error) {
-        console.error("Failed to fetch uploadImage", error);
-        self.setIsUploadPageLoading(false);
-        return "";
-      }
-    });
-    return { uploadImage, fetchImages, uploadPage };
+    return { uploadImage, fetchImages };
   })
   //
   // lifecycle callbacks

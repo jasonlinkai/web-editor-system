@@ -11,7 +11,7 @@ import {
 import { PageModel, PageModelType } from "./PageModel";
 import { v4 as uuid } from "uuid";
 import { recursiveClearUuid } from "../utils";
-import { httpGetTestServer } from "../http";
+import { httpGetTestServer, httpGetPages, httpPostPage } from "../http";
 
 export const RootStore = t
   .model("RootStore", {
@@ -22,6 +22,8 @@ export const RootStore = t
   })
   .volatile((self) => ({
     isTemplateGalleryModalVisible: false,
+    isFetchPagesLoading: false,
+    isPostPageLoading: false,
   }))
   .views((self) => {
     return {
@@ -63,8 +65,16 @@ export const RootStore = t
     const setIsTemplateGalleryModalVisible = (v: boolean) => {
       self.isTemplateGalleryModalVisible = v;
     };
+    const setIsFetchImagesLoading = (v: boolean) => {
+      self.isFetchPagesLoading = v;
+    };
+    const setIsPostPageLoading = (v: boolean) => {
+      self.isPostPageLoading = v;
+    };
     return {
       setIsTemplateGalleryModalVisible,
+      setIsFetchImagesLoading,
+      setIsPostPageLoading,
     };
   })
   //
@@ -77,11 +87,41 @@ export const RootStore = t
         return data;
       } catch (error) {
         console.error("Failed to fetch testServer", error);
-        return '';
+        return "";
+      }
+    });
+    const fetchPages = flow(function* () {
+      try {
+        self.setIsFetchImagesLoading(true);
+        const { data: pages } = yield* toGenerator(httpGetPages());
+        self.pages = (pages as any).map((page: any) => {
+          page.ast = JSON.parse(page.ast);
+          return page;
+        });
+        self.setIsFetchImagesLoading(false);
+        return pages;
+      } catch (error) {
+        console.error("Failed to fetch pages", error);
+        self.setIsFetchImagesLoading(false);
+        return [];
+      }
+    });
+    const postPage = flow(function* (json: string) {
+      self.setIsPostPageLoading(true);
+      try {
+        const { data } = yield* toGenerator(httpPostPage(json));
+        self.setIsPostPageLoading(false);
+        return data;
+      } catch (error) {
+        console.error("Failed to fetch uploadImage", error);
+        self.setIsPostPageLoading(false);
+        throw error;
       }
     });
     return {
       testServer,
+      fetchPages,
+      postPage,
     };
   });
 

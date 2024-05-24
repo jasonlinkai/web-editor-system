@@ -10,6 +10,8 @@ import FolderIcon from "@mui/icons-material/Folder";
 import Dialog, { DialogRefType } from "@/shared-components/Dialog";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 import Snackbar from "@/shared-components/SnackBar";
+import { getSnapshot } from "mobx-state-tree";
+import { recursiveClearUuid } from "@/libs/utils";
 
 const TemplateGalleryModal = observer(() => {
   const {
@@ -17,11 +19,14 @@ const TemplateGalleryModal = observer(() => {
     setIsTemplateGalleryModalVisible,
     templates,
     addPage,
+    postPage,
   } = useStores();
   const [
     addNewPageSuccessSnackbarVisible,
     setAddNewPageSuccessSnackbarVisible,
   ] = useState(false);
+  const [addNewPageFailSnackbarVisible, setAddNewPageFailSnackbarVisible] =
+    useState(false);
   const dialogRef = useRef<DialogRefType>(null);
   useEffect(() => {
     if (isTemplateGalleryModalVisible) {
@@ -45,10 +50,23 @@ const TemplateGalleryModal = observer(() => {
               <ListItem key={page.uuid}>
                 <ListItemButton
                   role={undefined}
-                  onClick={() => {
-                    addPage(page);
-                    setAddNewPageSuccessSnackbarVisible(true);
-                    setIsTemplateGalleryModalVisible(false);
+                  onClick={async () => {
+                    try {
+                      const ast = recursiveClearUuid(
+                        JSON.parse(JSON.stringify(getSnapshot(page.ast)))
+                      );
+                      await postPage(
+                        JSON.stringify({
+                          ...page,
+                          ast,
+                        })
+                      );
+                      addPage(page);
+                      setAddNewPageSuccessSnackbarVisible(true);
+                      setIsTemplateGalleryModalVisible(false);
+                    } catch (e) {
+                      setAddNewPageFailSnackbarVisible(true);
+                    }
                   }}
                   dense
                 >
@@ -70,6 +88,14 @@ const TemplateGalleryModal = observer(() => {
         message="Add new page successed!"
         onClose={() => {
           setAddNewPageSuccessSnackbarVisible(false);
+        }}
+      />
+      <Snackbar
+        open={addNewPageFailSnackbarVisible}
+        serverity="error"
+        message="Add new page failed!"
+        onClose={() => {
+          setAddNewPageFailSnackbarVisible(false);
         }}
       />
     </>
