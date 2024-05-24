@@ -38,7 +38,7 @@ export default class Auth {
           tokenURL: "https://accounts.google.com/o/oauth2/token",
           clientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
           clientSecret: process.env.GOOGLE_OAUTH2_SECRET,
-          callbackURL: `http://localhost:3001/auth/google/callback`,
+          callbackURL: `${process.env.SERVER_HOST}:${process.env.PORT}/auth/google/callback`,
           scope: ["profile", "email"],
         },
         (accessToken, refreshToken, params, profile, done) => {
@@ -98,11 +98,11 @@ export default class Auth {
     this.app.get(
       "/auth/google/callback",
       passport.authenticate("oauth2", {
-        failureRedirect: "http://localhost:3000/login",
+        failureRedirect: `${process.env.CLIENT_URL}/login`,
       }),
       (req, res) => {
         const token = jwt.sign({ user: req.user }, JWT_SECRET);
-        res.redirect(`http://localhost:3000/redirect?credential=${token}`);
+        res.redirect(`${process.env.CLIENT_URL}/redirect?credential=${token}`);
       }
     );
     this.app.get("/logout", (req) => {
