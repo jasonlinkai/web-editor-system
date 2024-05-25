@@ -69,6 +69,7 @@ const Dailog = forwardRef<DialogRefType, DialogProps>(
     return (
       <dialog ref={dialogRef} open={isOpen} style={{ border: 0 }}>
         <Backdrop
+          style={{ zIndex: 4}}
           open={isOpen}
           onClick={closeDialog}
         ></Backdrop>
