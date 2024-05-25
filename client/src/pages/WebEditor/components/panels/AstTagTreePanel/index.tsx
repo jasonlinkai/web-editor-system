@@ -22,6 +22,7 @@ const AstTagTree = observer(
         style={{ marginLeft }}
         onClick={(e) => {
           e.stopPropagation();
+          node.setIsSelected(true);
           setSelectedAstNode(node);
         }}
       >
