@@ -2,9 +2,13 @@ import { v4 } from "uuid";
 import { Application, Router, Request } from "express";
 import AWS from "aws-sdk";
 import ServerDatabase from "../database";
-import { RequestWithAuth, UploadPostQueryTypeEnum, UploadPostQuery } from "../typing";
+import type { RequestWithAuth } from "../typing";
+import {
+  PostUploadRequestQueryTypeEnum,
+  PostUploadRequestQuery,
+} from "../../../shared/http-types";
 
-type UploadPostRequest = RequestWithAuth<Request<{}, {}, {}, UploadPostQuery>>;
+type UploadPostRequest = RequestWithAuth<Request<{}, {}, {}, PostUploadRequestQuery>>;
 const registerUploadRouter = (
   app: Application,
   serverDatabase: ServerDatabase
@@ -20,7 +24,7 @@ const registerUploadRouter = (
   const router = Router();
   router.post("/upload", async (req: UploadPostRequest, res) => {
     try {
-      if (!Object.keys(UploadPostQueryTypeEnum).includes(req.query.type)) {
+      if (!Object.keys(PostUploadRequestQueryTypeEnum).includes(req.query.type)) {
         throw Error("We don't support this upload type.");
       }
 

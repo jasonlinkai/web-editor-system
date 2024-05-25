@@ -17,10 +17,10 @@ export default class Server {
     this.serverDatabase = serverDatabase;
     this.auth = auth;
 
-    this.config();
-    this.register();
     this.auth.config();
+    this.config();
     this.auth.register();
+    this.register();
   }
 
   private config(): void {

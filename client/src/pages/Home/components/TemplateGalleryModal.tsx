@@ -12,6 +12,8 @@ import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 import Snackbar from "@/shared-components/SnackBar";
 import { getSnapshot } from "mobx-state-tree";
 import { recursiveClearUuid } from "@/libs/utils";
+import { v4 as uuid } from "uuid";
+import { PageModel } from "@/libs/mobx/PageModel";
 
 const TemplateGalleryModal = observer(() => {
   const {
@@ -19,7 +21,7 @@ const TemplateGalleryModal = observer(() => {
     setIsTemplateGalleryModalVisible,
     templates,
     addPage,
-    postPage,
+    ActionPostPage,
   } = useStores();
   const [
     addNewPageSuccessSnackbarVisible,
@@ -55,13 +57,21 @@ const TemplateGalleryModal = observer(() => {
                       const ast = recursiveClearUuid(
                         JSON.parse(JSON.stringify(getSnapshot(page.ast)))
                       );
-                      await postPage(
-                        JSON.stringify({
-                          ...page,
-                          ast,
-                        })
-                      );
-                      addPage(page);
+                      const { updatedAt, createdAt, userId, ...pageData } =
+                        await ActionPostPage(
+                          JSON.stringify({
+                            title: page.title,
+                            uuid: uuid(),
+                            ast,
+                          })
+                        );
+                      const newPage = PageModel.create({
+                        id: pageData.id,
+                        title: pageData.title,
+                        uuid: pageData.uuid,
+                        ast: JSON.parse(pageData.ast),
+                      });
+                      addPage(newPage);
                       setAddNewPageSuccessSnackbarVisible(true);
                       setIsTemplateGalleryModalVisible(false);
                     } catch (e) {

@@ -1,7 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
   AstNodeModelSnapshotInType,
-  AstNodeModelSnapshotOutType,
 } from "./mobx/AstNodeModel";
 
 export const getRandomColor = () => {
@@ -20,9 +19,9 @@ export const makeOptions = (values: string[]) => {
 };
 
 export const recursiveClearUuid = (
-  ast: AstNodeModelSnapshotInType | AstNodeModelSnapshotOutType,
+  ast: AstNodeModelSnapshotInType,
   parentUuid?: string
-) => {
+): AstNodeModelSnapshotInType => {
   ast.uuid = uuid();
   ast.parent = parentUuid;
   if (ast.children) {

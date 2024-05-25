@@ -12,11 +12,12 @@ import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, ButtonGroup } from "@mui/material";
-import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
+import { Button } from "@mui/material";
+import { useStores, useStoresReload } from "@/libs/mobx/useMobxStateTreeStores";
 import TemplateGalleryModal from "./components/TemplateGalleryModal";
 import Snackbar from "@/shared-components/SnackBar";
 import Loading from "@/shared-components/Loading";
+import { LogoutOutlined } from "@mui/icons-material";
 
 const Home = observer(() => {
   const navigate = useNavigate();
@@ -25,16 +26,32 @@ const Home = observer(() => {
     setDeletePageSuccessSnackbarVisible,
   ] = useState(false);
   const {
+    token,
+    inited,
+    setInited,
     pages,
     setSelectedPage,
     deletePage,
     setIsTemplateGalleryModalVisible,
-    fetchPages,
+    ActionGetPages,
     isFetchPagesLoading,
+    ActionDeletePage,
+    ActionPostLogout,
   } = useStores();
+  const { reload } = useStoresReload();
   useEffect(() => {
-    fetchPages();
-  }, [fetchPages]);
+    const init = async () => {
+      try {
+        if (token && !inited) {
+          await ActionGetPages();
+          setInited(true);
+        }
+      } catch (e) {
+        console.log("init error", (e as Error).message);
+      }
+    };
+    init();
+  }, [token, inited, setInited, ActionGetPages]);
   return (
     <div className={styles.home}>
       <h1 className={styles.homeTitle}>web-editor.js</h1>
@@ -47,64 +64,75 @@ const Home = observer(() => {
           {isFetchPagesLoading ? (
             <Loading color="primary" />
           ) : (
-            <>
-              <List dense={true}>
-                {pages.map((page) => {
-                  return (
-                    <ListItem
-                      key={page.uuid}
-                      secondaryAction={
-                        <IconButton
-                          edge="end"
-                          aria-label="delete"
-                          onClick={() => {
-                            deletePage(page);
+            <List dense={true}>
+              {pages.map((page) => {
+                return (
+                  <ListItem
+                    key={page.uuid}
+                    secondaryAction={
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        onClick={async () => {
+                          try {
+                            if (page.id !== null) {
+                              await ActionDeletePage(page.id);
+                              deletePage(page);
+                              setDeletePageSuccessSnackbarVisible(true);
+                            }
+                          } catch (e) {
                             setDeletePageSuccessSnackbarVisible(true);
-                          }}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      }
-                    >
-                      <ListItemButton
-                        role={undefined}
-                        onClick={() => {
-                          setSelectedPage(page);
-                          navigate("/web-editor");
+                          }
                         }}
-                        dense
                       >
-                        <ListItemAvatar>
-                          <Avatar>
-                            <FolderIcon />
-                          </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={page.title}
-                          secondary={page.uuid}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                })}
-              </List>
-              <div className={styles.addNewPage}>
-                <ButtonGroup
-                  variant="contained"
-                  aria-label="Basic button group"
-                >
-                  <Button
-                    startIcon={<AddIcon />}
-                    onClick={() => {
-                      setIsTemplateGalleryModalVisible(true);
-                    }}
+                        <DeleteIcon />
+                      </IconButton>
+                    }
                   >
-                    add new page
-                  </Button>
-                </ButtonGroup>
-              </div>
-            </>
+                    <ListItemButton
+                      role={undefined}
+                      onClick={() => {
+                        setSelectedPage(page);
+                        navigate("/web-editor");
+                      }}
+                      dense
+                    >
+                      <ListItemAvatar>
+                        <Avatar>
+                          <FolderIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={page.title}
+                        secondary={page.uuid}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </List>
           )}
+        </div>
+        <div className={styles.addNewPage}>
+          <Button
+            startIcon={<AddIcon />}
+            onClick={() => {
+              setIsTemplateGalleryModalVisible(true);
+            }}
+          >
+            add new page
+          </Button>
+          <Button
+            color="error"
+            startIcon={<LogoutOutlined />}
+            onClick={async () => {
+              await ActionPostLogout();
+              navigate("/login");
+              reload();
+            }}
+          >
+            logout
+          </Button>
         </div>
       </div>
       <TemplateGalleryModal />

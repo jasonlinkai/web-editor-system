@@ -2,6 +2,8 @@ import { SnapshotOut } from "mobx-state-tree";
 import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
 import { RootStoreSnapshotOutType } from "./mobx/RootStore";
 import { PageModelType } from "./mobx/PageModel";
+import { PostPageResponseBody } from "../../../shared/http-types";
+
 const apiUrl = process.env.REACT_APP_API_URL;
 const cdnUrl = process.env.REACT_APP_CDN_URL;
 
@@ -59,6 +61,24 @@ export const httpGetTestServer = async () => {
   }
 };
 
+export type PostLogoutResponse = boolean;
+export const httpPostLogout = async () => {
+  try {
+    const response = await request(getApiUrlByPath("auth/logout"), {
+      method: "POST",
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+      body: "",
+    });
+    const data: Response<PostLogoutResponse> = await response.json();
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export type GetPagesServerResponse = SnapshotOut<PageModelType>[];
 export const httpGetPages = async () => {
   try {
@@ -76,7 +96,6 @@ export const httpGetPages = async () => {
   }
 };
 
-export type PostPageResponse = boolean;
 export const httpPostPage = async (json: string) => {
   try {
     const response = await request(getApiUrlByPath("page"), {
@@ -87,11 +106,50 @@ export const httpPostPage = async (json: string) => {
       },
       body: json,
     });
-    console.log("response", response);
-    const data: Response<PostPageResponse> = await response.json();
+    const data: Response<PostPageResponseBody> = await response.json();
     return data;
   } catch (e) {
     console.error("Error httpPostPage:", e);
+    throw e;
+  }
+};
+
+export type PutPageResponse = boolean;
+export const httpPutPage = async (json: string) => {
+  try {
+    const response = await request(getApiUrlByPath("page"), {
+      method: "PUT",
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+      body: json,
+    });
+    const data: Response<PutPageResponse> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpPutPage:", e);
+    throw e;
+  }
+};
+
+export type DeletePageResponse = boolean;
+export const httpDeletePage = async (id: number) => {
+  try {
+    const response = await request(getApiUrlByPath("page"), {
+      method: "Delete",
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    const data: Response<DeletePageResponse> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpDeletePage:", e);
     throw e;
   }
 };

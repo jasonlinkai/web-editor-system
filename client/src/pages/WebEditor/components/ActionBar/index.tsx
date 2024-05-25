@@ -19,10 +19,10 @@ export const actionBarHeight = 50;
 
 const ActionBar: React.FC = observer(() => {
   const navigate = useNavigate();
-  const { selectedPage, setSelectedPage, isPostPageLoading, postPage } = useStores();
+  const { selectedPage, setSelectedPage, isPutPageLoading, ActionPutPage } =
+    useStores();
   if (!selectedPage) return null;
-  const { canUndo, canRedo, undoAst, redoAst, editor } =
-    selectedPage;
+  const { canUndo, canRedo, undoAst, redoAst, editor } = selectedPage;
   const {
     isLeftDrawerOpen,
     setIsLeftDrawerOpen,
@@ -153,9 +153,12 @@ const ActionBar: React.FC = observer(() => {
       </div>
       <div className={styles.actionBarRightArea}>
         <ButtonGroup>
-          <Button disabled={isPostPageLoading} onClick={() => {
-            postPage(JSON.parse(JSON.stringify(getSnapshot(selectedPage))))
-          }}>
+          <Button
+            disabled={isPutPageLoading}
+            onClick={() => {
+              ActionPutPage(JSON.stringify(getSnapshot(selectedPage)));
+            }}
+          >
             <MdOutlinePublish />
             Publish(p)
           </Button>

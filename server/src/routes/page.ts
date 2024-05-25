@@ -1,16 +1,16 @@
 import { Application, Request, Router } from "express";
 import ServerDatabase from "../database";
-import {
-  RequestWithAuth,
-  PostPageBody,
-  PutPageBody,
-  DeletePageBody,
-} from "../typing";
+import type { RequestWithAuth } from "../typing";
+import type {
+  PostPageRequestBody,
+  PutPageRequestBody,
+  DeletePageRequestBody,
+} from "../../../shared/http-types";
 
 type PageGetRequest = RequestWithAuth;
-type PagePostRequest = RequestWithAuth<Request<{}, {}, PostPageBody>>;
-type PageDeleteRequest = RequestWithAuth<Request<{}, {}, DeletePageBody>>;
-type PagePutRequest = RequestWithAuth<Request<{}, {}, PutPageBody>>;
+type PagePostRequest = RequestWithAuth<Request<{}, {}, PostPageRequestBody>>;
+type PageDeleteRequest = RequestWithAuth<Request<{}, {}, DeletePageRequestBody>>;
+type PagePutRequest = RequestWithAuth<Request<{}, {}, PutPageRequestBody>>;
 
 const registerPageRouter = (
   app: Application,
@@ -41,7 +41,7 @@ const registerPageRouter = (
       const uuid = req.body.uuid;
       const title = req.body.title;
       const ast = JSON.stringify(req.body.ast);
-      await serverDatabase.pageRepository.create({
+      const page = await serverDatabase.pageRepository.create({
         uuid,
         title,
         ast,
@@ -50,7 +50,7 @@ const registerPageRouter = (
       return res.send({
         code: 0,
         message: "success",
-        data: true,
+        data: page,
       });
     } catch (e) {
       return res.status(400).send({

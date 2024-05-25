@@ -8,13 +8,14 @@ import {
   SnapshotIn,
   SnapshotOut,
 } from "mobx-state-tree";
-import { AstNodeModel, AstNodeModelSnapshotOutType } from "./AstNodeModel";
+import { AstNodeModel, AstNodeModelSnapshotInType, AstNodeModelSnapshotOutType } from "./AstNodeModel";
 import { EditorModel } from "./EditorModel";
 
 export const MetaModel = t.model("MetaModel", {});
 
 export const PageModel = t
   .model("PageModel", {
+    id: t.maybeNull(t.number),
     uuid: t.identifier,
     title: t.string,
     ast: AstNodeModel,
@@ -43,6 +44,18 @@ export const PageModel = t
       return self.astSnapshotsIndex + 1 <= self.astSnapshots.length - 1;
     },
   }))
+  .actions((self) => {
+    const setId = (id: number) => {
+      self.id = id;
+    };
+    const setAst = (ast: AstNodeModelSnapshotInType) => {
+      self.ast = AstNodeModel.create(ast);
+    };
+    return {
+      setId,
+      setAst,
+    };
+  })
   .actions((self) => {
     const setCanSaveSnapshot = (v: boolean) => {
       self.canSaveSnapshot = v;

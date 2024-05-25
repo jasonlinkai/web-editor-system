@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { expressjwt } from "express-jwt";
 import { User } from "./database/models";
 import ServerDatabase from "./database";
+import { RequestWithAuth } from "./typing";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -25,7 +26,6 @@ export default class Auth {
         { url: "/test-server", methods: ["GET"] },
         { url: "/auth/google", methods: ["GET"] },
         { url: "/auth/google/callback", methods: ["GET"] },
-        { url: "/logout", methods: ["GET"] },
       ],
     });
   }
@@ -120,10 +120,21 @@ export default class Auth {
         res.redirect(`${process.env.CLIENT_URL}/redirect?credential=${token}`);
       }
     );
-    this.app.get("/logout", (req) => {
+    this.app.post("/auth/logout", (req: RequestWithAuth, res) => {
       req.logout((err) => {
         if (err) {
           console.error(err.message);
+          res.send({
+            code: 400,
+            message: err.message,
+          });
+        } else {
+          console.log("logout success: ", req.auth?.user.username);
+          res.send({
+            code: 0,
+            message: "success",
+            data: true,
+          });
         }
       });
     });

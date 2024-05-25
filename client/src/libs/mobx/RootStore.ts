@@ -2,16 +2,20 @@ import {
   types as t,
   Instance,
   detach,
-  getSnapshot,
   SnapshotIn,
   SnapshotOut,
   flow,
   toGenerator,
 } from "mobx-state-tree";
 import { PageModel, PageModelType } from "./PageModel";
-import { v4 as uuid } from "uuid";
-import { recursiveClearUuid } from "../utils";
-import { httpGetTestServer, httpGetPages, httpPostPage } from "../http";
+import {
+  httpGetTestServer,
+  httpPostLogout,
+  httpGetPages,
+  httpPostPage,
+  httpDeletePage,
+  httpPutPage,
+} from "../http";
 
 export const RootStore = t
   .model("RootStore", {
@@ -19,11 +23,14 @@ export const RootStore = t
     templates: t.optional(t.array(PageModel), []),
     pages: t.optional(t.array(PageModel), []),
     selectedPage: t.maybe(t.safeReference(PageModel)),
+    inited: t.optional(t.boolean, false),
   })
   .volatile((self) => ({
     isTemplateGalleryModalVisible: false,
     isFetchPagesLoading: false,
     isPostPageLoading: false,
+    isDeletePageLoading: false,
+    isPutPageLoading: false,
   }))
   .views((self) => {
     return {
@@ -36,6 +43,9 @@ export const RootStore = t
   // model mutators
   //
   .actions((self) => {
+    const setInited = (inited: boolean) => {
+      self.inited = inited;
+    };
     const setToken = (token: string) => {
       self.token = token;
     };
@@ -43,15 +53,13 @@ export const RootStore = t
       self.selectedPage = page;
     };
     const addPage = (page: PageModelType) => {
-      const copyedSnapshot = JSON.parse(JSON.stringify(getSnapshot(page)));
-      copyedSnapshot.uuid = uuid();
-      copyedSnapshot.ast = recursiveClearUuid(copyedSnapshot.ast);
-      self.pages.push(copyedSnapshot);
+      self.pages.push(page);
     };
     const deletePage = (page: PageModelType) => {
       detach(page);
     };
     return {
+      setInited,
       setToken,
       setSelectedPage,
       addPage,
@@ -65,16 +73,24 @@ export const RootStore = t
     const setIsTemplateGalleryModalVisible = (v: boolean) => {
       self.isTemplateGalleryModalVisible = v;
     };
-    const setIsFetchImagesLoading = (v: boolean) => {
+    const setIsFetchPagesLoading = (v: boolean) => {
       self.isFetchPagesLoading = v;
     };
     const setIsPostPageLoading = (v: boolean) => {
       self.isPostPageLoading = v;
     };
+    const setIsPutPageLoading = (v: boolean) => {
+      self.isPutPageLoading = v;
+    };
+    const setIsDeletePageLoading = (v: boolean) => {
+      self.isDeletePageLoading = v;
+    };
     return {
       setIsTemplateGalleryModalVisible,
-      setIsFetchImagesLoading,
+      setIsFetchPagesLoading,
       setIsPostPageLoading,
+      setIsPutPageLoading,
+      setIsDeletePageLoading,
     };
   })
   //
@@ -86,42 +102,72 @@ export const RootStore = t
         const { data } = yield* toGenerator(httpGetTestServer());
         return data;
       } catch (error) {
-        console.error("Failed to fetch testServer", error);
-        return "";
+        throw error;
       }
     });
-    const fetchPages = flow(function* () {
+    const ActionPostLogout = flow(function* () {
       try {
-        self.setIsFetchImagesLoading(true);
+        const { data } = yield* toGenerator(httpPostLogout());
+        return data;
+      } catch (error) {
+        throw error;
+      }
+    });
+    const ActionGetPages = flow(function* () {
+      try {
+        self.setIsFetchPagesLoading(true);
         const { data: pages } = yield* toGenerator(httpGetPages());
         self.pages = (pages as any).map((page: any) => {
           page.ast = JSON.parse(page.ast);
           return page;
         });
-        self.setIsFetchImagesLoading(false);
+        self.setIsFetchPagesLoading(false);
         return pages;
       } catch (error) {
-        console.error("Failed to fetch pages", error);
-        self.setIsFetchImagesLoading(false);
-        return [];
+        self.setIsFetchPagesLoading(false);
+        throw error;
       }
     });
-    const postPage = flow(function* (json: string) {
+    const ActionPostPage = flow(function* (json: string) {
       self.setIsPostPageLoading(true);
       try {
         const { data } = yield* toGenerator(httpPostPage(json));
         self.setIsPostPageLoading(false);
         return data;
       } catch (error) {
-        console.error("Failed to fetch uploadImage", error);
         self.setIsPostPageLoading(false);
+        throw error;
+      }
+    });
+    const ActionPutPage = flow(function* (json: string) {
+      self.setIsPutPageLoading(true);
+      try {
+        const { data } = yield* toGenerator(httpPutPage(json));
+        self.setIsPutPageLoading(false);
+        return data;
+      } catch (error) {
+        self.setIsPutPageLoading(false);
+        throw error;
+      }
+    });
+    const ActionDeletePage = flow(function* (id: number) {
+      self.setIsDeletePageLoading(true);
+      try {
+        const { data } = yield* toGenerator(httpDeletePage(id));
+        self.setIsDeletePageLoading(false);
+        return data;
+      } catch (error) {
+        self.setIsDeletePageLoading(false);
         throw error;
       }
     });
     return {
       testServer,
-      fetchPages,
-      postPage,
+      ActionPostLogout,
+      ActionGetPages,
+      ActionPostPage,
+      ActionPutPage,
+      ActionDeletePage,
     };
   });
 
