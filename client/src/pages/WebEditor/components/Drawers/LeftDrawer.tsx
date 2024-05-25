@@ -5,8 +5,8 @@ import { observer } from "mobx-react-lite";
 import { FaPlus } from "react-icons/fa";
 import { MdSnippetFolder } from "react-icons/md";
 import { LuTableProperties } from "react-icons/lu";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import InfoPanel from "../panels/InfoPanel";
 import NewNodePanel from "../panels/NewNodePanel";
 import AstTagTreePanel from "../panels/AstTagTreePanel";
@@ -42,6 +42,15 @@ const LeftDrawer: React.FC = observer(() => {
   const { editor } = selectedPage;
   const node = editor.selectedAstNode;
   const [tabType, setTabType] = useState(TabTypes.ATTRIBUTES);
+  const handleTabTypeChange = (
+    event: React.MouseEvent<HTMLElement>,
+    t: TabTypes | null
+  ) => {
+    if (t !== null) {
+      setTabType(t);
+    }
+  };
+
   return (
     <div
       className={clsx([
@@ -53,30 +62,25 @@ const LeftDrawer: React.FC = observer(() => {
     >
       <div className={styles.drawerContentWrap}>
         <div className={styles.drawerTabsArea}>
-          <Tabs
+          <ToggleButtonGroup
             value={tabType}
-            variant="scrollable"
-            scrollButtons={true}
-            onChange={(e: React.SyntheticEvent, v: TabTypes | null) => {
-              if (v !== null) {
-                setTabType(v);
-              }
-            }}
+            exclusive
+            onChange={handleTabTypeChange}
             aria-label="left drawer panel tabs"
           >
             {tabs.map((tab) => {
-              const { IconComponent, type, label } = tab;
+              const { IconComponent, type } = tab;
               return (
-                <Tab
+                <ToggleButton
                   key={type}
-                  label={label}
-                  icon={<IconComponent />}
                   value={type}
                   aria-label={`left drawer panel tab ${type}`}
-                />
+                >
+                  <IconComponent />
+                </ToggleButton>
               );
             })}
-          </Tabs>
+          </ToggleButtonGroup>
         </div>
         <div className={styles.drawerPanelArea}>
           {tabType === TabTypes.ATTRIBUTES &&
