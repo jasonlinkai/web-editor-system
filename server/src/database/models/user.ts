@@ -1,10 +1,6 @@
 import { DataTypes } from "sequelize";
-import {
-  Table,
-  Column,
-  Model,
-  AllowNull,
-} from "sequelize-typescript";
+import { Table, Column, Model, AllowNull, HasMany } from "sequelize-typescript";
+import { Page } from "./page";
 
 @Table({
   timestamps: true,
@@ -40,4 +36,7 @@ export class User extends Model {
     unique: true,
   })
   googleId!: string;
+
+  @HasMany(() => Page)
+  pages!: Page[];
 }

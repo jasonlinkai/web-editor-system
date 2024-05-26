@@ -1,4 +1,4 @@
-import Redirect from "@/pages/Redirect";
+import Redirect from "source/pages/Redirect";
 
 export default function Page() {
   return <Redirect />;

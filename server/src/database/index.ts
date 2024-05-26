@@ -43,7 +43,7 @@ class ServerDatabase {
   async sync() {
     try {
       console.log('Start sync db...');
-      await this.sequelize.sync({ force: true });
+      // await this.sequelize.sync({ force: true });
       console.log("Sync db success!");
     } catch (e) {
       console.error("Sync db error:", e);

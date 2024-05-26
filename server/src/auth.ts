@@ -22,8 +22,9 @@ export default class Auth {
       algorithms: ["HS256"],
     }).unless({
       path: [
-        { url: "/public", methods: ["GET"] },
         { url: "/test-server", methods: ["GET"] },
+        { url: "/public/render-datas", methods: ["GET"] },
+        { url: "/public/page", methods: ["GET"] },
         { url: "/auth/google", methods: ["GET"] },
         { url: "/auth/google/callback", methods: ["GET"] },
       ],
@@ -117,7 +118,9 @@ export default class Auth {
       }),
       (req, res) => {
         const token = jwt.sign({ user: req.user }, JWT_SECRET);
-        res.redirect(`${process.env.CLIENT_URL}/backend/redirect?credential=${token}`);
+        res.redirect(
+          `${process.env.CLIENT_URL}/backend/redirect?credential=${token}`
+        );
       }
     );
     this.app.post("/auth/logout", (req: RequestWithAuth, res) => {

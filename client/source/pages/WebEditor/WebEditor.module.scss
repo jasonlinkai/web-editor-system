@@ -1,0 +1,21 @@
+@import "../../variables";
+
+.webEditor {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.webEditorMainArea {
+  display: flex;
+  height: calc(100% - 50px)
+}
+
+.webEditorMainAreaEditScreen {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
