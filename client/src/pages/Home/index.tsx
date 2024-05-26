@@ -1,7 +1,8 @@
+"use client"
 import styles from "./Home.module.scss";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -20,7 +21,7 @@ import Loading from "@/shared-components/Loading";
 import { LogoutOutlined } from "@mui/icons-material";
 
 const Home = observer(() => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [
     deletePageSuccessSnackbarVisible,
     setDeletePageSuccessSnackbarVisible,
@@ -93,7 +94,7 @@ const Home = observer(() => {
                       role={undefined}
                       onClick={() => {
                         setSelectedPage(page);
-                        navigate("/web-editor");
+                        router.replace("/backend/protected/editor");
                       }}
                       dense
                     >
@@ -127,7 +128,7 @@ const Home = observer(() => {
             startIcon={<LogoutOutlined />}
             onClick={async () => {
               await ActionPostLogout();
-              navigate("/login");
+              router.replace("/backend/login");
               reload();
             }}
           >

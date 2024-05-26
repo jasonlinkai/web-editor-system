@@ -1,3 +1,4 @@
+"use client";
 import styles from "./WebEditor.module.scss";
 import ActionBar from "./components/ActionBar";
 import LeftDrawer from "./components/Drawers/LeftDrawer";

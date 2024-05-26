@@ -1,3 +1,4 @@
+"use client"
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef } from "react";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";

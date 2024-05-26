@@ -1,3 +1,4 @@
+"use client";
 import styles from "./SizerBar.module.scss";
 import { observer } from "mobx-react-lite";
 import { FaLaptop, FaMobile } from "react-icons/fa";

@@ -113,11 +113,11 @@ export default class Auth {
     this.app.get(
       "/auth/google/callback",
       passport.authenticate("oauth2", {
-        failureRedirect: `${process.env.CLIENT_URL}/login`,
+        failureRedirect: `${process.env.CLIENT_URL}/backend/login`,
       }),
       (req, res) => {
         const token = jwt.sign({ user: req.user }, JWT_SECRET);
-        res.redirect(`${process.env.CLIENT_URL}/redirect?credential=${token}`);
+        res.redirect(`${process.env.CLIENT_URL}/backend/redirect?credential=${token}`);
       }
     );
     this.app.post("/auth/logout", (req: RequestWithAuth, res) => {

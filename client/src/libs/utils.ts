@@ -22,6 +22,7 @@ export const recursiveClearUuid = (
   ast: AstNodeModelSnapshotInType,
   parentUuid?: string
 ): AstNodeModelSnapshotInType => {
+  ast = JSON.parse(JSON.stringify(ast));
   ast.uuid = uuid();
   ast.parent = parentUuid;
   if (ast.children) {

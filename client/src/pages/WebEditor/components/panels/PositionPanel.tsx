@@ -1,3 +1,4 @@
+"use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
 import Select from "@/shared-components/Select";

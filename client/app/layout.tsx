@@ -1,5 +1,5 @@
-import "../src/reset.scss";
-import "../src/index.scss";
+import "../src/reset.scss"
+import "../src/index.scss"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

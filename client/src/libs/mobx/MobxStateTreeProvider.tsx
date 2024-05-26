@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 
 // import { connectReduxDevtools } from "mst-middlewares";
 
@@ -42,13 +43,11 @@ const loadStore = () => {
   };
 };
 
-const { disposer, store } = loadStore();
-
 export const StoreContext = React.createContext<{
-  store: RootStoreType;
+  store: RootStoreType | undefined;
   reload: () => void;
 }>({
-  store,
+  store: undefined,
   reload: () => {},
 });
 
@@ -60,14 +59,24 @@ if (process.env.NODE_ENV === "development") {
 export const MobxStateTreeStoreProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const reload = useCallback(() => {
-    localStorage.removeItem(SNAPSHOT_KEYS.ROOT_STORE);
-    applySnapshot(store, getRootStoreSnapshotFromLocalStorage());
+  const [store, setStore] = useState<RootStoreType | undefined>(undefined);
+  const init = useCallback(() => {
+    const { disposer, store } = loadStore();
+    setStore(store);
     return () => {
       disposer();
     };
   }, []);
-
+  const reload = useCallback(() => {
+    if (store) {
+      localStorage.removeItem(SNAPSHOT_KEYS.ROOT_STORE);
+      applySnapshot(store, getRootStoreSnapshotFromLocalStorage());
+    }
+  }, [store]);
+  useEffect(() => {
+    init();
+  }, [init]);
+  if (!store) return null;
   return (
     <StoreContext.Provider value={{ store, reload }}>
       {children}

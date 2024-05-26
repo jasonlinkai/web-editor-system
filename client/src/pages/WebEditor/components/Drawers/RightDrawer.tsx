@@ -1,3 +1,4 @@
+"use client"
 import styles from "./Drawer.module.scss";
 import clsx from "clsx";
 import { useState } from "react";

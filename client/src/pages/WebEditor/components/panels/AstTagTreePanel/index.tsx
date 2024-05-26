@@ -1,3 +1,4 @@
+"use client"
 import panelStyles from "../Panel.module.scss";
 import styles from "./AstTagTreePanel.module.scss";
 import { observer } from "mobx-react-lite";

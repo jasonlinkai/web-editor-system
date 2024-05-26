@@ -1,3 +1,4 @@
+"use client"
 import styles from "./Login.module.scss";
 import { observer } from "mobx-react-lite";
 import { Button } from "@mui/material";

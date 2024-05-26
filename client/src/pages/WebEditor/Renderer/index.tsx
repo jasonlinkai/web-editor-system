@@ -1,3 +1,4 @@
+"use client";
 import styles from "./Renderer.module.scss";
 import React, { useCallback } from "react";
 import { observer } from "mobx-react-lite";

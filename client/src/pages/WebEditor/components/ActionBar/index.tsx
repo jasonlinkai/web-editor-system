@@ -1,3 +1,4 @@
+"use client"
 import styles from "./ActionBar.module.scss";
 import { useCallback, useEffect } from "react";
 import { observer } from "mobx-react-lite";
@@ -12,13 +13,13 @@ import { ImRedo, ImUndo } from "react-icons/im";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { getSnapshot } from "mobx-state-tree";
 
 export const actionBarHeight = 50;
 
 const ActionBar: React.FC = observer(() => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { selectedPage, setSelectedPage, isPutPageLoading, ActionPutPage } =
     useStores();
   if (!selectedPage) return null;
@@ -98,7 +99,7 @@ const ActionBar: React.FC = observer(() => {
       <div className={styles.actionBarLeftArea}>
         <Button
           onClick={() => {
-            navigate("/");
+            router.replace("/backend/protected/home");
             setSelectedPage(undefined);
           }}
         >
