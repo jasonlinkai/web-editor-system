@@ -2,6 +2,7 @@
   "name": "web-editor",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -23,6 +24,7 @@
     "mobx-react-lite": "^4.0.7",
     "mobx-state-tree": "^6.0.0",
     "mst-middlewares": "^6.0.0",
+    "next": "^14.2.3",
     "normalize.css": "^8.0.1",
     "react": "^18.3.1",
     "react-app-rewired": "^2.2.1",
@@ -40,8 +42,9 @@
   },
   "scripts": {
     "scss": "typed-scss-modules src --watch",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "dev-docker": "sh dev-run.sh",

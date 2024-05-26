@@ -4,8 +4,8 @@ import { RootStoreSnapshotOutType } from "./mobx/RootStore";
 import { PageModelType } from "./mobx/PageModel";
 import { PostPageResponseBody } from "../../../shared/http-types";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-const cdnUrl = process.env.REACT_APP_CDN_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const cdnUrl = process.env.NEXT_PUBLIC_CDN_URL;
 
 export const getApiUrlByPath = (path: string) => {
   return `${apiUrl}/${path}`;

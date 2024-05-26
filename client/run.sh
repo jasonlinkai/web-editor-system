@@ -1,8 +1,8 @@
 # Step 1: Build the Docker image
 echo "Building the Docker image..."
 docker build -t $IMAGE_NAME \
-    --build-arg REACT_APP_API_URL=$REACT_APP_API_URL \
-    --build-arg REACT_APP_CDN_URL=$REACT_APP_CDN_URL .
+    --build-arg NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
+    --build-arg NEXT_PUBLIC_CDN_URL=$NEXT_PUBLIC_CDN_URL .
 
 # Step 2: Check if a container with the same name is already running and stop it
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
