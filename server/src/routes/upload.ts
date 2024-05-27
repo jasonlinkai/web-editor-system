@@ -6,7 +6,7 @@ import type { RequestWithAuth } from "../typing";
 import {
   PostUploadRequestQueryTypeEnum,
   PostUploadRequestQuery,
-} from "../../../shared/http-types";
+} from "../../http-types";
 
 type UploadPostRequest = RequestWithAuth<Request<{}, {}, {}, PostUploadRequestQuery>>;
 const registerUploadRouter = (

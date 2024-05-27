@@ -5,7 +5,7 @@ import type {
   PostPageRequestBody,
   PutPageRequestBody,
   DeletePageRequestBody,
-} from "../../../shared/http-types";
+} from "../../http-types";
 
 type PageGetRequest = RequestWithAuth;
 type PagePostRequest = RequestWithAuth<Request<{}, {}, PostPageRequestBody>>;

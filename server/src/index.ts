@@ -6,7 +6,7 @@ import Auth from "./auth";
 
 const initDb = async (serverDatabase: ServerDataBase) => {
   try {
-    // await serverDatabase.sync();
+    await serverDatabase.sync();
     await serverDatabase.connect();
   } catch (e) {
     await initDb(serverDatabase);

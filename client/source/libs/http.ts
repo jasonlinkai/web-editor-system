@@ -2,7 +2,7 @@ import { SnapshotOut } from "mobx-state-tree";
 import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
 import { RootStoreSnapshotOutType } from "./mobx/RootStore";
 import { PageModelType } from "./mobx/PageModel";
-import { Response, PostPageResponseBody } from "../../../shared/http-types";
+import { Response, PostPageResponseBody } from "../../http-types";
 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;

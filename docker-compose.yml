@@ -2,21 +2,43 @@ version: "3"
 services:
   server:
     container_name: web-editor-server-container
-    build: ./server
+    build:
+      context: ./server
+      args:
+        MYSQL_DATABASE_HOST: $MYSQL_DATABASE_HOST
+        MYSQL_DATABASE_PORT: $MYSQL_DATABASE_PORT
+        MYSQL_DATABASE_DATABASE: $MYSQL_DATABASE_DATABASE
+        MYSQL_DATABASE_USERNAME: $MYSQL_DATABASE_USERNAME
+        MYSQL_DATABASE_PASSWORD: $MYSQL_DATABASE_PASSWORD
+        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+        AWS_SECRET_REGION: $AWS_SECRET_REGION
+        GOOGLE_OAUTH2_SECRET: $GOOGLE_OAUTH2_SECRET
+        GOOGLE_OAUTH2_CLIENT_ID: $GOOGLE_OAUTH2_CLIENT_ID
+        JWT_SECRET: $JWT_SECRET
+        CLIENT_URL: $CLIENT_URL
+        SERVER_HOST: $SERVER_HOST
+        PORT: $PORT
     env_file:
       - ./server/.env.local
-    environment:
-      - MYSQL_DATABASE_HOST=database
     ports:
       - 3001:3001
-    networks:
-      - app-network
     depends_on:
       - database
+    networks:
+      - app-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   database:
     container_name: web-editor-database-container
-    build: ./database
+    build: 
+      context: ./database
+      args:
+        MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+        MYSQL_DATABASE: $MYSQL_DATABASE
+        MYSQL_USER: $MYSQL_USER
+        MYSQL_PASSWORD: $MYSQL_PASSWORD
     env_file:
       - ./database/.env.local
     ports:
@@ -25,16 +47,26 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - app-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   client:
     container_name: web-editor-client-container
-    build: ./client
+    build:
+      context: ./client
+      args:
+        NEXT_PUBLIC_API_URL: $NEXT_PUBLIC_API_URL
+        NEXT_PUBLIC_CDN_URL: $NEXT_PUBLIC_CDN_URL
+    env_file:
+      - ./client/.env.local
     ports:
-      - 3000:80
-    networks:
-      - app-network
+      - 3000:3000
     depends_on:
       - server
+    networks:
+      - app-network
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
 volumes:
   db_data:

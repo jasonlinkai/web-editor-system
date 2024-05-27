@@ -1,5 +1,15 @@
 # syntax=docker/dockerfile:1
-FROM node:18-alpine as builder
+FROM node:18-alpine
+
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_CDN_URL
+
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_CDN_URL=$NEXT_PUBLIC_CDN_URL
+
+RUN echo ${NEXT_PUBLIC_API_URL}
+RUN echo ${NEXT_PUBLIC_CDN_URL}
+
 WORKDIR /usr/app
 COPY . .
 RUN yarn install

@@ -24,10 +24,7 @@ export default class Server {
   }
 
   private config(): void {
-    const corsOptions: CorsOptions = {
-      origin: [process.env.CLIENT_URL],
-    };
-    this.app.use(cors(corsOptions));
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(fileUpload());
