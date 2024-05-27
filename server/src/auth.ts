@@ -4,7 +4,6 @@ import { Strategy as OAuth2Strategy } from "passport-oauth2";
 import session from "express-session";
 import jwt from "jsonwebtoken";
 import { expressjwt } from "express-jwt";
-import { User } from "./database/models";
 import ServerDatabase from "./database";
 import { RequestWithAuth } from "./typing";
 
@@ -81,7 +80,7 @@ export default class Auth {
       done(null, (user as any).id);
     });
     passport.deserializeUser<number>((id, done) => {
-      User.findByPk(id)
+      this.serverDatabase.userRepository.findByPk(id)
         .then((user) => {
           done(null, user);
         })

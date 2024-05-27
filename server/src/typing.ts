@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { User } from "./database/models";
+import User from "./database/models";
 
 //
 // common

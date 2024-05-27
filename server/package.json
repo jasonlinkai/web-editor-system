@@ -11,7 +11,8 @@
     "start": "node ./build/src/index",
     "dev-docker": "sh dev-run.sh",
     "prod-docker": "sh prod-run.sh",
-    "sync-db": "node ./build/src/database/sync"
+    "db:create": "dotenvx run --env-file=.env.local --env-file=.env -- sequelize db:create",
+    "db:migrate": "dotenvx run --env-file=.env.local --env-file=.env -- sequelize db:migrate"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^0.44.0",
@@ -36,12 +37,12 @@
     "passport-oauth2": "^1.8.0",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",
-    "sequelize-typescript": "^2.1.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
   }
 }

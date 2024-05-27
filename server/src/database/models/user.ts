@@ -1,42 +1,66 @@
-import { DataTypes } from "sequelize";
-import { Table, Column, Model, AllowNull, HasMany } from "sequelize-typescript";
-import { Page } from "./page";
+import { Model, DataTypes } from 'sequelize';
+import connection from '../connection'
 
-@Table({
-  timestamps: true,
-})
-export class User extends Model {
-  @Column({
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  id!: number;
+interface UserAttributes {
+  id?: number;
+  username: string;
+  avatarUrl: string;
+  email: string;
+  googleId: string;
 
-  @AllowNull(false)
-  @Column({
-    type: DataTypes.STRING,
-  })
-  username!: string;
-
-  @AllowNull(false)
-  @Column({
-    type: DataTypes.STRING,
-    unique: true,
-  })
-  email!: string;
-
-  @Column({
-    type: DataTypes.STRING,
-  })
-  avatarUrl!: string;
-
-  @Column({
-    type: DataTypes.STRING,
-    unique: true,
-  })
-  googleId!: string;
-
-  @HasMany(() => Page)
-  pages!: Page[];
+  updatedAt?: Date;
+  deletedAt?: Date;
+  createdAt?: Date;
 }
+
+class User extends Model<UserAttributes> implements UserAttributes {
+  public id!: number;
+  public username!: string;
+  public avatarUrl!: string;
+  public email!: string;
+  public googleId!: string;
+
+  public readonly updatedAt!: Date;
+  public readonly createdAt!: Date;
+}
+
+User.init(
+  {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.NUMBER,
+    },
+    username: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    avatarUrl: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    googleId: {
+      unique: true,
+      type: DataTypes.STRING,
+    }, 
+
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+  },
+  {
+    sequelize: connection,
+    modelName: 'User',
+  }
+);
+
+export default User;
