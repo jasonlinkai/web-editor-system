@@ -1,4 +1,3 @@
-require("dotenv").config({ path: [".env.local", ".env"] });
 import express, { Application } from "express";
 import Server from "./server";
 import ServerDataBase from "./database";

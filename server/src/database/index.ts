@@ -1,4 +1,3 @@
-require("dotenv").config({ path: [".env.local", ".env"] });
 import { Sequelize as _Sequelize, Repository } from "sequelize-typescript";
 import { User } from "./models/user";
 import { Page } from "./models/page";

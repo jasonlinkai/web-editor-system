@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
+    "dev-start": "dotenvx run --env-file=.env.local --env-file=.env -- node ./build/src/index",
+    "dev": "nodemon --config nodemon.json --exec 'yarn build && yarn dev-start'",
     "start": "node ./build/src/index",
-    "dev": "nodemon --config nodemon.json --exec 'yarn build && yarn start'",
     "dev-docker": "sh dev-run.sh",
-    "prod-docker": "sh prod-run.sh"
+    "prod-docker": "sh prod-run.sh",
+    "sync-db": "node ./build/src/database/sync"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^0.44.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/express-fileupload": "^1.5.0",
@@ -23,7 +26,6 @@
     "@types/uuid": "^9.0.8",
     "aws-sdk": "^2.1621.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-fileupload": "^1.5.0",
     "express-jwt": "^8.4.1",
