@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { expressjwt } from "express-jwt";
 import ServerDatabase from "./database";
 import { RequestWithAuth } from "./typing";
+import { v4 as uuid } from "uuid";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -22,10 +23,8 @@ export default class Auth {
     }).unless({
       path: [
         { url: "/test-server", methods: ["GET"] },
-        { url: "/public/render-datas", methods: ["GET"] },
-        { url: "/public/page", methods: ["GET"] },
-        { url: "/auth/google", methods: ["GET"] },
-        { url: "/auth/google/callback", methods: ["GET"] },
+        { url: new RegExp('/public', 'ig'), methods: ["GET"] },
+        { url: new RegExp('/auth', 'ig'), methods: ["GET"] },
       ],
     });
   }
@@ -59,6 +58,7 @@ export default class Auth {
                   await this.serverDatabase.userRepository.findOrCreate({
                     where: { googleId: userInfo.id },
                     defaults: {
+                      uuid: uuid(),
                       username: userInfo.name,
                       email: userInfo.email,
                       avatarUrl: userInfo.picture,

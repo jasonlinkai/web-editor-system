@@ -3,6 +3,7 @@ import connection from '../connection'
 
 interface UserAttributes {
   id?: number;
+  uuid: string;
   username: string;
   avatarUrl: string;
   email: string;
@@ -15,6 +16,7 @@ interface UserAttributes {
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id!: number;
+  public uuid!: string;
   public username!: string;
   public avatarUrl!: string;
   public email!: string;
@@ -31,6 +33,11 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.NUMBER,
+    },
+    uuid: {
+      allowNull: false,
+      unique: true,
+      type: new DataTypes.STRING(128),
     },
     username: {
       allowNull: false,

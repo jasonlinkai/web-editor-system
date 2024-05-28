@@ -31,8 +31,18 @@ const registerPublicRouter = (
       try {
         const page = await serverDatabase.pageRepository.findOne({
           where: {
-            id: req.query.id,
+            uuid: req.query.pageUuid,
           },
+          include: [
+            {
+              model: serverDatabase.userRepository,
+              where: {
+                uuid: req.query.userUuid,
+              },
+              as: "user",
+              attributes: ["uuid"], // 只選擇特定的字段
+            },
+          ],
         });
         return res.send({
           code: 0,

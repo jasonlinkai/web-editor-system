@@ -8,6 +8,7 @@ export interface Response<T> {
 //
 export interface UserType {
   id: number;
+  uuid: string;
   username: string;
   email: string;
   avatarUrl: string;
@@ -64,6 +65,7 @@ export interface UserWithPagesType extends UserType {
 }
 export type GetPublicRenderDatasResponseBody = UserWithPagesType[];
 export interface GetPublicPageRequestQuery {
-  id: PageType['id'];
+  userUuid: UserType['uuid'];
+  pageUuid: PageType['uuid'];
 }
 export type GetPublicPageReponseBody = PageType;

@@ -4,12 +4,10 @@ import {
   // GetPublicRenderDatasResponseBody,
 } from "../../../../http-types";
 
-export const dynamicParams = false;
 
 interface PageParams {
-  username: string;
-  pageuuid: string;
-  pageId: string;
+  userUuid: string;
+  pageUuid: string;
 }
 
 // export async function generateStaticParams() {
@@ -28,9 +26,8 @@ interface PageParams {
 //         ...acc,
 //         ...pages.map((page) => {
 //           return {
-//             username: `${user.username}`,
-//             pageuuid: `${page.uuid}`,
-//             pageId: `${page.id}`,
+//             userUuid: `${user.uuid}`,
+//             pageUuid: `${page.uuid}`,
 //           };
 //         }),
 //       ];
@@ -43,7 +40,7 @@ interface PageParams {
 
 async function getPage(params: PageParams) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/public/page?id=${params.pageId}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/public/page?userUuid=${params.userUuid}&pageUuid=${params.pageUuid}`,
     {
       method: "GET",
     }
