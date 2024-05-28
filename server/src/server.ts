@@ -7,6 +7,7 @@ import registerPublicRouter from "./routes/public";
 import registerUploadRouter from "./routes/upload";
 import registerImageRouter from "./routes/image";
 import registerPageRouter from "./routes/page";
+import registerUserRouter from "./routes/user";
 
 export default class Server {
   private app: Application;
@@ -33,6 +34,7 @@ export default class Server {
 
   private register(): void {
     registerPublicRouter(this.app, this.serverDatabase);
+    registerUserRouter(this.app);
     registerUploadRouter(this.app, this.serverDatabase);
     registerImageRouter(this.app, this.serverDatabase);
     registerPageRouter(this.app, this.serverDatabase);

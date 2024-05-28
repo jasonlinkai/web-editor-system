@@ -20,6 +20,7 @@ const getRootStoreSnapshotFromLocalStorage = () => {
   return memorizedRootStoreSnapshot
     ? JSON.parse(memorizedRootStoreSnapshot)
     : {
+        currentUser: {},
         pages: [],
         templates: (
           JSON.parse(JSON.stringify(pageTemplates)) as typeof pageTemplates

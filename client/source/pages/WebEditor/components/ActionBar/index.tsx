@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import styles from "./ActionBar.module.scss";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import {
   FaAngleDoubleLeft,
@@ -8,20 +8,32 @@ import {
   FaHome,
   FaTrash,
 } from "react-icons/fa";
-import { MdSnippetFolder, MdOutlinePublish } from "react-icons/md";
+import {
+  MdSnippetFolder,
+  MdOutlinePublish,
+  MdOutlinePreview,
+} from "react-icons/md";
 import { ImRedo, ImUndo } from "react-icons/im";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useRouter } from "next/navigation";
 import { getSnapshot } from "mobx-state-tree";
+import Snackbar from "source/shared-components/SnackBar";
 
 export const actionBarHeight = 50;
 
 const ActionBar: React.FC = observer(() => {
+  const [publishPageSuccessSnackbarVisible, setPublishPageSuccessSnackbarVisible] = useState(false);
+  const [publishPageFailSnackbarVisible, setPublishPageFailSnackbarVisible] = useState(false);
   const router = useRouter();
-  const { selectedPage, setSelectedPage, isPutPageLoading, ActionPutPage } =
-    useStores();
+  const {
+    currentUser,
+    selectedPage,
+    setSelectedPage,
+    isPutPageLoading,
+    ActionPutPage,
+  } = useStores();
   if (!selectedPage) return null;
   const { canUndo, canRedo, undoAst, redoAst, editor } = selectedPage;
   const {
@@ -154,10 +166,21 @@ const ActionBar: React.FC = observer(() => {
       </div>
       <div className={styles.actionBarRightArea}>
         <ButtonGroup>
+          <a href={`/web/${currentUser?.uuid}/${selectedPage.uuid}`}>
+            <Button>
+              <MdOutlinePreview />
+              Preview(p)
+            </Button>
+          </a>
           <Button
             disabled={isPutPageLoading}
-            onClick={() => {
-              ActionPutPage(JSON.stringify(getSnapshot(selectedPage)));
+            onClick={async () => {
+              try {
+                await ActionPutPage(JSON.stringify(getSnapshot(selectedPage)));
+                setPublishPageSuccessSnackbarVisible(true);
+              } catch (e) {
+                setPublishPageFailSnackbarVisible(true);
+              }
             }}
           >
             <MdOutlinePublish />
@@ -180,6 +203,22 @@ const ActionBar: React.FC = observer(() => {
           )}
         </Button>
       </div>
+      <Snackbar
+        open={publishPageSuccessSnackbarVisible}
+        serverity="success"
+        message="Publish page successed!"
+        onClose={() => {
+          setPublishPageSuccessSnackbarVisible(false);
+        }}
+      />
+      <Snackbar
+        open={publishPageFailSnackbarVisible}
+        serverity="error"
+        message="Publish page failed!"
+        onClose={() => {
+          setPublishPageFailSnackbarVisible(false);
+        }}
+      />
     </div>
   );
 });

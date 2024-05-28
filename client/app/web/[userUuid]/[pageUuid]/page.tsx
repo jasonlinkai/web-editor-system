@@ -1,9 +1,11 @@
+import { AstNodeModel } from "source/libs/mobx/AstNodeModel";
 import {
   Response,
   GetPublicPageReponseBody,
   // GetPublicRenderDatasResponseBody,
 } from "../../../../http-types";
-
+import RenderNode from "./components/Renderer/components/RenderNode";
+import Renderer from "./components/Renderer";
 
 interface PageParams {
   userUuid: string;
@@ -43,6 +45,7 @@ async function getPage(params: PageParams) {
     `${process.env.NEXT_PUBLIC_API_URL}/public/page?userUuid=${params.userUuid}&pageUuid=${params.pageUuid}`,
     {
       method: "GET",
+      next: { revalidate: 0 },
     }
   );
   const { data: page }: Response<GetPublicPageReponseBody> = await res.json();
@@ -53,8 +56,13 @@ export default async function Page({ params }: { params: PageParams }) {
   const page = await getPage(params);
   if (page) {
     return (
-      <div>
-        <p>{page.title}</p>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Renderer ast={JSON.parse(page.ast)} />
       </div>
     );
   } else {

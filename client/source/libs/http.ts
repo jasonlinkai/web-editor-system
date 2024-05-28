@@ -3,6 +3,7 @@ import { SNAPSHOT_KEYS } from "./mobx/MobxStateTreeProvider";
 import { RootStoreSnapshotOutType } from "./mobx/RootStore";
 import { PageModelType } from "./mobx/PageModel";
 import { Response, PostPageResponseBody } from "../../http-types";
+import { UserModelSnapshotInType } from "./mobx/UserModel";
 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -52,6 +53,24 @@ export const httpGetTestServer = async () => {
     return data;
   } catch (e) {
     console.error("Error httpGetTestServer:", e);
+    throw e;
+  }
+};
+
+export type GetUserResponse = UserModelSnapshotInType;
+export const httpGetUser = async () => {
+  try {
+    const response = await request(getApiUrlByPath("user"), {
+      method: "GET",
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+    });
+    const data: Response<UserModelSnapshotInType> = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error httpGetUser:", e);
     throw e;
   }
 };

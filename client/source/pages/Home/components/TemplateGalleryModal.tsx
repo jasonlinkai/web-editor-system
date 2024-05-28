@@ -13,7 +13,7 @@ import Snackbar from "source/shared-components/SnackBar";
 import { getSnapshot } from "mobx-state-tree";
 import { recursiveClearUuid } from "source/libs/utils";
 import { v4 as uuid } from "uuid";
-import { PageModel } from "source/libs/mobx/PageModel";
+import { PageModel } from "@/libs/mobx/PageModel";
 
 const TemplateGalleryModal = observer(() => {
   const {

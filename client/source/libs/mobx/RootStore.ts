@@ -8,6 +8,7 @@ import {
   toGenerator,
 } from "mobx-state-tree";
 import { PageModel, PageModelType } from "./PageModel";
+import { UserModel } from "./UserModel";
 import {
   httpGetTestServer,
   httpPostLogout,
@@ -15,10 +16,12 @@ import {
   httpPostPage,
   httpDeletePage,
   httpPutPage,
+  httpGetUser,
 } from "../http";
 
 export const RootStore = t
   .model("RootStore", {
+    currentUser: t.maybe(UserModel),
     token: t.optional(t.string, ""),
     templates: t.optional(t.array(PageModel), []),
     pages: t.optional(t.array(PageModel), []),
@@ -27,6 +30,7 @@ export const RootStore = t
   })
   .volatile((self) => ({
     isTemplateGalleryModalVisible: false,
+    isGetUserLoading: false,
     isFetchPagesLoading: false,
     isPostPageLoading: false,
     isDeletePageLoading: false,
@@ -73,6 +77,9 @@ export const RootStore = t
     const setIsTemplateGalleryModalVisible = (v: boolean) => {
       self.isTemplateGalleryModalVisible = v;
     };
+    const setIsGetUserLoading = (v: boolean) => {
+      self.isGetUserLoading = v;
+    };
     const setIsFetchPagesLoading = (v: boolean) => {
       self.isFetchPagesLoading = v;
     };
@@ -87,6 +94,7 @@ export const RootStore = t
     };
     return {
       setIsTemplateGalleryModalVisible,
+      setIsGetUserLoading,
       setIsFetchPagesLoading,
       setIsPostPageLoading,
       setIsPutPageLoading,
@@ -102,6 +110,18 @@ export const RootStore = t
         const { data } = yield* toGenerator(httpGetTestServer());
         return data;
       } catch (error) {
+        throw error;
+      }
+    });
+    const ActionGetUser = flow(function* () {
+      try {
+        self.setIsGetUserLoading(true);
+        const { data } = yield* toGenerator(httpGetUser());
+        self.currentUser = UserModel.create(data);
+        self.setIsGetUserLoading(false);
+        return data;
+      } catch (error) {
+        self.setIsGetUserLoading(false);
         throw error;
       }
     });
@@ -163,6 +183,7 @@ export const RootStore = t
     });
     return {
       testServer,
+      ActionGetUser,
       ActionPostLogout,
       ActionGetPages,
       ActionPostPage,

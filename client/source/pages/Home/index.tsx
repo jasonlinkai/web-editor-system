@@ -34,6 +34,7 @@ const Home = observer(() => {
     setSelectedPage,
     deletePage,
     setIsTemplateGalleryModalVisible,
+    ActionGetUser,
     ActionGetPages,
     isFetchPagesLoading,
     ActionDeletePage,
@@ -44,6 +45,7 @@ const Home = observer(() => {
     const init = async () => {
       try {
         if (token && !inited) {
+          await ActionGetUser();
           await ActionGetPages();
           setInited(true);
         }
@@ -52,7 +54,7 @@ const Home = observer(() => {
       }
     };
     init();
-  }, [token, inited, setInited, ActionGetPages]);
+  }, [token, inited, setInited, ActionGetUser, ActionGetPages]);
   return (
     <div className={styles.home}>
       <h1 className={styles.homeTitle}>web-editor.js</h1>
