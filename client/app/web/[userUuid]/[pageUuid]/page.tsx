@@ -1,10 +1,8 @@
-import { AstNodeModel } from "source/libs/mobx/AstNodeModel";
 import {
   Response,
   GetPublicPageReponseBody,
   // GetPublicRenderDatasResponseBody,
 } from "../../../../http-types";
-import RenderNode from "./components/Renderer/components/RenderNode";
 import Renderer from "./components/Renderer";
 
 interface PageParams {
@@ -14,7 +12,7 @@ interface PageParams {
 
 // export async function generateStaticParams() {
 //   const res = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_URL}/public/render-datas`,
+//     `${process.env.NEXT_PUBLIC_PRIVATE_API_URL}/public/render-datas`,
 //     {
 //       method: "GET",
 //     }
@@ -42,7 +40,7 @@ interface PageParams {
 
 async function getPage(params: PageParams) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/public/page?userUuid=${params.userUuid}&pageUuid=${params.pageUuid}`,
+    `${process.env.NEXT_PUBLIC_PRIVATE_API_URL}/public/page?userUuid=${params.userUuid}&pageUuid=${params.pageUuid}`,
     {
       method: "GET",
       next: { revalidate: 0 },

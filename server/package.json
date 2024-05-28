@@ -12,7 +12,8 @@
     "dev-docker": "sh dev-run.sh",
     "prod-docker": "sh prod-run.sh",
     "db:create": "dotenvx run --env-file=.env.local --env-file=.env -- sequelize db:create",
-    "db:migrate": "dotenvx run --env-file=.env.local --env-file=.env -- sequelize db:migrate"
+    "db:migrate": "dotenvx run --env-file=.env.local --env-file=.env -- sequelize db:migrate",
+    "container:db:migrate": "sequelize db:migrate"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^0.44.0",

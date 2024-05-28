@@ -23,8 +23,8 @@ export default class Auth {
     }).unless({
       path: [
         { url: "/test-server", methods: ["GET"] },
-        { url: new RegExp('/public', 'ig'), methods: ["GET"] },
-        { url: new RegExp('/auth', 'ig'), methods: ["GET"] },
+        { url: new RegExp("/public", "ig"), methods: ["GET"] },
+        { url: new RegExp("/auth", "ig"), methods: ["GET"] },
       ],
     });
   }
@@ -67,6 +67,7 @@ export default class Auth {
                   });
                 return done(null, user);
               } catch (e) {
+                console.error((e as Error).message);
                 return done(e);
               }
             })
@@ -80,7 +81,8 @@ export default class Auth {
       done(null, (user as any).id);
     });
     passport.deserializeUser<number>((id, done) => {
-      this.serverDatabase.userRepository.findByPk(id)
+      this.serverDatabase.userRepository
+        .findByPk(id)
         .then((user) => {
           done(null, user);
         })
