@@ -1,6 +1,6 @@
 import { Application, Request, Router } from "express";
 import ServerDatabase from "../database";
-import Page from "../database/models";
+import Page from "../database/models/page";
 import { GetPublicPageRequestQuery } from "../../http-types";
 
 const registerPublicRouter = (
