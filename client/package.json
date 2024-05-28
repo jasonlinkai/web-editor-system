@@ -38,7 +38,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "scss": "typed-scss-modules src --watch",
+    "scss": "typed-scss-modules source --watch",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
