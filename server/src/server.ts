@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import cors, { CorsOptions } from "cors";
+import cors from "cors";
 import fileUpload from "express-fileupload";
 import ServerDatabase from "./database";
 import Auth from "./auth";
@@ -25,11 +25,22 @@ export default class Server {
   }
 
   private config(): void {
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: [process.env.CLIENT_URL],
+      })
+    );
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(fileUpload());
     this.app.use(this.auth.authenticateJWT);
+    const allowCrossDomain = (req, res, next) => {
+      res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+      res.header(`Access-Control-Allow-Methods`, `GET,PUT,POST,DELETE`);
+      res.header(`Access-Control-Allow-Headers`, `Content-Type`);
+      next();
+    };
+    this.app.use(allowCrossDomain);
   }
 
   private register(): void {

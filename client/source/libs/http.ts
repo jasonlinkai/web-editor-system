@@ -5,7 +5,6 @@ import { PageModelType } from "./mobx/PageModel";
 import { Response, PostPageResponseBody } from "../../http-types";
 import { UserModelSnapshotInType } from "./mobx/UserModel";
 
-
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const cdnUrl = process.env.NEXT_PUBLIC_CDN_URL;
 
@@ -36,7 +35,8 @@ export const getToken = (): string => {
 };
 
 const request: typeof fetch = async (...args) => {
-  const response = await fetch(...args);
+  const [first, second = {}, ...rest] = args;
+  const response = await fetch(first, { ...second, mode: "cors" }, ...rest);
   if (response.status >= 400) {
     throw Error(response.statusText);
   }

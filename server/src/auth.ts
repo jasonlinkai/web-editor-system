@@ -45,7 +45,7 @@ export default class Auth {
           tokenURL: "https://accounts.google.com/o/oauth2/token",
           clientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
           clientSecret: process.env.GOOGLE_OAUTH2_SECRET,
-          callbackURL: `${process.env.SERVER_HOST}:${process.env.PORT}/auth/google/callback`,
+          callbackURL: `${process.env.SERVER_HOST}/auth/google/callback`,
           scope: ["profile", "email"],
         },
         (accessToken, refreshToken, params, profile, done) => {
