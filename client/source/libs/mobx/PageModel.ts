@@ -33,6 +33,10 @@ export const MetaModel = t.model("MetaModel", {
   canonical: t.optional(t.string, ""),
 });
 
+export type MetaModelType = Instance<typeof MetaModel>;
+export type MetaModelSnapshotInType = SnapshotIn<typeof MetaModel>;
+export type MetaModelSnapshotOutType = SnapshotOut<typeof MetaModel>;
+
 export const PageModel = t
   .model("PageModel", {
     id: t.maybeNull(t.number),
@@ -44,25 +48,30 @@ export const PageModel = t
     editor: t.optional(EditorModel, {}),
   })
   .volatile<{
-    onSnapshotDisposer: IDisposer | undefined;
+    onSnapshotDisposerAst: IDisposer | undefined;
+    onSnapshotDisposerMeta: IDisposer | undefined;
     canSaveSnapshot: boolean;
-    astSnapshots: AstNodeModelSnapshotOutType[];
-    astSnapshotsIndex: number;
+    snapshots: {
+      ast: AstNodeModelSnapshotOutType;
+      meta: MetaModelSnapshotOutType;
+    }[];
+    snapshotsIndex: number;
   }>(() => ({
-    onSnapshotDisposer: undefined,
+    onSnapshotDisposerAst: undefined,
+    onSnapshotDisposerMeta: undefined,
     canSaveSnapshot: true,
-    astSnapshots: [],
-    astSnapshotsIndex: 0,
+    snapshots: [],
+    snapshotsIndex: 0,
   }))
   .views<{
     canUndo: boolean;
     canRedo: boolean;
   }>((self) => ({
     get canUndo() {
-      return self.astSnapshotsIndex - 1 >= 0;
+      return self.snapshotsIndex - 1 >= 0;
     },
     get canRedo() {
-      return self.astSnapshotsIndex + 1 <= self.astSnapshots.length - 1;
+      return self.snapshotsIndex + 1 <= self.snapshots.length - 1;
     },
   }))
   .actions((self) => {
@@ -72,7 +81,13 @@ export const PageModel = t
     const setAst = (ast: AstNodeModelSnapshotInType) => {
       self.ast = AstNodeModel.create(ast);
     };
-    const setMetaByKeyValue = ({ key, value }: { key: MetaEnum; value: string }) => {
+    const setMetaByKeyValue = ({
+      key,
+      value,
+    }: {
+      key: MetaEnum;
+      value: string;
+    }) => {
       self.meta = {
         ...self.meta,
         [key]: value,
@@ -89,51 +104,69 @@ export const PageModel = t
       self.canSaveSnapshot = v;
     };
 
-    const addAstSnapshot = (astSnapshot: AstNodeModelSnapshotOutType) => {
-      if (self.astSnapshotsIndex !== self.astSnapshots.length - 1) {
+    const addSnapshot = (snapshot: {
+      ast: AstNodeModelSnapshotOutType;
+      meta: MetaModelSnapshotOutType;
+    }) => {
+      if (self.snapshotsIndex !== self.snapshots.length - 1) {
         // 快照位置不在最新，代表有回退過，進入這個方法則代表收到新的異動。
         // 我們捨棄比現在索引位置還新的快照
-        self.astSnapshots = self.astSnapshots.slice(
+        self.snapshots = self.snapshots.slice(
           0,
-          self.astSnapshotsIndex + 1
+          self.snapshotsIndex + 1
         );
       }
-      self.astSnapshots = [...self.astSnapshots, astSnapshot];
-      self.astSnapshotsIndex = self.astSnapshots.length - 1;
+      self.snapshots = [...self.snapshots, snapshot];
+      self.snapshotsIndex = self.snapshots.length - 1;
     };
 
     const undoAst = () => {
       if (self.canUndo) {
-        const prev = self.astSnapshotsIndex - 1;
-        self.astSnapshotsIndex = prev;
-        const prevAstSnapshot = self.astSnapshots[prev];
+        const prev = self.snapshotsIndex - 1;
+        self.snapshotsIndex = prev;
+        const prevAstSnapshot = self.snapshots[prev];
         self.canSaveSnapshot = false;
-        applySnapshot(self.ast, prevAstSnapshot);
+        applySnapshot(self.ast, prevAstSnapshot.ast);
+        applySnapshot(self.meta, prevAstSnapshot.meta);
       }
     };
 
     const redoAst = () => {
       if (self.canRedo) {
-        const next = self.astSnapshotsIndex + 1;
-        self.astSnapshotsIndex = next;
-        const nextAstSnapshot = self.astSnapshots[next];
+        const next = self.snapshotsIndex + 1;
+        self.snapshotsIndex = next;
+        const nextAstSnapshot = self.snapshots[next];
         self.canSaveSnapshot = false;
-        applySnapshot(self.ast, nextAstSnapshot);
+        applySnapshot(self.ast, nextAstSnapshot.ast);
+        applySnapshot(self.meta, nextAstSnapshot.meta);
       }
     };
 
     return {
       setCanSaveSnapshot,
-      addAstSnapshot,
+      addSnapshot,
       undoAst,
       redoAst,
     };
   })
   .actions((self) => {
     // 保存每次ast的異動
-    self.onSnapshotDisposer = onSnapshot(self.ast, (snapshot) => {
+    self.onSnapshotDisposerAst = onSnapshot(self.ast, (snapshot) => {
       if (self.canSaveSnapshot) {
-        self.addAstSnapshot(snapshot);
+        self.addSnapshot({
+          ast: snapshot,
+          meta: getSnapshot(self.meta),
+        });
+      } else {
+        self.setCanSaveSnapshot(true);
+      }
+    });
+    self.onSnapshotDisposerMeta = onSnapshot(self.meta, (snapshot) => {
+      if (self.canSaveSnapshot) {
+        self.addSnapshot({
+          ast: getSnapshot(self.ast),
+          meta: snapshot,
+        });
       } else {
         self.setCanSaveSnapshot(true);
       }
@@ -141,12 +174,20 @@ export const PageModel = t
 
     // 當model create時 保存初始化的snapshot
     const afterCreate = () => {
-      self.astSnapshots = [getSnapshot(self.ast)];
+      self.snapshots = [
+        {
+          ast: getSnapshot(self.ast),
+          meta: getSnapshot(self.meta),
+        },
+      ];
     };
 
     const beforeDestroy = () => {
-      if (self.onSnapshotDisposer) {
-        self.onSnapshotDisposer();
+      if (self.onSnapshotDisposerAst) {
+        self.onSnapshotDisposerAst();
+      }
+      if (self.onSnapshotDisposerMeta) {
+        self.onSnapshotDisposerMeta();
       }
     };
     return { afterCreate, beforeDestroy };

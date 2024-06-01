@@ -1,5 +1,7 @@
-import { Model, DataTypes } from 'sequelize';
-import connection from '../connection'
+import { Model, DataTypes } from "sequelize";
+import connection from "../connection";
+import Page from "./page";
+import Image from "./image";
 
 interface UserAttributes {
   id?: number;
@@ -14,7 +16,7 @@ interface UserAttributes {
   createdAt?: Date;
 }
 
-class User extends Model<UserAttributes> implements UserAttributes {
+class UserModel extends Model<UserAttributes> implements UserAttributes {
   public id!: number;
   public uuid!: string;
   public username!: string;
@@ -26,7 +28,7 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public readonly createdAt!: Date;
 }
 
-User.init(
+const User = UserModel.init(
   {
     id: {
       allowNull: false,
@@ -53,7 +55,7 @@ User.init(
     googleId: {
       unique: true,
       type: DataTypes.STRING,
-    }, 
+    },
 
     createdAt: {
       allowNull: false,
@@ -66,8 +68,18 @@ User.init(
   },
   {
     sequelize: connection,
-    modelName: 'User',
+    modelName: "User",
   }
 );
+User.hasMany(Page, { foreignKey: "userId", as: "page" });
+Page.belongsTo(User, {
+  foreignKey: "userId",
+  as: "user",
+});
+User.hasMany(Image, { foreignKey: "userId", as: "image" });
+Image.belongsTo(User, {
+  foreignKey: "userId",
+  as: "user",
+});
 
 export default User;

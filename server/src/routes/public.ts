@@ -1,6 +1,5 @@
 import { Application, Request, Router } from "express";
 import ServerDatabase from "../database";
-import Page from "../database/models/page";
 import { GetPublicPageRequestQuery } from "../../http-types";
 
 const registerPublicRouter = (
@@ -11,7 +10,12 @@ const registerPublicRouter = (
   router.get("/public/render-datas", async (req, res) => {
     try {
       const usersWithPages = await serverDatabase.userRepository.findAll({
-        include: [Page],
+        include: [
+          {
+            model: serverDatabase.pageRepository,
+            as: "page",
+          },
+        ],
       });
       return res.send({
         code: 0,

@@ -1,12 +1,13 @@
-import { Model, DataTypes } from 'sequelize';
-import connection from '../connection'
-import User from "./user"
+import { Model, DataTypes } from "sequelize";
+import connection from "../connection";
+import Meta from "./meta";
 
 interface PageAttributes {
   id?: number;
   uuid: string;
   title: string;
   ast: string;
+
   userId: number;
 
   updatedAt?: Date;
@@ -14,18 +15,19 @@ interface PageAttributes {
   createdAt?: Date;
 }
 
-class Page extends Model<PageAttributes> implements PageAttributes {
+class PageModel extends Model<PageAttributes> implements PageAttributes {
   public id!: number;
   public uuid!: string;
   public title!: string;
   public ast!: string;
+
   public userId!: number;
 
   public readonly updatedAt!: Date;
   public readonly createdAt!: Date;
 }
 
-Page.init(
+const Page = PageModel.init(
   {
     id: {
       allowNull: false,
@@ -46,10 +48,11 @@ Page.init(
       allowNull: false,
       type: DataTypes.STRING,
     },
+
     userId: {
       allowNull: false,
       type: DataTypes.NUMBER,
-    }, 
+    },
 
     createdAt: {
       allowNull: false,
@@ -62,17 +65,16 @@ Page.init(
   },
   {
     sequelize: connection,
-    modelName: 'Page',
+    modelName: "Page",
   }
 );
-
-Page.belongsTo(User, {
-  as: 'user',
-  foreignKey: {
-    name: 'userId',
-    allowNull: false,
-  },
-  foreignKeyConstraint: true,
+Page.hasOne(Meta, {
+  foreignKey: "pageId",
+  as: "meta",
+});
+Meta.belongsTo(Page, {
+  foreignKey: "pageId",
+  as: "page",
 });
 
 export default Page;

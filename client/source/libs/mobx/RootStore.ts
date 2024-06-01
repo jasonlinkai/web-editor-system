@@ -137,6 +137,7 @@ export const RootStore = t
       try {
         self.setIsFetchPagesLoading(true);
         const { data: pages } = yield* toGenerator(httpGetPages());
+        console.log('pages', pages);
         self.pages = (pages as any).map((page: any) => {
           page.ast = JSON.parse(page.ast);
           return page;

@@ -3,7 +3,7 @@ import { QueryInterface, DataTypes } from "sequelize";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.createTable("Images", {
+    await queryInterface.createTable("Image", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -27,10 +27,10 @@ module.exports = {
         defaultValue: DataTypes.NOW,
       },
     });
-    await queryInterface.addColumn("Images", "userId", {
+    await queryInterface.addColumn("Image", "userId", {
       type: DataTypes.INTEGER.UNSIGNED,
       references: {
-        model: "Users",
+        model: "User",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.dropTable("Images");
+    await queryInterface.dropTable("Image");
   },
 };

@@ -8,6 +8,7 @@ export interface Response<T> {
 //
 export interface UserType {
   id: number;
+  uuid: string;
   username: string;
   email: string;
   avatarUrl: string;
@@ -42,6 +43,27 @@ export interface PutPageRequestBody {
   id: number;
   title: string;
   ast: string;
+  meta: {
+    id?: number;
+    description?: string;
+    keywords?: string;
+    author?: string;
+    theme?: string;
+    ogTitle?: string;
+    ogType?: string;
+    ogImage?: string;
+    ogUrl?: string;
+    ogDescription?: string;
+    twitterCard?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    twitterImage?: string;
+    canonical?: string;
+
+    updatedAt?: Date;
+    deletedAt?: Date;
+    createdAt?: Date;
+  };
 }
 export interface DeletePageRequestBody {
   id: number;
@@ -64,6 +86,7 @@ export interface UserWithPagesType extends UserType {
 }
 export type GetPublicRenderDatasResponseBody = UserWithPagesType[];
 export interface GetPublicPageRequestQuery {
-  id: PageType['id'];
+  userUuid: string;
+  pageUuid: string;
 }
 export type GetPublicPageReponseBody = PageType;

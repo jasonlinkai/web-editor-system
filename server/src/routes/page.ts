@@ -9,7 +9,9 @@ import type {
 
 type PageGetRequest = RequestWithAuth;
 type PagePostRequest = RequestWithAuth<Request<{}, {}, PostPageRequestBody>>;
-type PageDeleteRequest = RequestWithAuth<Request<{}, {}, DeletePageRequestBody>>;
+type PageDeleteRequest = RequestWithAuth<
+  Request<{}, {}, DeletePageRequestBody>
+>;
 type PagePutRequest = RequestWithAuth<Request<{}, {}, PutPageRequestBody>>;
 
 const registerPageRouter = (
@@ -23,6 +25,10 @@ const registerPageRouter = (
         where: {
           userId: req.auth?.user.id,
         },
+        include: [{
+          model: serverDatabase.metaRepository,
+          as: "meta",
+        }],
       });
       return res.send({
         code: 0,
@@ -38,19 +44,47 @@ const registerPageRouter = (
   });
   router.post("/page", async (req: PagePostRequest, res) => {
     try {
-      const uuid = req.body.uuid;
-      const title = req.body.title;
-      const ast = JSON.stringify(req.body.ast);
-      const page = await serverDatabase.pageRepository.create({
-        uuid,
-        title,
-        ast,
-        userId: req.auth?.user.id,
-      });
-      return res.send({
-        code: 0,
-        message: "success",
-        data: page,
+      serverDatabase.sequelize.transaction(async (t) => {
+        const uuid = req.body.uuid;
+        const title = req.body.title;
+        const ast = JSON.stringify(req.body.ast);
+        const page = await serverDatabase.pageRepository.create(
+          {
+            uuid,
+            title,
+            ast,
+            userId: req.auth?.user.id,
+          },
+          { transaction: t }
+        );
+        const meta = await serverDatabase.metaRepository.create(
+          {
+            pageId: page.id,
+            description: "",
+            keywords: "",
+            author: "",
+            theme: "",
+            ogTitle: "",
+            ogType: "",
+            ogImage: "",
+            ogUrl: "",
+            ogDescription: "",
+            twitterCard: "",
+            twitterTitle: "",
+            twitterDescription: "",
+            twitterImage: "",
+            canonical: "",
+          },
+          { transaction: t }
+        );
+        return res.send({
+          code: 0,
+          message: "success",
+          data: {
+            ...page.dataValues,
+            meta,
+          },
+        });
       });
     } catch (e) {
       return res.status(400).send({
@@ -61,29 +95,34 @@ const registerPageRouter = (
   });
   router.put("/page", async (req: PagePutRequest, res) => {
     try {
-      console.log('req.body', req.body)
-      const page = await serverDatabase.pageRepository.findOne({
-        where: {
-          id: req.body.id,
-        },
-      });
-      if (page) {
-        const ast = JSON.stringify(req.body.ast);
-        page.update({
-          title: req.body.title,
-          ast,
+      serverDatabase.sequelize.transaction(async (t) => {
+        const page = await serverDatabase.pageRepository.findOne({
+          where: {
+            id: req.body.id,
+          },
         });
+        if (!page) throw new Error("Page isn't founded");
+        const meta = await serverDatabase.metaRepository.findOne({
+          where: {
+            pageId: page.id,
+          },
+        });
+        if (!meta) throw new Error("Meta isn't founed");
+        const ast = JSON.stringify(req.body.ast);
+        await page.update(
+          {
+            title: req.body.title,
+            ast,
+          },
+          { transaction: t }
+        );
+        await meta.update(req.body.meta, { transaction: t });
         return res.send({
           code: 0,
           message: "success",
           data: true,
         });
-      } else {
-        return res.status(404).send({
-          code: 404,
-          message: "Page isn't founded",
-        });
-      }
+      });
     } catch (e) {
       return res.status(400).send({
         code: 400,

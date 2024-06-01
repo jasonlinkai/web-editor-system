@@ -1,10 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
 import connection from '../connection'
-import User from "./user"
 
 interface ImageAttributes {
   id?: number;
   url: string;
+
   userId: number;
 
   updatedAt?: Date;
@@ -12,16 +12,17 @@ interface ImageAttributes {
   createdAt?: Date;
 }
 
-class Image extends Model<ImageAttributes> implements ImageAttributes {
+class ImageModel extends Model<ImageAttributes> implements ImageAttributes {
   public id!: number;
   public url!: string;
+
   public userId!: number;
 
   public readonly updatedAt!: Date;
   public readonly createdAt!: Date;
 }
 
-Image.init(
+const Image = ImageModel.init(
   {
     id: {
       allowNull: false,
@@ -34,6 +35,7 @@ Image.init(
       unique: true,
       type: DataTypes.STRING,
     },
+
     userId: {
       allowNull: false,
       type: DataTypes.NUMBER,
@@ -53,14 +55,5 @@ Image.init(
     modelName: 'Image',
   }
 );
-
-Image.belongsTo(User, {
-  as: 'user',
-  foreignKey: {
-    name: 'userId',
-    allowNull: false,
-  },
-  foreignKeyConstraint: true,
-});
 
 export default Image;

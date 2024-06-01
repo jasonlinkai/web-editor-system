@@ -3,12 +3,16 @@ import { QueryInterface, DataTypes } from "sequelize";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("User", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER.UNSIGNED,
+      },
+      uuid: {
+        allowNull: false,
+        type: new DataTypes.STRING(128),
       },
       username: {
         allowNull: false,
@@ -39,6 +43,6 @@ module.exports = {
     });
   },
   async down(queryInterface: QueryInterface, Sequelize: any) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("User");
   },
 };

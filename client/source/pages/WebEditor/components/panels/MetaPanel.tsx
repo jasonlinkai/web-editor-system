@@ -160,7 +160,7 @@ const MetaPanel = observer(() => {
               value={selectedPage?.meta.twitterImage || ""}
               onChange={(e) => {
                 selectedPage.setMetaByKeyValue({
-                  key: "twitterImage",
+                  key: MetaEnum.twitterImage,
                   value: e,
                 });
               }}
@@ -169,7 +169,10 @@ const MetaPanel = observer(() => {
               label="canonical"
               value={selectedPage?.meta.canonical || ""}
               onChange={(e) => {
-                selectedPage.setMetaByKeyValue({ key: "canonical", value: e });
+                selectedPage.setMetaByKeyValue({
+                  key: MetaEnum.canonical,
+                  value: e,
+                });
               }}
             />
           </div>

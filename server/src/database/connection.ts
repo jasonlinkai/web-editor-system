@@ -8,6 +8,10 @@ const sequelizeConnection: Sequelize = new Sequelize(
     host: process.env.MYSQL_DATABASE_HOST,
     port: Number(process.env.MYSQL_DATABASE_PORT),
     dialect: "mysql",
+    define: {
+      //prevent sequelize from pluralizing table names
+      freezeTableName: true,
+    }, 
   }
 );
 
