@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { FaPlus } from "react-icons/fa";
 import { MdSnippetFolder } from "react-icons/md";
 import { LuTableProperties } from "react-icons/lu";
+import { SiMetabase } from "react-icons/si";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import InfoPanel from "../panels/InfoPanel";
@@ -13,13 +14,20 @@ import NewNodePanel from "../panels/NewNodePanel";
 import AstTagTreePanel from "../panels/AstTagTreePanel";
 import SnippetsPanel from "../panels/SnippetsPanel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
+import MetaPanel from "../panels/metaPanel";
 
 enum TabTypes {
+  META = "META",
   ATTRIBUTES = "ATTRIBUTES",
   CHILDREN = "CHILDREN",
   SNIPPETS = "SNIPPETS",
 }
 const tabs = [
+  {
+    type: TabTypes.META,
+    label: "META",
+    IconComponent: SiMetabase,
+  },
   {
     type: TabTypes.SNIPPETS,
     label: "SNIPPETS",
@@ -94,6 +102,7 @@ const LeftDrawer: React.FC = observer(() => {
             ))}
           {tabType === TabTypes.CHILDREN && <NewNodePanel />}
           {tabType === TabTypes.SNIPPETS && <SnippetsPanel />}
+          {tabType === TabTypes.META && <MetaPanel />}
         </div>
         <div className={styles.drawerFooterArea}>
           <div className={styles.drawerPanelArea}>

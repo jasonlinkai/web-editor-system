@@ -8,10 +8,30 @@ import {
   SnapshotIn,
   SnapshotOut,
 } from "mobx-state-tree";
-import { AstNodeModel, AstNodeModelSnapshotInType, AstNodeModelSnapshotOutType } from "./AstNodeModel";
+import {
+  AstNodeModel,
+  AstNodeModelSnapshotInType,
+  AstNodeModelSnapshotOutType,
+} from "./AstNodeModel";
 import { EditorModel } from "./EditorModel";
+import { MetaEnum } from "../types";
 
-export const MetaModel = t.model("MetaModel", {});
+export const MetaModel = t.model("MetaModel", {
+  description: t.optional(t.string, ""),
+  keywords: t.optional(t.string, ""),
+  author: t.optional(t.string, ""),
+  theme: t.optional(t.string, ""),
+  ogTitle: t.optional(t.string, ""),
+  ogType: t.optional(t.string, ""),
+  ogImage: t.optional(t.string, ""),
+  ogUrl: t.optional(t.string, ""),
+  ogDescription: t.optional(t.string, ""),
+  twitterCard: t.optional(t.string, ""),
+  twitterTitle: t.optional(t.string, ""),
+  twitterDescription: t.optional(t.string, ""),
+  twitterImage: t.optional(t.string, ""),
+  canonical: t.optional(t.string, ""),
+});
 
 export const PageModel = t
   .model("PageModel", {
@@ -19,6 +39,7 @@ export const PageModel = t
     uuid: t.identifier,
     title: t.string,
     ast: AstNodeModel,
+    meta: t.optional(MetaModel, {}),
     //
     editor: t.optional(EditorModel, {}),
   })
@@ -51,9 +72,16 @@ export const PageModel = t
     const setAst = (ast: AstNodeModelSnapshotInType) => {
       self.ast = AstNodeModel.create(ast);
     };
+    const setMetaByKeyValue = ({ key, value }: { key: MetaEnum; value: string }) => {
+      self.meta = {
+        ...self.meta,
+        [key]: value,
+      };
+    };
     return {
       setId,
       setAst,
+      setMetaByKeyValue,
     };
   })
   .actions((self) => {

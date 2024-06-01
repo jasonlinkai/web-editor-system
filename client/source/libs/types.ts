@@ -63,3 +63,19 @@ export enum StyleEnum {
   borderBottomLeftRadius = "borderBottomLeftRadius",
   borderBottomRightRadius = "borderBottomRightRadius",
 }
+export enum MetaEnum {
+  description = "description",
+  keywords = "keywords",
+  author = "author",
+  theme = "theme",
+  ogTitle = "ogTitle",
+  ogType = "ogType",
+  ogImage = "ogImage",
+  ogUrl = "ogUrl",
+  ogDescription = "ogDescription",
+  twitterCard = "twitterCard",
+  twitterTitle = "twitterTitle",
+  twitterDescription = "twitterDescription",
+  twitterImage = "twitterImage",
+  canonical = "canonical",
+}
