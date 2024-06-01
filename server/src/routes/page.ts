@@ -61,6 +61,7 @@ const registerPageRouter = (
   });
   router.put("/page", async (req: PagePutRequest, res) => {
     try {
+      console.log('req.body', req.body)
       const page = await serverDatabase.pageRepository.findOne({
         where: {
           id: req.body.id,

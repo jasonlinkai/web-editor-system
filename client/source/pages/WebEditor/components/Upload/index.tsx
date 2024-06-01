@@ -50,7 +50,7 @@ const Upload = observer(({ onSuccess }: UploadProps) => {
       }}
     >
       {editor.isUploadImageLoading ? <CircularProgress size={24} /> : 'Upload Image'}
-      <VisuallyHiddenInput type="file" />
+      <VisuallyHiddenInput type="file" accept=".jpeg"/>
     </Button>
   );
 });

@@ -40,12 +40,12 @@ const registerUploadRouter = (
 
       const ext = uploadedFile.name.split(".")[1];
       const newFileName = v4() + `.${ext}`;
-
       s3.upload(
         {
           Bucket: "jacky-web-editor",
           Key: newFileName,
           Body: uploadedFile.data,
+          ContentType: uploadedFile.mimetype,
           Tagging: "public=yes",
         },
         async (err) => {

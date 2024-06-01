@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef } from "react";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
@@ -12,10 +12,13 @@ const UploadModal = observer(() => {
   const { isUploadModalVisible, setIsUploadModalVisible } = editor;
   const dialogRef = useRef<DialogRefType>(null);
 
-  const onSuccess = useCallback((image: string) => {
-    setIsUploadModalVisible(false);
-    alert('upload success!')
-  }, [setIsUploadModalVisible]);
+  const onSuccess = useCallback(
+    (image: string) => {
+      setIsUploadModalVisible(false);
+      alert("upload success!");
+    },
+    [setIsUploadModalVisible]
+  );
 
   useEffect(() => {
     if (isUploadModalVisible) {
@@ -32,7 +35,7 @@ const UploadModal = observer(() => {
         setIsUploadModalVisible(false);
       }}
     >
-      <Upload onSuccess={onSuccess} />
+      {isUploadModalVisible && <Upload onSuccess={onSuccess} />}
     </Dialog>
   );
 });

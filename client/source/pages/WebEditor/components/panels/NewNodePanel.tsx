@@ -1,13 +1,17 @@
-"use client"
+"use client";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
 import ActionButton from "../ActionButton";
 import { useState } from "react";
 import clsx from "clsx";
-import { FaArrowUp, FaArrowDown, FaImage } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown, FaImage, FaUpload } from "react-icons/fa";
 import { LuContainer } from "react-icons/lu";
 import { GoTypography } from "react-icons/go";
-import { ContainerNodeType, SelfClosingNodeType, TextNodeType } from "source/libs/types";
+import {
+  ContainerNodeType,
+  SelfClosingNodeType,
+  TextNodeType,
+} from "source/libs/types";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 
 const NewNodePanel = observer(() => {
@@ -40,58 +44,74 @@ const NewNodePanel = observer(() => {
             <div
               className={styles.panelItemActionRowBox}
               draggable
-              style={{ 
-                cursor: 'grab',
+              style={{
+                cursor: "grab",
               }}
               onDragStart={(ev) => {
                 ev.dataTransfer.effectAllowed = "move";
-                ev.dataTransfer.setData("application/json", JSON.stringify({
-                  type: 'add new node',
-                  data: {
-                    nodeType: ContainerNodeType.div,
-                  },
-                }));
+                ev.dataTransfer.setData(
+                  "application/json",
+                  JSON.stringify({
+                    type: "add new node",
+                    data: {
+                      nodeType: ContainerNodeType.div,
+                    },
+                  })
+                );
               }}
             >
               <LuContainer />
               Container
             </div>
-            <div
-              className={styles.panelItemActionRowBox}
-              draggable
-              style={{ 
-                cursor: 'grab',
-              }}
-              onClick={() => {
-                editor.setIsUploadModalVisible(true);
-              }}
-              onDragStart={(ev) => {
-                ev.dataTransfer.effectAllowed = "move";
-                ev.dataTransfer.setData("application/json", JSON.stringify({
-                  type: 'add new node',
-                  data: {
-                    nodeType: SelfClosingNodeType.img,
-                  },
-                }));
-              }}
-            >
-              <FaImage />
-              Image
+            <div className={styles.panelItemActionRowBoxWithToolsWrap}>
+              <div className={styles.panelItemActionRowBoxToolsArea}>
+                <FaUpload
+                  className={styles.panelItemActionRowBoxToolsAreaToolButton}
+                  onClick={() => {
+                    editor.setIsUploadModalVisible(true);
+                  }}
+                ></FaUpload>
+              </div>
+              <div
+                className={styles.panelItemActionRowBox}
+                draggable
+                style={{
+                  cursor: "grab",
+                }}
+                onDragStart={(ev) => {
+                  ev.dataTransfer.effectAllowed = "move";
+                  ev.dataTransfer.setData(
+                    "application/json",
+                    JSON.stringify({
+                      type: "add new node",
+                      data: {
+                        nodeType: SelfClosingNodeType.img,
+                      },
+                    })
+                  );
+                }}
+              >
+                <FaImage />
+                Image
+              </div>
             </div>
             <div
               className={styles.panelItemActionRowBox}
               draggable
-              style={{ 
-                cursor: 'grab',
+              style={{
+                cursor: "grab",
               }}
               onDragStart={(ev) => {
                 ev.dataTransfer.effectAllowed = "move";
-                ev.dataTransfer.setData("application/json", JSON.stringify({
-                  type: 'add new node',
-                  data: {
-                    nodeType: TextNodeType.span,
-                  },
-                }));
+                ev.dataTransfer.setData(
+                  "application/json",
+                  JSON.stringify({
+                    type: "add new node",
+                    data: {
+                      nodeType: TextNodeType.span,
+                    },
+                  })
+                );
               }}
             >
               <GoTypography />
