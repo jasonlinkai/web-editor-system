@@ -14,7 +14,7 @@ import NewNodePanel from "../panels/NewNodePanel";
 import AstTagTreePanel from "../panels/AstTagTreePanel";
 import SnippetsPanel from "../panels/SnippetsPanel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import MetaPanel from "../panels/metaPanel";
+import MetaPanel from "../panels/MetaPanel";
 
 enum TabTypes {
   META = "META",

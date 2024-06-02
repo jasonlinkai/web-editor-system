@@ -14,6 +14,12 @@ const registerPublicRouter = (
           {
             model: serverDatabase.pageRepository,
             as: "page",
+            include: [
+              {
+                model: serverDatabase.metaRepository,
+                as: "meta",
+              },
+            ],
           },
         ],
       });

@@ -1,131 +1,63 @@
+import {
+  ServerDataMeta,
+  ServerDataPage,
+  ServerDataUser,
+} from "./server-data-types";
+
+// common
 export interface Response<T> {
   code: number;
   message: string;
   data: T;
 }
-//
-// user
-//
-export interface UserType {
-  id: number;
-  uuid: string;
-  username: string;
-  email: string;
-  avatarUrl: string;
-  googleId: number;
-  updatedAt: string;
-  createdAt: string;
-}
+
 //
 // page
 //
-export interface PageType {
-  id: number;
-  uuid: string;
-  title: string;
-  ast: string;
-  userId: number;
-  updatedAt: string;
-  createdAt: string;
+export interface GetPublicPageRequestQuery {
+  userUuid: ServerDataUser["uuid"];
+  pageUuid: ServerDataPage["uuid"];
 }
-export interface PostPageRequestBody {
-  uuid: string;
-  title: string;
-  ast: string;
-}
-export interface PostPageResponseBody extends PostPageRequestBody {
-  id: number;
-  userId: number;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface PutPageRequestBody {
-  id: number;
-  title: string;
-  ast: string;
-  meta: {
-    id?: number;
-    description?: string;
-    keywords?: string;
-    author?: string;
-    ogTitle?: string;
-    ogType?: string;
-    ogImage?: string;
-    ogUrl?: string;
-    ogDescription?: string;
-    twitterCard?: string;
-    twitterTitle?: string;
-    twitterDescription?: string;
-    twitterImage?: string;
 
-    updatedAt?: Date;
-    deletedAt?: Date;
-    createdAt?: Date;
-  };
+export interface GetPublicPageReponseBody extends ServerDataPage {
+  meta: ServerDataMeta;
+  user: ServerDataUser;
 }
+
+export interface PostPageRequestBody {
+  uuid: ServerDataPage["uuid"];
+  title: ServerDataPage["title"];
+  ast: ServerDataPage["ast"];
+}
+
+export interface PostPageResponseBody extends ServerDataPage {}
+
+export interface PutPageRequestBody {
+  id: ServerDataPage["id"];
+  title: ServerDataPage["title"];
+  ast: ServerDataPage["ast"];
+  meta: ServerDataMeta;
+}
+
 export interface DeletePageRequestBody {
-  id: number;
+  id: ServerDataPage["id"];
 }
+
 //
 // upload
 //
 export enum PostUploadRequestQueryTypeEnum {
   IMAGE = "IMAGE",
 }
+
 export interface PostUploadRequestQuery {
   [key: string]: any;
   type: PostUploadRequestQueryTypeEnum;
 }
+
 //
 // public
 //
-export interface UserWithPagesType extends UserType {
-  pages: PageType[];
+export interface GetPublicRenderDatasResponseBody extends ServerDataUser {
+  page: (ServerDataPage & { meta: ServerDataMeta })[];
 }
-export type GetPublicRenderDatasResponseBody = UserWithPagesType[];
-export interface GetPublicPageRequestQuery {
-  userUuid: string;
-  pageUuid: string;
-}
-export type GetPublicPageReponseBody = {
-  id: number;
-  uuid: string;
-  title: string;
-  ast: string;
-  userId: number;
-  updatedAt: string;
-  createdAt: string;
-  meta: {
-    id: number;
-    description: string;
-    keywords: string;
-    author: string;
-    theme: string;
-    ogTitle: string;
-    ogType: string;
-    ogImage: string;
-    ogUrl: string;
-    ogDescription: string;
-    twitterCard: string;
-    twitterTitle: string;
-    twitterDescription: string;
-    twitterImage: string;
-
-    pageId: number;
-
-    updatedAt: Date;
-    deletedAt: Date;
-    createdAt: Date;
-  };
-  user: {
-    id: number;
-    uuid: string;
-    username: string;
-    avatarUrl: string;
-    email: string;
-    googleId: string;
-
-    updatedAt: Date;
-    createdAt: Date;
-  };
-};
