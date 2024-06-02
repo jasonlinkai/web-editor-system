@@ -13,7 +13,7 @@ COMMAND="/bin/sh"
 aws ecs execute-command  \
   --region $REGION \
   --cluster $CLUSTER_NAME \
-  --task $1 \
-  --container $SERVICE_NAME \
+  --task $2 \
+  --container $SERVICE_CONTAINER_NAME \
   --command $COMMAND \
   --interactive
