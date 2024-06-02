@@ -48,7 +48,6 @@ export interface PutPageRequestBody {
     description?: string;
     keywords?: string;
     author?: string;
-    theme?: string;
     ogTitle?: string;
     ogType?: string;
     ogImage?: string;
@@ -58,7 +57,6 @@ export interface PutPageRequestBody {
     twitterTitle?: string;
     twitterDescription?: string;
     twitterImage?: string;
-    canonical?: string;
 
     updatedAt?: Date;
     deletedAt?: Date;
@@ -89,4 +87,45 @@ export interface GetPublicPageRequestQuery {
   userUuid: string;
   pageUuid: string;
 }
-export type GetPublicPageReponseBody = PageType;
+export type GetPublicPageReponseBody = {
+  id: number;
+  uuid: string;
+  title: string;
+  ast: string;
+  userId: number;
+  updatedAt: string;
+  createdAt: string;
+  meta: {
+    id: number;
+    description: string;
+    keywords: string;
+    author: string;
+    theme: string;
+    ogTitle: string;
+    ogType: string;
+    ogImage: string;
+    ogUrl: string;
+    ogDescription: string;
+    twitterCard: string;
+    twitterTitle: string;
+    twitterDescription: string;
+    twitterImage: string;
+
+    pageId: number;
+
+    updatedAt: Date;
+    deletedAt: Date;
+    createdAt: Date;
+  };
+  user: {
+    id: number;
+    uuid: string;
+    username: string;
+    avatarUrl: string;
+    email: string;
+    googleId: string;
+
+    updatedAt: Date;
+    createdAt: Date;
+  };
+};

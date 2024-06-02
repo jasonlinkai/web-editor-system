@@ -19,9 +19,6 @@ module.exports = {
       author: {
         type: new DataTypes.STRING(128),
       },
-      theme: {
-        type: new DataTypes.STRING(128),
-      },
       ogTitle: {
         type: new DataTypes.STRING(128),
       },
@@ -47,9 +44,6 @@ module.exports = {
         type: new DataTypes.STRING(128),
       },
       twitterImage: {
-        type: new DataTypes.STRING(128),
-      },
-      canonical: {
         type: new DataTypes.STRING(128),
       },
 

@@ -20,7 +20,6 @@ export const MetaModel = t.model("MetaModel", {
   description: t.optional(t.string, ""),
   keywords: t.optional(t.string, ""),
   author: t.optional(t.string, ""),
-  theme: t.optional(t.string, ""),
   ogTitle: t.optional(t.string, ""),
   ogType: t.optional(t.string, ""),
   ogImage: t.optional(t.string, ""),
@@ -30,7 +29,6 @@ export const MetaModel = t.model("MetaModel", {
   twitterTitle: t.optional(t.string, ""),
   twitterDescription: t.optional(t.string, ""),
   twitterImage: t.optional(t.string, ""),
-  canonical: t.optional(t.string, ""),
 });
 
 export type MetaModelType = Instance<typeof MetaModel>;

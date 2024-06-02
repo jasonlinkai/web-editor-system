@@ -1,3 +1,4 @@
+import type { Metadata, Viewport } from "next";
 import {
   Response,
   GetPublicPageReponseBody,
@@ -37,6 +38,62 @@ interface PageParams {
 
 //   return result;
 // }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: PageParams;
+}): Promise<Metadata> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_PRIVATE_API_URL}/public/page?userUuid=${params.userUuid}&pageUuid=${params.pageUuid}`,
+    {
+      method: "GET",
+      next: { revalidate: 0 },
+    }
+  );
+  const { data: page }: Response<GetPublicPageReponseBody> = await res.json();
+  const { meta, user } = page;
+  return {
+    robots: { index: false, follow: false },
+    manifest: `${process.env.NEXT_PUBLIC_HOST}/manifest.json`,
+    publisher: "web-editor.js",
+    generator: "web-editor.js",
+    keywords: meta.keywords,
+    authors: [
+      {
+        name: meta.author || user.username,
+        url: `${process.env.NEXT_PUBLIC_HOST}/web/${params.userUuid}/${params.pageUuid}`,
+      },
+      {
+        name: "web-editor.js",
+        url: `${process.env.NEXT_PUBLIC_HOST}/backend/login`,
+      },
+    ],
+    creator: meta.author || user.username,
+    applicationName: page.title,
+    title: page.title,
+    openGraph: {
+      type: "website",
+      title: page.title,
+      description: meta.ogDescription,
+      url: meta.ogUrl,
+      siteName: page.title,
+      images: meta.ogImage,
+    },
+    twitter: {
+      site: meta.author || user.username,
+      title: meta.twitterTitle,
+      description: meta.twitterDescription,
+      creator: meta.author || user.username,
+      images: meta.twitterImage,
+    },
+  };
+}
 
 async function getPage(params: PageParams) {
   const res = await fetch(

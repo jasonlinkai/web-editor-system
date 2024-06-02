@@ -66,16 +66,6 @@ const MetaPanel = observer(() => {
               }}
             />
             <Input
-              label="theme"
-              value={selectedPage?.meta.theme || ""}
-              onChange={(e) => {
-                selectedPage.setMetaByKeyValue({
-                  key: MetaEnum.theme,
-                  value: e,
-                });
-              }}
-            />
-            <Input
               label="ogTitle"
               value={selectedPage?.meta.ogTitle || ""}
               onChange={(e) => {
@@ -161,16 +151,6 @@ const MetaPanel = observer(() => {
               onChange={(e) => {
                 selectedPage.setMetaByKeyValue({
                   key: MetaEnum.twitterImage,
-                  value: e,
-                });
-              }}
-            />
-            <Input
-              label="canonical"
-              value={selectedPage?.meta.canonical || ""}
-              onChange={(e) => {
-                selectedPage.setMetaByKeyValue({
-                  key: MetaEnum.canonical,
                   value: e,
                 });
               }}

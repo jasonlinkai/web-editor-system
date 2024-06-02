@@ -6,7 +6,6 @@ export interface MetaAttributes {
   description?: string;
   keywords?: string;
   author?: string;
-  theme?: string;
   ogTitle?: string;
   ogType?: string;
   ogImage?: string;
@@ -16,7 +15,6 @@ export interface MetaAttributes {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
-  canonical?: string;
 
   pageId?: number;
 
@@ -30,7 +28,6 @@ class MetaModel extends Model<MetaAttributes> implements MetaAttributes {
   public description!: string;
   public keywords!: string;
   public author!: string;
-  public theme!: string;
   public ogTitle!: string;
   public ogType!: string;
   public ogImage!: string;
@@ -40,7 +37,6 @@ class MetaModel extends Model<MetaAttributes> implements MetaAttributes {
   public twitterTitle!: string;
   public twitterDescription!: string;
   public twitterImage!: string;
-  public canonical!: string;
 
   public pageId!: number;
 
@@ -63,9 +59,6 @@ const Meta = MetaModel.init(
       type: new DataTypes.STRING(128),
     },
     author: {
-      type: new DataTypes.STRING(128),
-    },
-    theme: {
       type: new DataTypes.STRING(128),
     },
     ogTitle: {
@@ -93,9 +86,6 @@ const Meta = MetaModel.init(
       type: new DataTypes.STRING(128),
     },
     twitterImage: {
-      type: new DataTypes.STRING(128),
-    },
-    canonical: {
       type: new DataTypes.STRING(128),
     },
 

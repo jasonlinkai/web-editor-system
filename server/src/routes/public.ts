@@ -40,11 +40,11 @@ const registerPublicRouter = (
           include: [
             {
               model: serverDatabase.userRepository,
-              where: {
-                uuid: req.query.userUuid,
-              },
               as: "user",
-              attributes: ["uuid"], // 只選擇特定的字段
+            },
+            {
+              model: serverDatabase.metaRepository,
+              as: "meta",
             },
           ],
         });

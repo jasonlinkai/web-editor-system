@@ -63,7 +63,6 @@ const registerPageRouter = (
             description: "",
             keywords: "",
             author: "",
-            theme: "",
             ogTitle: "",
             ogType: "",
             ogImage: "",
@@ -73,7 +72,6 @@ const registerPageRouter = (
             twitterTitle: "",
             twitterDescription: "",
             twitterImage: "",
-            canonical: "",
           },
           { transaction: t }
         );
