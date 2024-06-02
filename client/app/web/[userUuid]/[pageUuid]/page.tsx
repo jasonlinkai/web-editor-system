@@ -6,6 +6,8 @@ import {
 } from "../../../../http-types";
 import Renderer from "./components/Renderer";
 
+export const dynamic = 'force-dynamic'
+
 interface PageParams {
   userUuid: string;
   pageUuid: string;
