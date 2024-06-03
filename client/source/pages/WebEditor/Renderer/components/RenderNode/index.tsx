@@ -61,6 +61,16 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
         node.setIsDragOvered(false);
       };
     }
+    if (isEditMode) {
+      editorEventListeners.onMouseEnter = (e: React.DragEvent) => {
+        e.stopPropagation();
+        node.setIsDragOvered(true);
+      };
+      editorEventListeners.onMouseOut = (e: React.DragEvent) => {
+        e.stopPropagation();
+        node.setIsDragOvered(false);
+      };
+    }
 
     let renderChildren;
     if (node.isContainerNode) {

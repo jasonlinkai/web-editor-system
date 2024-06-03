@@ -75,7 +75,6 @@ const Renderer: React.FC = observer(() => {
     ev.preventDefault();
     ev.stopPropagation();
     ev.dataTransfer.dropEffect = "move";
-    node.setIsDragOvered(true);
   }, []);
 
   const handleOnDragLeave: (
@@ -84,7 +83,6 @@ const Renderer: React.FC = observer(() => {
   ) => void = useCallback((ev, node) => {
     ev.preventDefault();
     ev.stopPropagation();
-    node.setIsDragOvered(false);
   }, []);
 
   const handleOnDrop: (ev: React.DragEvent, node: AstNodeModelType) => void =
