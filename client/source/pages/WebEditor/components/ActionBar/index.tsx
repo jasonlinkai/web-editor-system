@@ -14,18 +14,22 @@ import {
   MdOutlinePreview,
 } from "react-icons/md";
 import { ImRedo, ImUndo } from "react-icons/im";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useRouter } from "next/navigation";
 import { getSnapshot } from "mobx-state-tree";
 import Snackbar from "source/shared-components/SnackBar";
+import ToolTip from "@/shared-components/ToolTip";
 
-export const actionBarHeight = 50;
+export const actionBarHeight = 40;
 
 const ActionBar: React.FC = observer(() => {
-  const [publishPageSuccessSnackbarVisible, setPublishPageSuccessSnackbarVisible] = useState(false);
-  const [publishPageFailSnackbarVisible, setPublishPageFailSnackbarVisible] = useState(false);
+  const [
+    publishPageSuccessSnackbarVisible,
+    setPublishPageSuccessSnackbarVisible,
+  ] = useState(false);
+  const [publishPageFailSnackbarVisible, setPublishPageFailSnackbarVisible] =
+    useState(false);
   const router = useRouter();
   const {
     currentUser,
@@ -109,38 +113,56 @@ const ActionBar: React.FC = observer(() => {
       style={{ height: `${actionBarHeight}px` }}
     >
       <div className={styles.actionBarLeftArea}>
-        <Button
-          onClick={() => {
-            router.replace("/backend/protected/home");
-            setSelectedPage(undefined);
-          }}
-        >
-          <FaHome />
-        </Button>
-        <Button
-          onClick={() => {
-            setIsLeftDrawerOpen(!isLeftDrawerOpen);
-          }}
-        >
-          {isLeftDrawerOpen ? (
-            <FaAngleDoubleLeft />
-          ) : (
-            <FaAngleDoubleRight
-              onClick={() => {
-                setIsLeftDrawerOpen(!isLeftDrawerOpen);
-              }}
-            />
-          )}
-        </Button>
-        <ButtonGroup>
-          <Button disabled={!canUndo} onClick={canUndo ? undoAst : undefined}>
-            <ImUndo></ImUndo>
-            Undo(z)
-          </Button>
-          <Button disabled={!canRedo} onClick={canRedo ? redoAst : undefined}>
-            <ImRedo></ImRedo>Redo(r)
-          </Button>
+        <ToolTip title="Home">
           <Button
+            size="medium"
+            onClick={() => {
+              router.replace("/backend/protected/home");
+              setSelectedPage(undefined);
+            }}
+          >
+            <FaHome />
+          </Button>
+        </ToolTip>
+        <ToolTip title="toggle left drawer">
+          <Button
+            size="medium"
+            onClick={() => {
+              setIsLeftDrawerOpen(!isLeftDrawerOpen);
+            }}
+          >
+            {isLeftDrawerOpen ? (
+              <FaAngleDoubleLeft />
+            ) : (
+              <FaAngleDoubleRight
+                onClick={() => {
+                  setIsLeftDrawerOpen(!isLeftDrawerOpen);
+                }}
+              />
+            )}
+          </Button>
+        </ToolTip>
+        <ToolTip title="undo(ctrl + z)">
+          <Button
+            size="medium"
+            disabled={!canUndo}
+            onClick={canUndo ? undoAst : undefined}
+          >
+            <ImUndo></ImUndo>
+          </Button>
+        </ToolTip>
+        <ToolTip title="redo(ctrl + r)">
+          <Button
+            size="medium"
+            disabled={!canRedo}
+            onClick={canRedo ? redoAst : undefined}
+          >
+            <ImRedo></ImRedo>
+          </Button>
+        </ToolTip>
+        <ToolTip title="add to snippets(ctrl + f)">
+          <Button
+            size="medium"
             disabled={!selectedAstNode}
             onClick={() => {
               if (selectedAstNode) {
@@ -148,9 +170,12 @@ const ActionBar: React.FC = observer(() => {
               }
             }}
           >
-            <MdSnippetFolder></MdSnippetFolder>Add to Snippets(f)
+            <MdSnippetFolder></MdSnippetFolder>
           </Button>
+        </ToolTip>
+        <ToolTip title="delete node(ctrl + backspace)">
           <Button
+            size="medium"
             disabled={!selectedAstNode?.isSelfCanBeDeleted}
             onClick={
               selectedAstNode?.isSelfCanBeDeleted
@@ -160,19 +185,21 @@ const ActionBar: React.FC = observer(() => {
                 : undefined
             }
           >
-            <FaTrash></FaTrash>Delete(backspace)
+            <FaTrash></FaTrash>
           </Button>
-        </ButtonGroup>
+        </ToolTip>
       </div>
       <div className={styles.actionBarRightArea}>
-        <ButtonGroup>
-          <a href={`/web/${currentUser?.uuid}/${selectedPage.uuid}`}>
-            <Button>
+        <a href={`/web/${currentUser?.uuid}/${selectedPage.uuid}`}>
+          <ToolTip title="preview">
+            <Button size="medium">
               <MdOutlinePreview />
-              Preview(p)
             </Button>
-          </a>
+          </ToolTip>
+        </a>
+        <ToolTip title="publish">
           <Button
+            size="medium"
             disabled={isPutPageLoading}
             onClick={async () => {
               try {
@@ -184,24 +211,26 @@ const ActionBar: React.FC = observer(() => {
             }}
           >
             <MdOutlinePublish />
-            Publish(p)
           </Button>
-        </ButtonGroup>
-        <Button
-          onClick={() => {
-            setIsRightDrawerOpen(!isRightDrawerOpen);
-          }}
-        >
-          {isRightDrawerOpen ? (
-            <FaAngleDoubleRight />
-          ) : (
-            <FaAngleDoubleLeft
-              onClick={() => {
-                setIsRightDrawerOpen(!isRightDrawerOpen);
-              }}
-            />
-          )}
-        </Button>
+        </ToolTip>
+        <ToolTip title="toggle right drawer">
+          <Button
+            size="medium"
+            onClick={() => {
+              setIsRightDrawerOpen(!isRightDrawerOpen);
+            }}
+          >
+            {isRightDrawerOpen ? (
+              <FaAngleDoubleRight />
+            ) : (
+              <FaAngleDoubleLeft
+                onClick={() => {
+                  setIsRightDrawerOpen(!isRightDrawerOpen);
+                }}
+              />
+            )}
+          </Button>
+        </ToolTip>
       </div>
       <Snackbar
         open={publishPageSuccessSnackbarVisible}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import styles from "./Drawer.module.scss";
 import clsx from "clsx";
 import { useState } from "react";
@@ -50,7 +50,7 @@ const RightDrawer: React.FC = observer(() => {
       setTabType(t);
     }
   };
-  
+
   return (
     <div
       className={clsx([
@@ -60,11 +60,14 @@ const RightDrawer: React.FC = observer(() => {
         },
       ])}
     >
-      <div className={styles.drawerContentWrap} style={{
-        height: '100%',
-      }}>
-        <div className={styles.drawerTabsArea}>
-        <ToggleButtonGroup
+      <div
+        className={styles.drawerContentWrap}
+        style={{
+          height: "100%",
+        }}
+      >
+        <div className={styles.drawerTabsArea} style={{ justifyContent: "flex-end" }}>
+          <ToggleButtonGroup
             value={tabType}
             exclusive
             onChange={handleTabTypeChange}
