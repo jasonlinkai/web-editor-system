@@ -1,21 +1,5 @@
 @import "../../variables";
 
-.selectWrap {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.selectLabel {
-  flex: 1;
-  color: $label;
-  text-align: left;
-  font-family: "Roboto","Helvetica","Arial", "sans-serif";
-}
-
 .select {
   flex: 1;
   width: 100%;

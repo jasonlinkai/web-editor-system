@@ -1,4 +1,6 @@
 import styles from "./Select.module.scss";
+import FormItem from "../FormItem";
+import FormItemLabel from "../FormItemLabel";
 import { IoMdArrowDropdown } from "react-icons/io";
 interface SelectProps {
   label?: string;
@@ -14,8 +16,8 @@ const Select = ({
   options = [],
 }: SelectProps) => {
   return (
-    <div className={styles.selectWrap}>
-      {label && <label className={styles.selectLabel}>{label}</label>}
+    <FormItem>
+      {label && <FormItemLabel>{label}</FormItemLabel>}
       <select
         className={styles.select}
         value={value}
@@ -32,7 +34,7 @@ const Select = ({
         })}
       </select>
       <IoMdArrowDropdown className={styles.selectRightIcon} />
-    </div>
+    </FormItem>
   );
 };
 

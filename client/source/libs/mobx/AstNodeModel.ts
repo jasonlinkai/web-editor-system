@@ -36,6 +36,8 @@ const AstNodeModelPropsStyle = t.model("AstNodeModelPropsStyle", {
   width: t.maybe(t.string),
   height: t.maybe(t.string),
   display: t.maybe(t.string),
+  flex: t.maybe(t.string),
+  flexWrap: t.maybe(t.string),
   flexDirection: t.maybe(t.string),
   justifyContent: t.maybe(t.string),
   alignItems: t.maybe(t.string),

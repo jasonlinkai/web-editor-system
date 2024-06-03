@@ -1,4 +1,6 @@
 import styles from "./Input.module.scss";
+import FormItem from "../FormItem";
+import FormItemLabel from "../FormItemLabel";
 
 interface InputProps {
   label?: string;
@@ -12,14 +14,14 @@ const Input = ({
   onChange = (v) => console.log(v),
 }: InputProps) => {
   return (
-    <div className={styles.inputWrap}>
-      <label className={styles.inputLabel}>{label}</label>
+    <FormItem>
+      {label && <FormItemLabel>{label}</FormItemLabel>}
       <input
         className={styles.input}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-    </div>
+    </FormItem>
   );
 };
 

@@ -1,22 +1,20 @@
-"use client"
+"use client";
+import React from "react";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import {
-  LuAlignHorizontalJustifyStart,
-  LuAlignHorizontalJustifyCenter,
-  LuAlignHorizontalJustifyEnd,
-  LuAlignHorizontalSpaceBetween,
-  LuAlignHorizontalSpaceAround,
-} from "react-icons/lu";
+import Icons from "@/shared-components/Icons";
 import Select from "source/shared-components/Select";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import ActionButton from "../ActionButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import InputButton from "@/shared-components/InputButton";
 import options from "source/shared-components/Select/options";
 import { useState } from "react";
 import clsx from "clsx";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import Input from "source/shared-components/Input";
+import FormItemLabel from "@/shared-components/FormItemLabel";
 
 const ArrangementPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -62,9 +60,39 @@ const ArrangementPanel = observer(() => {
         {node?.props.style.display === "flex" && (
           <>
             <div className={styles.panelItem}>
-              <label className={styles.panelItemLabel}>FlexDirection</label>
+              <label className={styles.panelItemLabel}>Flex</label>
+              <div className={styles.panelItemRowCenterArea}>
+                <Input
+                  label="flex"
+                  value={node?.props.style.flex || ""}
+                  onChange={(e) =>
+                    node?.updateStyle({
+                      styleKey: StyleEnum.flex,
+                      styleValue: e,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className={styles.panelItem}>
               <div className={styles.panelItemRowCenterArea}>
                 <Select
+                  label="wrap"
+                  value={node?.props.style.flexWrap || ""}
+                  onChange={(e) =>
+                    node?.updateStyle({
+                      styleKey: StyleEnum.flexWrap,
+                      styleValue: e,
+                    })
+                  }
+                  options={options.flexWrap}
+                />
+              </div>
+            </div>
+            <div className={styles.panelItem}>
+              <div className={styles.panelItemRowCenterArea}>
+                <Select
+                  label="direction"
                   value={node?.props.style.flexDirection || ""}
                   onChange={(e) =>
                     node?.updateStyle({
@@ -77,113 +105,75 @@ const ArrangementPanel = observer(() => {
               </div>
             </div>
             <div className={styles.panelItem}>
-              <label className={styles.panelItemLabel}>JustifyContent</label>
               <div className={styles.panelItemRowBetweenAera}>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyStart}
-                  isActive={node.props.style.justifyContent === "start"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.justifyContent,
-                      styleValue: "start",
-                    });
+                <FormItemLabel>justify</FormItemLabel>
+                <ToggleButtonGroup
+                  value={node?.props.style.justifyContent}
+                  exclusive
+                  onChange={(
+                    event: React.MouseEvent<HTMLElement>,
+                    value: string | null
+                  ) => {
+                    if (value !== null) {
+                      node?.updateStyle({
+                        styleKey: StyleEnum.justifyContent,
+                        styleValue: value,
+                      });
+                    }
                   }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyCenter}
-                  isActive={node.props.style.justifyContent === "center"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.justifyContent,
-                      styleValue: "center",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyEnd}
-                  isActive={node.props.style.justifyContent === "end"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.justifyContent,
-                      styleValue: "end",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalSpaceBetween}
-                  isActive={node.props.style.justifyContent === "space-between"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.justifyContent,
-                      styleValue: "space-between",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalSpaceAround}
-                  isActive={node.props.style.justifyContent === "space-around"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.justifyContent,
-                      styleValue: "space-around",
-                    });
-                  }}
-                ></ActionButton>
+                >
+                  <InputButton value="start" aria-label="start">
+                    <Icons.LuAlignHorizontalJustifyStart />
+                  </InputButton>
+                  <InputButton value="center" aria-label="center">
+                    <Icons.LuAlignHorizontalJustifyCenter />
+                  </InputButton>
+                  <InputButton value="end" aria-label="end">
+                    <Icons.LuAlignHorizontalJustifyEnd />
+                  </InputButton>
+                  <InputButton value="space-between" aria-label="space-between">
+                    <Icons.LuAlignHorizontalSpaceBetween />
+                  </InputButton>
+                  <InputButton value="space-around" aria-label="space-around">
+                    <Icons.LuAlignHorizontalSpaceAround />
+                  </InputButton>
+                </ToggleButtonGroup>
               </div>
             </div>
             <div className={styles.panelItem}>
-              <label className={styles.panelItemLabel}>AlignItems</label>
               <div className={styles.panelItemRowBetweenAera}>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyStart}
-                  isActive={node.props.style.alignItems === "start"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.alignItems,
-                      styleValue: "start",
-                    });
+                <FormItemLabel>align</FormItemLabel>
+                <ToggleButtonGroup
+                  value={node?.props.style.alignItems}
+                  exclusive
+                  onChange={(
+                    event: React.MouseEvent<HTMLElement>,
+                    value: string | null
+                  ) => {
+                    if (value !== null) {
+                      node?.updateStyle({
+                        styleKey: StyleEnum.alignItems,
+                        styleValue: value,
+                      });
+                    }
                   }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyCenter}
-                  isActive={node.props.style.alignItems === "center"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.alignItems,
-                      styleValue: "center",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalJustifyEnd}
-                  isActive={node.props.style.alignItems === "end"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.alignItems,
-                      styleValue: "end",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalSpaceBetween}
-                  isActive={node.props.style.alignItems === "space-between"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.alignItems,
-                      styleValue: "space-between",
-                    });
-                  }}
-                ></ActionButton>
-                <ActionButton
-                  IconComponent={LuAlignHorizontalSpaceAround}
-                  isActive={node.props.style.alignItems === "space-around"}
-                  onClick={() => {
-                    node?.updateStyle({
-                      styleKey: StyleEnum.alignItems,
-                      styleValue: "space-around",
-                    });
-                  }}
-                ></ActionButton>
+                >
+                  <InputButton value="start" aria-label="start">
+                    <Icons.LuAlignHorizontalJustifyStart />
+                  </InputButton>
+                  <InputButton value="center" aria-label="center">
+                    <Icons.LuAlignHorizontalJustifyCenter />
+                  </InputButton>
+                  <InputButton value="end" aria-label="end">
+                    <Icons.LuAlignHorizontalJustifyEnd />
+                  </InputButton>
+                  <InputButton value="space-between" aria-label="space-between">
+                    <Icons.LuAlignHorizontalSpaceBetween />
+                  </InputButton>
+                  <InputButton value="space-around" aria-label="space-around">
+                    <Icons.LuAlignHorizontalSpaceAround />
+                  </InputButton>
+                </ToggleButtonGroup>
               </div>
             </div>
           </>

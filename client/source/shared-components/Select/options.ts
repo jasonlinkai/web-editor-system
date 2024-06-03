@@ -5,6 +5,16 @@ const options = {
     { label: "inline", value: "inline" },
     { label: "none", value: "none" },
   ],
+  flexWrap: [
+    { label: "nowrap", value: "nowrap" },
+    { label: "wrap", value: "wrap" },
+    { label: "wrap", value: "wrap-reverse" },
+    { label: "inherit", value: "inherit" },
+    { label: "initial", value: "initial" },
+    { label: "revert", value: "revert" },
+    { label: "revert", value: "revert-layer" },
+    { label: "unset", value: "unset" },
+  ],
   flexDirection: [
     { label: "row", value: "row" },
     { label: "column", value: "column" },

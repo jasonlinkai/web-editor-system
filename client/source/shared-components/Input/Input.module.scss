@@ -1,21 +1,5 @@
 @import "../../variables";
 
-.inputWrap {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.inputLabel {
-  flex: 1;
-  color: $label;
-  text-align: left;
-  font-family: "Roboto","Helvetica","Arial", "sans-serif";
-}
-
 .input {
   flex: 1;
   width: 100%;
@@ -23,8 +7,8 @@
   font-size: 0.9rem;
   appearance: none;
   border: 1px solid $panel-border;
-  padding-left: $gap1;
-  padding-right: $gap1;
+  padding-left: $gap2;
+  padding-right: $gap2;
   border-radius: $gap1;
   &:focus {
     outline: none;

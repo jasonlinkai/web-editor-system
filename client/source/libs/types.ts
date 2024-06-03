@@ -31,6 +31,8 @@ export enum StyleEnum {
   width = "width",
   height = "height",
   display = "display",
+  flex = "flex",
+  flexWrap = "flexWrap",
   flexDirection = "flexDirection",
   justifyContent = "justifyContent",
   alignItems = "alignItems",

@@ -163,7 +163,7 @@ const LayoutPanel = observer(() => {
           <label className={styles.panelItemLabel}>Border</label>
           <div className={styles.panelItemColumnArea}>
             <Input
-              label="border-style"
+              label="style"
               value={node?.props.style.borderStyle || ""}
               onChange={(e) =>
                 node?.updateStyle({
@@ -173,7 +173,7 @@ const LayoutPanel = observer(() => {
               }
             />
             <Input
-              label="border-color"
+              label="color"
               value={node?.props.style.borderColor || ""}
               onChange={(e) =>
                 node?.updateStyle({

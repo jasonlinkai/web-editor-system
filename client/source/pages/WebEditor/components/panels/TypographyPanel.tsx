@@ -50,7 +50,7 @@ const TypographyPanel = observer(() => {
               }
             />
             <Input
-              label="fontSize"
+              label="size"
               value={node?.props.style.fontSize || ""}
               onChange={(e) =>
                 node?.updateStyle({
@@ -60,7 +60,7 @@ const TypographyPanel = observer(() => {
               }
             />
             <Input
-              label="fontWeight"
+              label="weight"
               value={node?.props.style.fontWeight || ""}
               onChange={(e) =>
                 node?.updateStyle({
@@ -70,7 +70,7 @@ const TypographyPanel = observer(() => {
               }
             />
             <Select
-              label="textAlign"
+              label="align"
               value={node?.props.style.textAlign || ""}
               onChange={(e) =>
                 node?.updateStyle({

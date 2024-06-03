@@ -41,6 +41,7 @@
 
 .panelItemLabel {
   @include h3();
+  text-align: right;
   &::after {
     display: block;
     content: '';
