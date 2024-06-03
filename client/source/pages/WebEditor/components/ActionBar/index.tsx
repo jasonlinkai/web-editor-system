@@ -143,50 +143,58 @@ const ActionBar: React.FC = observer(() => {
           </Button>
         </ToolTip>
         <ToolTip title="undo(ctrl + z)">
-          <Button
-            size="medium"
-            disabled={!canUndo}
-            onClick={canUndo ? undoAst : undefined}
-          >
-            <ImUndo></ImUndo>
-          </Button>
+          <span>
+            <Button
+              size="medium"
+              disabled={!canUndo}
+              onClick={canUndo ? undoAst : undefined}
+            >
+              <ImUndo></ImUndo>
+            </Button>
+          </span>
         </ToolTip>
         <ToolTip title="redo(ctrl + r)">
-          <Button
-            size="medium"
-            disabled={!canRedo}
-            onClick={canRedo ? redoAst : undefined}
-          >
-            <ImRedo></ImRedo>
-          </Button>
+          <span>
+            <Button
+              size="medium"
+              disabled={!canRedo}
+              onClick={canRedo ? redoAst : undefined}
+            >
+              <ImRedo></ImRedo>
+            </Button>
+          </span>
         </ToolTip>
         <ToolTip title="add to snippets(ctrl + f)">
-          <Button
-            size="medium"
-            disabled={!selectedAstNode}
-            onClick={() => {
-              if (selectedAstNode) {
-                pushToSnippets(selectedAstNode);
-              }
-            }}
-          >
-            <MdSnippetFolder></MdSnippetFolder>
-          </Button>
+          <span>
+            <Button
+              size="medium"
+              disabled={!selectedAstNode}
+              onClick={() => {
+                if (selectedAstNode) {
+                  pushToSnippets(selectedAstNode);
+                }
+              }}
+            >
+              <MdSnippetFolder></MdSnippetFolder>
+            </Button>
+          </span>
         </ToolTip>
         <ToolTip title="delete node(ctrl + backspace)">
-          <Button
-            size="medium"
-            disabled={!selectedAstNode?.isSelfCanBeDeleted}
-            onClick={
-              selectedAstNode?.isSelfCanBeDeleted
-                ? () => {
-                    selectedAstNode.parent.deletChild(selectedAstNode);
-                  }
-                : undefined
-            }
-          >
-            <FaTrash></FaTrash>
-          </Button>
+          <span>
+            <Button
+              size="medium"
+              disabled={!selectedAstNode?.isSelfCanBeDeleted}
+              onClick={
+                selectedAstNode?.isSelfCanBeDeleted
+                  ? () => {
+                      selectedAstNode.parent.deletChild(selectedAstNode);
+                    }
+                  : undefined
+              }
+            >
+              <FaTrash></FaTrash>
+            </Button>
+          </span>
         </ToolTip>
       </div>
       <div className={styles.actionBarRightArea}>
@@ -198,20 +206,24 @@ const ActionBar: React.FC = observer(() => {
           </ToolTip>
         </a>
         <ToolTip title="publish">
-          <Button
-            size="medium"
-            disabled={isPutPageLoading}
-            onClick={async () => {
-              try {
-                await ActionPutPage(JSON.stringify(getSnapshot(selectedPage)));
-                setPublishPageSuccessSnackbarVisible(true);
-              } catch (e) {
-                setPublishPageFailSnackbarVisible(true);
-              }
-            }}
-          >
-            <MdOutlinePublish />
-          </Button>
+          <span>
+            <Button
+              size="medium"
+              disabled={isPutPageLoading}
+              onClick={async () => {
+                try {
+                  await ActionPutPage(
+                    JSON.stringify(getSnapshot(selectedPage))
+                  );
+                  setPublishPageSuccessSnackbarVisible(true);
+                } catch (e) {
+                  setPublishPageFailSnackbarVisible(true);
+                }
+              }}
+            >
+              <MdOutlinePublish />
+            </Button>
+          </span>
         </ToolTip>
         <ToolTip title="toggle right drawer">
           <Button
