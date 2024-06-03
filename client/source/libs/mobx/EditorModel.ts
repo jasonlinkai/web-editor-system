@@ -164,6 +164,10 @@ export const EditorModel = t
         type: ContainerNodeType.div,
         props: {
           style: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
             width: "300px",
             height: "300px",
             backgroundColor: getRandomColor(),

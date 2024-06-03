@@ -24,9 +24,6 @@ const options = {
   position: [
     { label: "static", value: "static" },
     { label: "relative", value: "relative" },
-    { label: "absolute", value: "absolute" },
-    { label: "fixed", value: "fixed" },
-    { label: "sticky", value: "sticky" },
   ],
   textAlign: [
     { label: "center", value: "center" },

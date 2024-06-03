@@ -36,33 +36,31 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     const editorEventListeners: {
       [key: string]: React.EventHandler<SyntheticEvent> | undefined;
     } = {};
-    editorEventListeners.onClick = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      handleOnClick && handleOnClick(e, node);
-      node.setIsSelected(true);
-    };
-    if (draggable) {
-      editorEventListeners.onDragStart = (e: React.DragEvent) => {
-        handleOnDragStart && handleOnDragStart(e, node);
-      };
-    }
-    if (dropable) {
-      editorEventListeners.onDragOver = (e: React.DragEvent) => {
-        handleOnDragOver && handleOnDragOver(e, node);
-        node.setIsDragOvered(true);
-      };
-      editorEventListeners.onDragLeave = (e: React.DragEvent) => {
-        handleOnDragLeave && handleOnDragLeave(e, node);
-        node.setIsDragOvered(false);
-      };
-
-      editorEventListeners.onDrop = (e: React.DragEvent) => {
-        handleOnDrop && handleOnDrop(e, node);
-        node.setIsDragOvered(false);
-      };
-    }
     if (isEditMode) {
-      editorEventListeners.onMouseEnter = (e: React.DragEvent) => {
+      editorEventListeners.onClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        handleOnClick && handleOnClick(e, node);
+        node.setIsSelected(true);
+      };
+      if (draggable) {
+        editorEventListeners.onDragStart = (e: React.DragEvent) => {
+          handleOnDragStart && handleOnDragStart(e, node);
+        };
+      }
+      if (dropable) {
+        editorEventListeners.onDragOver = (e: React.DragEvent) => {
+          handleOnDragOver && handleOnDragOver(e, node);
+          node.setIsDragOvered(true);
+        };
+        editorEventListeners.onDragLeave = (e: React.DragEvent) => {
+          handleOnDragLeave && handleOnDragLeave(e, node);
+          node.setIsDragOvered(false);
+        };
+        editorEventListeners.onDrop = (e: React.DragEvent) => {
+          handleOnDrop && handleOnDrop(e, node);
+        };
+      }
+      editorEventListeners.onMouseOver = (e: React.DragEvent) => {
         e.stopPropagation();
         node.setIsDragOvered(true);
       };
