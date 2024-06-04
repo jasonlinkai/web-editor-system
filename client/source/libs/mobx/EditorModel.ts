@@ -168,9 +168,8 @@ export const EditorModel = t
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            width: "300px",
+            width: "100%",
             height: "300px",
-            backgroundColor: getRandomColor(),
           },
         },
       });

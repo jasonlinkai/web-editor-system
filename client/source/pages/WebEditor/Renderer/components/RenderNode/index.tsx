@@ -20,6 +20,41 @@ const getPaddingNumber = (p: string) => {
 
 const devicePixelRatio = window.devicePixelRatio || 1;
 
+const genNewWrapperForElement = (
+  id: string,
+  dom: HTMLElement,
+  isSelected: boolean,
+  isDragOvered: boolean
+) => {
+  const wrapper = document.createElement("div");
+  const rect = dom.getBoundingClientRect();
+  const color = isSelected ? "rgb(250, 68, 68)" : isDragOvered ? "#1976d2" : "tranparent";
+  wrapper.id = id;
+  wrapper.style.position = "fixed";
+  wrapper.style.top = `${rect.top}px`;
+  wrapper.style.bottom = `${rect.bottom}px`;
+  wrapper.style.left = `${rect.left}px`;
+  wrapper.style.right = `${rect.right}px`;
+  wrapper.style.width = `${rect.width}px`;
+  wrapper.style.height = `${rect.height}px`;
+  wrapper.style.border = `2px solid ${color}`;
+  wrapper.style.pointerEvents = "none";
+  wrapper.style.overscrollBehavior = "none";
+  const tagName = dom.attributes.getNamedItem("datanodetype")?.value;
+  if (tagName !== undefined) {
+    const tag = document.createElement("div");
+    tag.innerText = tagName;
+    tag.style.width = "fit-content";
+    tag.style.backgroundColor = color;
+    tag.style.color = "white";
+    tag.style.fontSize = "0.8rem";
+    tag.style.paddingLeft = "5px";
+    tag.style.paddingRight = "5px";
+    tag.style.borderBottomRightRadius = "5px"
+    wrapper.appendChild(tag);
+  }
+  return wrapper;
+};
 const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
   const canvas = document.createElement("canvas");
   const rect = dom.getBoundingClientRect();
@@ -44,8 +79,8 @@ const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
   canvas.style.pointerEvents = "none";
   canvas.style.overscrollBehavior = "none";
   const ctx = canvas.getContext("2d");
-  canvas.width = (width) * devicePixelRatio;
-  canvas.height = (height) * devicePixelRatio;
+  canvas.width = width * devicePixelRatio;
+  canvas.height = height * devicePixelRatio;
   if (ctx) {
     // clear all older content
     ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -57,7 +92,12 @@ const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
     ctx.fillRect(0, 0, width, marginTop);
     ctx.fillRect(0, height - marginBottom, width, marginBottom);
     ctx.fillRect(0, marginTop, marginLeft, height - (marginTop + marginBottom));
-    ctx.fillRect(width - marginRight, marginTop, marginRight, height - (marginTop + marginBottom));
+    ctx.fillRect(
+      width - marginRight,
+      marginTop,
+      marginRight,
+      height - (marginTop + marginBottom)
+    );
     //
     // create padding area
     //
@@ -85,7 +125,9 @@ const findByIdAndRemoveSelf = (id: string) => {
 const RenderNode: React.FC<RenderNodeProps> = observer(
   ({ ast, isEditMode = false, ...p }) => {
     const domRef = useRef<HTMLElement>(null);
-    const selectedDomRef: React.MutableRefObject<HTMLCanvasElement | null> =
+    const wrapperRef: React.MutableRefObject<HTMLElement | null> =
+    useRef(null);
+    const canvasRef: React.MutableRefObject<HTMLCanvasElement | null> =
       useRef(null);
     const {
       handleOnClick,
@@ -162,29 +204,50 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     useLayoutEffect(() => {
       if (domRef.current) {
         if (node.isSelected || node.isDragOvered) {
-          if (selectedDomRef.current) {
-            findByIdAndRemoveSelf(selectedDomRef.current.id);
+          if (canvasRef.current) {
+            findByIdAndRemoveSelf(canvasRef.current.id);
           }
+          const newWrapper = genNewWrapperForElement(
+            node.uuid,
+            domRef.current,
+            node.isSelected,
+            node.isDragOvered,
+          );
           const newCanvas = genNewCanvasForPaddingAndMargin(
             node.uuid,
             domRef.current
           );
-          selectedDomRef.current = newCanvas;
+          wrapperRef.current = newWrapper;
+          canvasRef.current = newCanvas;
+          document.body.appendChild(newWrapper);
           document.body.appendChild(newCanvas);
         } else {
-          if (selectedDomRef.current) {
-            findByIdAndRemoveSelf(selectedDomRef.current.id);
-            selectedDomRef.current = null;
+          if (canvasRef.current) {
+            findByIdAndRemoveSelf(canvasRef.current.id);
+            canvasRef.current = null;
+          }
+          if (wrapperRef.current) {
+            findByIdAndRemoveSelf(wrapperRef.current.id);
+            wrapperRef.current = null;
           }
         }
       }
       return () => {
-        if (selectedDomRef.current) {
-          findByIdAndRemoveSelf(selectedDomRef.current.id);
-          selectedDomRef.current = null;
+        if (canvasRef.current) {
+          findByIdAndRemoveSelf(canvasRef.current.id);
+          canvasRef.current = null;
+        }
+        if (wrapperRef.current) {
+          findByIdAndRemoveSelf(wrapperRef.current.id);
+          wrapperRef.current = null;
         }
       };
-    }, [node.uuid, node.isSelected, node.isDragOvered, node.changeValueTimeStamp]);
+    }, [
+      node.uuid,
+      node.isSelected,
+      node.isDragOvered,
+      node.changeValueTimeStamp,
+    ]);
 
     return React.createElement(
       type,

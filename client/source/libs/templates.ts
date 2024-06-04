@@ -5,16 +5,13 @@ const defaultAstTemplate = {
   props: {
     className: "",
     style: {
+      position: "relative",
       width: "100%",
       minHeight: "100%",
       display: "block",
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "white",
-      paddingTop: "",
-      paddingRight: "",
-      paddingBottom: "",
-      paddingLeft: "",
     },
     attributes: { datanodetype: "" },
   },
@@ -204,6 +201,7 @@ const blogAstTemplate = {
   props: {
     className: "",
     style: {
+      position: "relative",
       width: "100%",
       minHeight: "100%",
       display: "block",
