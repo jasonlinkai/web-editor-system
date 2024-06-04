@@ -1,6 +1,6 @@
 import styles from "./RenderNode.module.scss";
 import clsx from "clsx";
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useLayoutEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 
@@ -14,8 +14,79 @@ interface RenderNodeProps {
   handleOnDrop?: (ev: React.DragEvent, node: AstNodeModelType) => void;
 }
 
+const getPaddingNumber = (p: string) => {
+  return Number(p.replace("px", "")) || 0;
+};
+
+const devicePixelRatio = window.devicePixelRatio || 1;
+
+const applyStyleToSelectedDom = (
+  dom: HTMLElement,
+  selectedDomWrap: HTMLCanvasElement
+) => {
+  const rect = dom.getBoundingClientRect();
+  selectedDomWrap.style.position = "fixed";
+  selectedDomWrap.style.top = `${rect.top}px`;
+  selectedDomWrap.style.bottom = `${rect.bottom}px`;
+  selectedDomWrap.style.left = `${rect.left}px`;
+  selectedDomWrap.style.right = `${rect.right}px`;
+  selectedDomWrap.style.width = `${rect.width}px`;
+  selectedDomWrap.style.height = `${rect.height}px`;
+  selectedDomWrap.style.pointerEvents = "none";
+  selectedDomWrap.style.overscrollBehavior = "none";
+  const canvas = selectedDomWrap;
+  const ctx = canvas.getContext("2d");
+  const paddingTop = getPaddingNumber(dom.style.paddingTop);
+  const paddingBottom = getPaddingNumber(dom.style.paddingBottom);
+  const paddingRight = getPaddingNumber(dom.style.paddingRight);
+  const paddingLeft = getPaddingNumber(dom.style.paddingLeft);
+  const marginTop = getPaddingNumber(dom.style.marginTop);
+  const marginBottom = getPaddingNumber(dom.style.marginBottom);
+  const marginRight = getPaddingNumber(dom.style.marginRight);
+  const marginLeft = getPaddingNumber(dom.style.marginLeft);
+  canvas.width = (rect.width + marginLeft + marginRight) * devicePixelRatio;
+  canvas.height = (rect.height + marginTop + marginBottom) * devicePixelRatio;
+  if (ctx) {
+    // clear all older content
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //
+    // create margin area
+    //
+    ctx.fillStyle = "rgb(166, 68, 68, 0.3)";
+    ctx.fillRect(0, 0, canvas.width, marginTop);
+    ctx.fillRect(0, canvas.height - marginBottom, canvas.width, marginBottom);
+
+    ctx.fillRect(0, marginTop, marginLeft, canvas.height - (marginTop + marginBottom));
+    ctx.fillRect(canvas.width - marginRight, marginTop, marginRight, canvas.height - (marginTop + marginBottom));
+    //
+    // create padding area
+    //
+    ctx.fillStyle = "rgb(68, 166, 68, 0.3)";
+    ctx.fillRect(
+      0 + marginLeft,
+      0 + marginTop,
+      canvas.width - (marginLeft + marginRight),
+      canvas.height - (marginTop + marginBottom)
+    );
+    ctx.clearRect(
+      0 + marginLeft + paddingLeft,
+      0 + marginRight + paddingTop,
+      canvas.width - (marginLeft + marginRight) - (paddingLeft + paddingRight),
+      canvas.height - (marginTop + marginBottom) - (paddingTop + paddingBottom)
+    );
+  }
+};
+const findByIdAndRemoveSelf = (id: string) => {
+  const dom = document.getElementById(id);
+  dom?.parentNode?.removeChild(dom);
+};
+
 const RenderNode: React.FC<RenderNodeProps> = observer(
   ({ ast, isEditMode = false, ...p }) => {
+    const domRef = useRef<HTMLElement>(null);
+    const selectedDomRef: React.MutableRefObject<HTMLCanvasElement | null> =
+      useRef(null);
     const {
       handleOnClick,
       handleOnDragStart,
@@ -24,7 +95,6 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       handleOnDrop,
     } = p;
     if (!ast) return null;
-
     const isSelected = isEditMode && ast.isSelected;
     const draggable = isEditMode && ast.isSelected && !ast.isRootNode;
     const dropable = isEditMode && ast.isContainerNode;
@@ -88,9 +158,37 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     } else if (node.isSelfClosingNode) {
       renderChildren = undefined;
     }
+
+    useLayoutEffect(() => {
+      if (domRef.current) {
+        if (node.isSelected) {
+          if (selectedDomRef.current) {
+            applyStyleToSelectedDom(domRef.current, selectedDomRef.current);
+          } else {
+            selectedDomRef.current = document.createElement("canvas");
+            selectedDomRef.current.id = node.uuid;
+            applyStyleToSelectedDom(domRef.current, selectedDomRef.current);
+            document.body.appendChild(selectedDomRef.current);
+          }
+        } else {
+          if (selectedDomRef.current) {
+            findByIdAndRemoveSelf(selectedDomRef.current.id);
+            selectedDomRef.current = null;
+          }
+        }
+      }
+      return () => {
+        if (selectedDomRef.current) {
+          findByIdAndRemoveSelf(selectedDomRef.current.id);
+          selectedDomRef.current = null;
+        }
+      };
+    }, [node.uuid, node.isSelected, node.changeValueTimeStamp]);
+
     return React.createElement(
       type,
       {
+        ref: domRef,
         ...props,
         ...editorEventListeners,
         ...{ ...props.attributes, datanodetype: type }, // datanodetpye是為了選中時::psesudo element content可以拿到節點類型

@@ -119,9 +119,11 @@ export const AstNodeModel = t
   .volatile<{
     isSelected: boolean;
     isDragOvered: boolean;
+    changeValueTimeStamp: number | null;
   }>(() => ({
     isSelected: false,
     isDragOvered: false,
+    changeValueTimeStamp: null,
   }))
   .views((self) => ({
     get isSelfCanBeDeleted() {
@@ -162,6 +164,7 @@ export const AstNodeModel = t
         ...self.props.style,
         ...style,
       };
+      self.changeValueTimeStamp = Date.now();
     },
     setAttributes(
       attributes: Partial<SnapshotOut<AstNodeModelPropsAttributesType>>
@@ -170,6 +173,7 @@ export const AstNodeModel = t
         ...self.props.attributes,
         ...attributes,
       };
+      self.changeValueTimeStamp = Date.now();
     },
     updateStyle({
       styleKey,
@@ -182,26 +186,31 @@ export const AstNodeModel = t
         ...self.props.style,
         [styleKey]: styleValue,
       };
+      self.changeValueTimeStamp = Date.now();
     },
     updateAttributes({ key, value }: { key: AttributesEnum; value: string }) {
       self.props.attributes = {
         ...self.props.attributes,
         [key]: value,
       };
+      self.changeValueTimeStamp = Date.now();
     },
     moveToChildren(child: any, index: number) {
       child.parent.deletChild(child);
       child.setParent(self.uuid);
       self.children.splice(index, 0, child);
+      self.changeValueTimeStamp = Date.now();
       return child;
     },
     addToChildren(child: any, index: number) {
       child.setParent(self.uuid);
       self.children.splice(index, 0, child);
+      self.changeValueTimeStamp = Date.now();
       return child;
     },
     deletChild(child: any) {
       detach(child);
+      self.changeValueTimeStamp = Date.now();
     },
   }));
 
