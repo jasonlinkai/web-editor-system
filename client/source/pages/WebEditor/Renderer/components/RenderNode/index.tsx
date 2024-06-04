@@ -161,7 +161,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
 
     useLayoutEffect(() => {
       if (domRef.current) {
-        if (node.isSelected) {
+        if (node.isSelected || node.isDragOvered) {
           if (selectedDomRef.current) {
             findByIdAndRemoveSelf(selectedDomRef.current.id);
           }
@@ -184,7 +184,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
           selectedDomRef.current = null;
         }
       };
-    }, [node.uuid, node.isSelected, node.changeValueTimeStamp]);
+    }, [node.uuid, node.isSelected, node.isDragOvered, node.changeValueTimeStamp]);
 
     return React.createElement(
       type,
