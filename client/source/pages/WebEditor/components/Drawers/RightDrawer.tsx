@@ -5,14 +5,17 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { TfiLayout, TfiText } from "react-icons/tfi";
 import { CgArrangeBack } from "react-icons/cg";
+import { FaInfoCircle } from "react-icons/fa";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import LayoutPanel from "../panels/LayoutPanel";
 import ArrangementPanel from "../panels/ArrangementPanel";
 import TypographyPanel from "../panels/TypographyPanel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
+import InfoPanel from "../panels/InfoPanel";
 
 enum TabTypes {
+  INFO = "INFO",
   ARRANGEMENT = "ARRANGEMENT",
   LAYOUT = "LAYOUT",
   TYPOGRAPHY = "TYPOGRAPHY",
@@ -20,8 +23,13 @@ enum TabTypes {
 
 const tabs = [
   {
+    type: TabTypes.INFO,
+    label: "Info",
+    IconComponent: FaInfoCircle,
+  },
+  {
     type: TabTypes.ARRANGEMENT,
-    label: "Arrange",
+    label: "Arrangement",
     IconComponent: CgArrangeBack,
   },
   {
@@ -31,7 +39,7 @@ const tabs = [
   },
   {
     type: TabTypes.TYPOGRAPHY,
-    label: "Text",
+    label: "Typography",
     IconComponent: TfiText,
   },
 ];
@@ -66,20 +74,24 @@ const RightDrawer: React.FC = observer(() => {
           height: "100%",
         }}
       >
-        <div className={styles.drawerTabsArea} style={{ justifyContent: "flex-end" }}>
+        <div
+          className={styles.drawerTabsArea}
+          style={{ justifyContent: "flex-end" }}
+        >
           <ToggleButtonGroup
             value={tabType}
             exclusive
             onChange={handleTabTypeChange}
-            aria-label="left drawer panel tabs"
+            aria-label="right drawer panel tabs"
           >
             {tabs.map((tab) => {
               const { IconComponent, type } = tab;
               return (
                 <ToggleButton
+                  size="small"
                   key={type}
                   value={type}
-                  aria-label={`left drawer panel tab ${type}`}
+                  aria-label={`right drawer panel tab ${type}`}
                 >
                   <IconComponent />
                 </ToggleButton>
@@ -90,6 +102,7 @@ const RightDrawer: React.FC = observer(() => {
         <div className={styles.drawerPanelArea}>
           {node ? (
             <>
+              {tabType === TabTypes.INFO && <InfoPanel />}
               {tabType === TabTypes.ARRANGEMENT && <ArrangementPanel />}
               {tabType === TabTypes.LAYOUT && <LayoutPanel />}
               {tabType === TabTypes.TYPOGRAPHY && <TypographyPanel />}

@@ -37,13 +37,13 @@ const SizerBar: React.FC = observer(() => {
           onChange={handleEditorLayoutWidth}
           aria-label="editor layout width"
         >
-          <ToggleButton value="100%" aria-label="100%">
+          <ToggleButton size="small" value="100%" aria-label="100%">
             <FaLaptop />
           </ToggleButton>
-          <ToggleButton value="768px" aria-label="768px">
+          <ToggleButton size="small" value="768px" aria-label="768px">
             <TbDeviceIpad />
           </ToggleButton>
-          <ToggleButton value="320px" aria-label="320px">
+          <ToggleButton size="small" value="320px" aria-label="320px">
             <FaMobile />
           </ToggleButton>
         </ToggleButtonGroup>

@@ -1,12 +1,12 @@
 @import "../../../../../variables";
 
 .astTreePanelArea {
-  padding: $gap2;
-  overflow: scroll;
+  padding: $gap1;
 }
 .astTreePanelItem {
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
 }
 
 .astTreePanelItemStartTag {

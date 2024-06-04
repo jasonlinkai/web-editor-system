@@ -9,7 +9,9 @@
 }
 
 .homeTitle {
-  @include h1();
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: "Roboto","Helvetica","Arial", "sans-serif";
 }
 
 .previousWork {

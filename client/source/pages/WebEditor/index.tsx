@@ -20,8 +20,8 @@ const WebEditor: React.FC = observer(() => {
       <div className={styles.webEditorMainArea}>
         <LeftDrawer />
         <div className={styles.webEditorMainAreaEditScreen}>
-          <SizerBar />
           <Renderer />
+          <SizerBar />
         </div>
         <RightDrawer />
       </div>

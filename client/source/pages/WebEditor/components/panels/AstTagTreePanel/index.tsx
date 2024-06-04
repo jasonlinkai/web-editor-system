@@ -46,20 +46,18 @@ const getIcon = (type: AstNodeModelType["type"]) => {
 };
 
 const AstTagTree = observer(
-  ({ node, level = 0 }: { node: AstNodeModelType; level?: number }) => {
+  ({ node }: { node: AstNodeModelType; level?: number }) => {
     const { selectedPage } = useStores();
     if (!selectedPage) return null;
     const { editor } = selectedPage;
     const { setSelectedAstNode } = editor;
     const { isContainerNode } = node;
-    const marginLeft = `${10 * level}px`;
     const Icon = getIcon(node.type);
     return (
       <div
         id={`ast-tree-panel-item-${node.uuid}`}
         key={`ast-tree-panel-item-${node.uuid}`}
         className={styles.astTreePanelItem}
-        style={{ marginLeft }}
         onClick={(e) => {
           e.stopPropagation();
           node.setIsSelected(true);
@@ -78,8 +76,7 @@ const AstTagTree = observer(
           className={clsx([
             styles.astTreePanelItemStartTag,
             {
-              [styles.astTreePanelItemStartTagSelected]:
-              node.isSelected,
+              [styles.astTreePanelItemStartTagSelected]: node.isSelected,
               [styles.astTreePanelItemStartTagHovered]:
                 !node.isSelected && node.isDragOvered,
             },
@@ -96,7 +93,6 @@ const AstTagTree = observer(
                 <AstTagTree
                   key={`ast-tree-panel-item-child-${child.uuid}`}
                   node={child}
-                  level={level + 1}
                 />
               );
             })}
@@ -106,8 +102,6 @@ const AstTagTree = observer(
     );
   }
 );
-
-export const astTagTreePanelHeight = 150;
 
 const AstTagTreePanel = observer(() => {
   const { selectedPage } = useStores();
@@ -125,14 +119,7 @@ const AstTagTreePanel = observer(() => {
   }, [editor.selectedAstNode]);
   return (
     <div className={panelStyles.panel}>
-      <div className={panelStyles.panelTitle}>Tree</div>
-      <div
-        className={styles.astTreePanelArea}
-        style={{
-          height: `${astTagTreePanelHeight}px`,
-          minHeight: `${astTagTreePanelHeight}px`,
-        }}
-      >
+      <div className={styles.astTreePanelArea}>
         {ast && <AstTagTree node={ast} />}
       </div>
     </div>

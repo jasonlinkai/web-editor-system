@@ -1,47 +1,40 @@
-"use client"
+"use client";
 import styles from "./Drawer.module.scss";
 import clsx from "clsx";
-import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { FaPlus } from "react-icons/fa";
-import { MdSnippetFolder } from "react-icons/md";
-import { LuTableProperties } from "react-icons/lu";
-import { SiMetabase } from "react-icons/si";
+import AstTagTreePanel from "../panels/AstTagTreePanel";
+import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
+import NewNodePanel from "../panels/NewNodePanel";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import InfoPanel from "../panels/InfoPanel";
-import NewNodePanel from "../panels/NewNodePanel";
-import AstTagTreePanel from "../panels/AstTagTreePanel";
+import { MdSnippetFolder } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import { useState } from "react";
 import SnippetsPanel from "../panels/SnippetsPanel";
-import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import MetaPanel from "../panels/MetaPanel";
+import { SiMetabase } from "react-icons/si";
 
 enum TabTypes {
   META = "META",
-  ATTRIBUTES = "ATTRIBUTES",
-  CHILDREN = "CHILDREN",
   SNIPPETS = "SNIPPETS",
+  CHILDREN = "CHILDREN",
 }
+
 const tabs = [
   {
     type: TabTypes.META,
-    label: "META",
+    label: "Meta",
     IconComponent: SiMetabase,
   },
   {
     type: TabTypes.SNIPPETS,
-    label: "SNIPPETS",
+    label: "Snippets",
     IconComponent: MdSnippetFolder,
   },
   {
     type: TabTypes.CHILDREN,
-    label: "CHILDREN",
+    label: "Children",
     IconComponent: FaPlus,
-  },
-  {
-    type: TabTypes.ATTRIBUTES,
-    label: "ATTRIBUTES",
-    IconComponent: LuTableProperties,
   },
 ];
 
@@ -50,7 +43,7 @@ const LeftDrawer: React.FC = observer(() => {
   if (!selectedPage) return null;
   const { editor } = selectedPage;
   const node = editor.selectedAstNode;
-  const [tabType, setTabType] = useState(TabTypes.ATTRIBUTES);
+  const [tabType, setTabType] = useState(TabTypes.CHILDREN);
   const handleTabTypeChange = (
     event: React.MouseEvent<HTMLElement>,
     t: TabTypes | null
@@ -69,44 +62,53 @@ const LeftDrawer: React.FC = observer(() => {
         },
       ])}
     >
+      <div className={styles.drawerHeader}>
+        <div className={styles.drawerTitle}>Navigator</div>
+      </div>
       <div className={styles.drawerContentWrap}>
-        <div className={styles.drawerTabsArea}>
-          <ToggleButtonGroup
-            value={tabType}
-            exclusive
-            onChange={handleTabTypeChange}
-            aria-label="left drawer panel tabs"
-          >
-            {tabs.map((tab) => {
-              const { IconComponent, type } = tab;
-              return (
-                <ToggleButton
-                  key={type}
-                  value={type}
-                  aria-label={`left drawer panel tab ${type}`}
-                >
-                  <IconComponent />
-                </ToggleButton>
-              );
-            })}
-          </ToggleButtonGroup>
-        </div>
         <div className={styles.drawerPanelArea}>
-          {tabType === TabTypes.ATTRIBUTES &&
-            (node ? (
-              <InfoPanel />
+          <AstTagTreePanel />
+        </div>
+      </div>
+      <div className={styles.drawerFooterArea}>
+        <div className={styles.drawerFooterContentWrap}>
+          <div
+            className={styles.drawerTabsArea}
+            style={{ justifyContent: "flex-start" }}
+          >
+            <ToggleButtonGroup
+              value={tabType}
+              exclusive
+              onChange={handleTabTypeChange}
+              aria-label="left drawer panel tabs"
+            >
+              {tabs.map((tab) => {
+                const { IconComponent, type } = tab;
+                return (
+                  <ToggleButton
+                    size="small"
+                    key={type}
+                    value={type}
+                    aria-label={`left drawer panel tab ${type}`}
+                  >
+                    <IconComponent />
+                  </ToggleButton>
+                );
+              })}
+            </ToggleButtonGroup>
+          </div>
+          <div className={styles.drawerPanelArea}>
+            {node ? (
+              <>
+                {tabType === TabTypes.META && <MetaPanel />}
+                {tabType === TabTypes.CHILDREN && <NewNodePanel />}
+                {tabType === TabTypes.SNIPPETS && <SnippetsPanel />}
+              </>
             ) : (
               <div className={styles.drawerPanelAreaNoSelectedNode}>
                 select node first
               </div>
-            ))}
-          {tabType === TabTypes.CHILDREN && <NewNodePanel />}
-          {tabType === TabTypes.SNIPPETS && <SnippetsPanel />}
-          {tabType === TabTypes.META && <MetaPanel />}
-        </div>
-        <div className={styles.drawerFooterArea}>
-          <div className={styles.drawerPanelArea}>
-            <AstTagTreePanel />
+            )}
           </div>
         </div>
       </div>
