@@ -1,6 +1,12 @@
 import styles from "./RenderNode.module.scss";
 import clsx from "clsx";
-import React, { SyntheticEvent, useLayoutEffect, useRef } from "react";
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 
@@ -28,7 +34,11 @@ const genNewWrapperForElement = (
 ) => {
   const wrapper = document.createElement("div");
   const rect = dom.getBoundingClientRect();
-  const color = isSelected ? "rgb(250, 68, 68)" : isDragOvered ? "#1976d2" : "tranparent";
+  const color = isSelected
+    ? "rgb(250, 68, 68)"
+    : isDragOvered
+    ? "#1976d2"
+    : "tranparent";
   wrapper.id = id;
   wrapper.style.position = "fixed";
   wrapper.style.top = `${rect.top}px`;
@@ -50,7 +60,7 @@ const genNewWrapperForElement = (
     tag.style.fontSize = "0.8rem";
     tag.style.paddingLeft = "5px";
     tag.style.paddingRight = "5px";
-    tag.style.borderBottomRightRadius = "5px"
+    tag.style.borderBottomRightRadius = "5px";
     wrapper.appendChild(tag);
   }
   return wrapper;
@@ -124,9 +134,12 @@ const findByIdAndRemoveSelf = (id: string) => {
 
 const RenderNode: React.FC<RenderNodeProps> = observer(
   ({ ast, isEditMode = false, ...p }) => {
+    const scrollPreventRenderTimeoutRef = useRef<
+      NodeJS.Timeout | number | undefined
+    >(undefined);
+    const [isScrolling, setIsScrolling] = useState(false);
     const domRef = useRef<HTMLElement>(null);
-    const wrapperRef: React.MutableRefObject<HTMLElement | null> =
-    useRef(null);
+    const wrapperRef: React.MutableRefObject<HTMLElement | null> = useRef(null);
     const canvasRef: React.MutableRefObject<HTMLCanvasElement | null> =
       useRef(null);
     const {
@@ -202,6 +215,43 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     }
 
     useLayoutEffect(() => {
+      if (node.isSelected || node.isDragOvered) {
+        const renderer = document.getElementById("renderer");
+        if (renderer) {
+          const onScroll = (e: any) => {
+            clearTimeout(scrollPreventRenderTimeoutRef.current);
+            setIsScrolling(true);
+            scrollPreventRenderTimeoutRef.current = setTimeout(() => {
+              setIsScrolling(false);
+            }, 300);
+          };
+          renderer.addEventListener("scroll", onScroll);
+          return () => {
+            renderer.removeEventListener("scroll", onScroll);
+          };
+        }
+      }
+    }, [node.isSelected, node.isDragOvered]);
+
+    useEffect(() => {
+      if (isScrolling) {
+        if (wrapperRef.current) {
+          wrapperRef.current.style.visibility = "hidden";
+        }
+        if (canvasRef.current) {
+          canvasRef.current.style.visibility = "hidden";
+        }
+      } else {
+        if (wrapperRef.current) {
+          wrapperRef.current.style.visibility = "visible";
+        }
+        if (canvasRef.current) {
+          canvasRef.current.style.visibility = "visible";
+        }
+      }
+    }, [isScrolling]);
+
+    useLayoutEffect(() => {
       if (domRef.current) {
         if (node.isSelected || node.isDragOvered) {
           if (canvasRef.current) {
@@ -211,7 +261,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
             node.uuid,
             domRef.current,
             node.isSelected,
-            node.isDragOvered,
+            node.isDragOvered
           );
           const newCanvas = genNewCanvasForPaddingAndMargin(
             node.uuid,
@@ -219,8 +269,11 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
           );
           wrapperRef.current = newWrapper;
           canvasRef.current = newCanvas;
-          document.body.appendChild(newWrapper);
-          document.body.appendChild(newCanvas);
+          const renderer = document.getElementById("renderer");
+          if (renderer) {
+            renderer.appendChild(newWrapper);
+            renderer.appendChild(newCanvas);
+          }
         } else {
           if (canvasRef.current) {
             findByIdAndRemoveSelf(canvasRef.current.id);
@@ -247,6 +300,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       node.isSelected,
       node.isDragOvered,
       node.changeValueTimeStamp,
+      isScrolling,
     ]);
 
     return React.createElement(

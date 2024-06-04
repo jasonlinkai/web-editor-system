@@ -127,7 +127,7 @@ const Renderer: React.FC = observer(() => {
       ]
     );
   return (
-    <div className={styles.renderer}>
+    <div id="renderer" className={styles.renderer}>
       <RenderNode
         ast={ast}
         isEditMode={true}
