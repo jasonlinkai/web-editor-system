@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import panelStyles from "../Panel.module.scss";
 import styles from "./AstTagTreePanel.module.scss";
 import { observer } from "mobx-react-lite";
@@ -6,15 +6,54 @@ import clsx from "clsx";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useEffect } from "react";
+import { FaImage, FaVideo } from "react-icons/fa";
+import { LuContainer } from "react-icons/lu";
+import { GoTypography } from "react-icons/go";
+import { MdSmartButton } from "react-icons/md";
+
+const getIcon = (type: AstNodeModelType["type"]) => {
+  if (type === "div") {
+    return LuContainer;
+  }
+  if (type === "span") {
+    return GoTypography;
+  }
+  if (type === "h1") {
+    return GoTypography;
+  }
+  if (type === "h2") {
+    return GoTypography;
+  }
+  if (type === "h3") {
+    return GoTypography;
+  }
+  if (type === "h4") {
+    return GoTypography;
+  }
+  if (type === "h5") {
+    return GoTypography;
+  }
+  if (type === "button") {
+    return MdSmartButton;
+  }
+  if (type === "img") {
+    return FaImage;
+  }
+  if (type === "video") {
+    return FaVideo;
+  }
+  return null;
+};
 
 const AstTagTree = observer(
   ({ node, level = 0 }: { node: AstNodeModelType; level?: number }) => {
     const { selectedPage } = useStores();
     if (!selectedPage) return null;
     const { editor } = selectedPage;
-    const { selectedAstNode, setSelectedAstNode } = editor;
-    const { isContainerNode, isTextNode, isSelfClosingNode } = node;
+    const { setSelectedAstNode } = editor;
+    const { isContainerNode } = node;
     const marginLeft = `${10 * level}px`;
+    const Icon = getIcon(node.type);
     return (
       <div
         id={`ast-tree-panel-item-${node.uuid}`}
@@ -26,16 +65,29 @@ const AstTagTree = observer(
           node.setIsSelected(true);
           setSelectedAstNode(node);
         }}
+        onMouseOver={(e) => {
+          e.stopPropagation();
+          node.setIsDragOvered(true);
+        }}
+        onMouseOut={(e) => {
+          e.stopPropagation();
+          node.setIsDragOvered(false);
+        }}
       >
-        <span
+        <div
           className={clsx([
             styles.astTreePanelItemStartTag,
             {
               [styles.astTreePanelItemStartTagSelected]:
-                selectedAstNode?.uuid === node.uuid,
+              node.isSelected,
+              [styles.astTreePanelItemStartTagHovered]:
+                !node.isSelected && node.isDragOvered,
             },
           ])}
-        >{`<${node.type}${isSelfClosingNode ? " /" : ""}>`}</span>
+        >
+          {Icon && <Icon style={{ marginRight: "0.4rem" }} />}
+          {node.type}
+        </div>
 
         {isContainerNode && (
           <>
@@ -50,22 +102,6 @@ const AstTagTree = observer(
             })}
           </>
         )}
-
-        {isTextNode && (
-          <span style={{ marginLeft: 10 }}>{node.content}</span>
-        )}
-
-        {!isSelfClosingNode && (
-          <span
-            className={clsx([
-              styles.astTreePanelItemEndTag,
-              {
-                [styles.astTreePanelItemEndTagSelected]:
-                  selectedAstNode?.uuid === node.uuid,
-              },
-            ])}
-          >{`</${node.type}>`}</span>
-        )}
       </div>
     );
   }
@@ -79,9 +115,11 @@ const AstTagTreePanel = observer(() => {
   const { ast, editor } = selectedPage;
   useEffect(() => {
     if (editor.selectedAstNode) {
-      const selected = document.getElementById(`ast-tree-panel-item-${editor.selectedAstNode.uuid}`)
+      const selected = document.getElementById(
+        `ast-tree-panel-item-${editor.selectedAstNode.uuid}`
+      );
       if (selected) {
-        selected.scrollIntoView({ behavior: 'smooth' });
+        selected.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [editor.selectedAstNode]);
