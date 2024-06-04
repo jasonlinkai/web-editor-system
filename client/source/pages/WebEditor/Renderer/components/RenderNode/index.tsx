@@ -20,22 +20,9 @@ const getPaddingNumber = (p: string) => {
 
 const devicePixelRatio = window.devicePixelRatio || 1;
 
-const applyStyleToSelectedDom = (
-  dom: HTMLElement,
-  selectedDomWrap: HTMLCanvasElement
-) => {
+const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
+  const canvas = document.createElement("canvas");
   const rect = dom.getBoundingClientRect();
-  selectedDomWrap.style.position = "fixed";
-  selectedDomWrap.style.top = `${rect.top}px`;
-  selectedDomWrap.style.bottom = `${rect.bottom}px`;
-  selectedDomWrap.style.left = `${rect.left}px`;
-  selectedDomWrap.style.right = `${rect.right}px`;
-  selectedDomWrap.style.width = `${rect.width}px`;
-  selectedDomWrap.style.height = `${rect.height}px`;
-  selectedDomWrap.style.pointerEvents = "none";
-  selectedDomWrap.style.overscrollBehavior = "none";
-  const canvas = selectedDomWrap;
-  const ctx = canvas.getContext("2d");
   const paddingTop = getPaddingNumber(dom.style.paddingTop);
   const paddingBottom = getPaddingNumber(dom.style.paddingBottom);
   const paddingRight = getPaddingNumber(dom.style.paddingRight);
@@ -44,8 +31,21 @@ const applyStyleToSelectedDom = (
   const marginBottom = getPaddingNumber(dom.style.marginBottom);
   const marginRight = getPaddingNumber(dom.style.marginRight);
   const marginLeft = getPaddingNumber(dom.style.marginLeft);
-  canvas.width = (rect.width + marginLeft + marginRight) * devicePixelRatio;
-  canvas.height = (rect.height + marginTop + marginBottom) * devicePixelRatio;
+  const width = rect.width + marginLeft + marginRight;
+  const height = rect.height + marginTop + marginBottom;
+  canvas.id = id;
+  canvas.style.position = "fixed";
+  canvas.style.top = `${rect.top - marginTop}px`;
+  canvas.style.bottom = `${rect.bottom}px`;
+  canvas.style.left = `${rect.left - marginLeft}px`;
+  canvas.style.right = `${rect.right}px`;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  canvas.style.pointerEvents = "none";
+  canvas.style.overscrollBehavior = "none";
+  const ctx = canvas.getContext("2d");
+  canvas.width = (width) * devicePixelRatio;
+  canvas.height = (height) * devicePixelRatio;
   if (ctx) {
     // clear all older content
     ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -54,28 +54,28 @@ const applyStyleToSelectedDom = (
     // create margin area
     //
     ctx.fillStyle = "rgb(166, 68, 68, 0.3)";
-    ctx.fillRect(0, 0, canvas.width, marginTop);
-    ctx.fillRect(0, canvas.height - marginBottom, canvas.width, marginBottom);
-
-    ctx.fillRect(0, marginTop, marginLeft, canvas.height - (marginTop + marginBottom));
-    ctx.fillRect(canvas.width - marginRight, marginTop, marginRight, canvas.height - (marginTop + marginBottom));
+    ctx.fillRect(0, 0, width, marginTop);
+    ctx.fillRect(0, height - marginBottom, width, marginBottom);
+    ctx.fillRect(0, marginTop, marginLeft, height - (marginTop + marginBottom));
+    ctx.fillRect(width - marginRight, marginTop, marginRight, height - (marginTop + marginBottom));
     //
     // create padding area
     //
     ctx.fillStyle = "rgb(68, 166, 68, 0.3)";
     ctx.fillRect(
-      0 + marginLeft,
-      0 + marginTop,
-      canvas.width - (marginLeft + marginRight),
-      canvas.height - (marginTop + marginBottom)
+      marginLeft,
+      marginTop,
+      width - (marginLeft + marginRight),
+      height - (marginTop + marginBottom)
     );
     ctx.clearRect(
-      0 + marginLeft + paddingLeft,
-      0 + marginRight + paddingTop,
-      canvas.width - (marginLeft + marginRight) - (paddingLeft + paddingRight),
-      canvas.height - (marginTop + marginBottom) - (paddingTop + paddingBottom)
+      marginLeft + paddingLeft,
+      marginTop + paddingTop,
+      width - (marginLeft + marginRight) - (paddingLeft + paddingRight),
+      height - (marginTop + marginBottom) - (paddingTop + paddingBottom)
     );
   }
+  return canvas;
 };
 const findByIdAndRemoveSelf = (id: string) => {
   const dom = document.getElementById(id);
@@ -163,13 +163,14 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       if (domRef.current) {
         if (node.isSelected) {
           if (selectedDomRef.current) {
-            applyStyleToSelectedDom(domRef.current, selectedDomRef.current);
-          } else {
-            selectedDomRef.current = document.createElement("canvas");
-            selectedDomRef.current.id = node.uuid;
-            applyStyleToSelectedDom(domRef.current, selectedDomRef.current);
-            document.body.appendChild(selectedDomRef.current);
+            findByIdAndRemoveSelf(selectedDomRef.current.id);
           }
+          const newCanvas = genNewCanvasForPaddingAndMargin(
+            node.uuid,
+            domRef.current
+          );
+          selectedDomRef.current = newCanvas;
+          document.body.appendChild(newCanvas);
         } else {
           if (selectedDomRef.current) {
             findByIdAndRemoveSelf(selectedDomRef.current.id);
