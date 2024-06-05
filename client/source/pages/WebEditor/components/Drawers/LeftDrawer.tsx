@@ -98,17 +98,9 @@ const LeftDrawer: React.FC = observer(() => {
             </ToggleButtonGroup>
           </div>
           <div className={styles.drawerPanelArea}>
-            {node ? (
-              <>
-                {tabType === TabTypes.META && <MetaPanel />}
-                {tabType === TabTypes.CHILDREN && <NewNodePanel />}
-                {tabType === TabTypes.SNIPPETS && <SnippetsPanel />}
-              </>
-            ) : (
-              <div className={styles.drawerPanelAreaNoSelectedNode}>
-                select node first
-              </div>
-            )}
+            {tabType === TabTypes.META && <MetaPanel />}
+            {tabType === TabTypes.CHILDREN && <NewNodePanel />}
+            {tabType === TabTypes.SNIPPETS && <SnippetsPanel />}
           </div>
         </div>
       </div>
