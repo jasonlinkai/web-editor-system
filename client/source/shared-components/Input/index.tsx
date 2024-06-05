@@ -1,4 +1,5 @@
 import TextInput from "./TextInput";
-import NumberInput from "./NumberInput";
-export { TextInput, NumberInput };
-export default TextInput;
+import SizeInput from "./SizeInput";
+import UnitInput from "./UnitInput";
+export { TextInput, SizeInput, UnitInput };
+export default UnitInput;

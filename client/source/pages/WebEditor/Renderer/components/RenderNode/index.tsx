@@ -229,7 +229,6 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
         if (!resizerOb.current) {
           resizerOb.current = new ResizeObserver(([change]) => {
             const newWidth = Math.round(change.contentRect.width);
-            console.log("newWidth", newWidth);
             if (newWidth !== prevResizerWidth.current) {
               prevResizerWidth.current = newWidth;
               clearTimeout(resizerPreventRenderTimeoutRef.current);

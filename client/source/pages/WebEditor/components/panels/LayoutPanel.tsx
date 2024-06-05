@@ -1,7 +1,7 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input from "source/shared-components/Input";
+import Input, { SizeInput, TextInput } from "source/shared-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
@@ -37,7 +37,7 @@ const LayoutPanel = observer(() => {
       >
         <div className={styles.panelItem}>
           <div className={styles.panelItemColumnArea}>
-            <Input
+            <SizeInput
               label="width"
               value={node?.props.style.width || ""}
               onChange={(e) =>
@@ -57,7 +57,7 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
-            <Input
+            <TextInput
               label="bg-color"
               value={node?.props.style.backgroundColor || ""}
               onChange={(e) =>
@@ -172,7 +172,7 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
-            <Input
+            <TextInput
               label="color"
               value={node?.props.style.borderColor || ""}
               onChange={(e) =>

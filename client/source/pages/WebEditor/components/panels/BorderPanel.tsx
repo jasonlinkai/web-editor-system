@@ -1,7 +1,7 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input from "source/shared-components/Input";
+import Input, { TextInput } from "source/shared-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
@@ -47,7 +47,7 @@ const BorderPanel = observer(() => {
                 })
               }
             />
-            <Input
+            <TextInput
               label="border-color"
               value={node?.props.style.borderColor || ""}
               onChange={(e) =>

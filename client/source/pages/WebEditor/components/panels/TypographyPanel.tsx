@@ -1,7 +1,7 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input from "source/shared-components/Input";
+import Input, { TextInput } from "source/shared-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
@@ -39,7 +39,7 @@ const TypographyPanel = observer(() => {
       >
         <div className={styles.panelItem}>
           <div className={styles.panelItemColumnArea}>
-            <Input
+            <TextInput
               label="color"
               value={node?.props.style.color || ""}
               onChange={(e) =>

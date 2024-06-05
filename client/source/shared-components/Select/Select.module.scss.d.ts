@@ -1,2 +1,3 @@
-export declare const select: string;
-export declare const selectRightIcon: string;
+export declare const coreSelect: string;
+export declare const coreSelectRightIcon: string;
+export declare const coreSelectWrap: string;

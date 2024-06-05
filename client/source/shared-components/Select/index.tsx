@@ -1,7 +1,7 @@
-import styles from "./Select.module.scss";
 import FormItem from "../FormItem";
 import FormItemLabel from "../FormItemLabel";
-import { IoMdArrowDropdown } from "react-icons/io";
+import CoreSelect from "./core";
+
 interface SelectProps {
   label?: string;
   value?: string;
@@ -9,31 +9,16 @@ interface SelectProps {
   options?: { label: string; value: string }[];
 }
 
-const Select = ({
-  label = "",
-  value = "",
-  onChange = (v) => console.log(v),
-  options = [],
-}: SelectProps) => {
+const Select = (props: SelectProps) => {
   return (
     <FormItem>
-      {label && <FormItemLabel>{label}</FormItemLabel>}
-      <select
-        className={styles.select}
-        value={value}
+      {props.label && <FormItemLabel>{props.label}</FormItemLabel>}
+      <CoreSelect
+        {...props}
         onChange={(e) => {
-          onChange(e.target.value);
+          props?.onChange && props.onChange(e.target.value);
         }}
-      >
-        {options.map((option) => {
-          return (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          );
-        })}
-      </select>
-      <IoMdArrowDropdown className={styles.selectRightIcon} />
+      />
     </FormItem>
   );
 };
