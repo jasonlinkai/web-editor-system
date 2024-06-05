@@ -42,6 +42,7 @@ const genNewWrapperForElement = (
     : "tranparent";
   wrapper.id = id;
   wrapper.style.position = "fixed";
+  wrapper.style.zIndex = "2";
   wrapper.style.top = `${rect.top}px`;
   wrapper.style.bottom = `${rect.bottom}px`;
   wrapper.style.left = `${rect.left}px`;
@@ -99,7 +100,7 @@ const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
     //
     // create margin area
     //
-    ctx.fillStyle = "rgb(166, 68, 68, 0.3)";
+    ctx.fillStyle = "rgb(206, 168, 68, 0.5)";
     ctx.fillRect(0, 0, width, marginTop);
     ctx.fillRect(0, height - marginBottom, width, marginBottom);
     ctx.fillRect(0, marginTop, marginLeft, height - (marginTop + marginBottom));
@@ -112,7 +113,7 @@ const genNewCanvasForPaddingAndMargin = (id: string, dom: HTMLElement) => {
     //
     // create padding area
     //
-    ctx.fillStyle = "rgb(68, 166, 68, 0.3)";
+    ctx.fillStyle = "rgb(68, 206, 68, 0.5)";
     ctx.fillRect(
       marginLeft,
       marginTop,
