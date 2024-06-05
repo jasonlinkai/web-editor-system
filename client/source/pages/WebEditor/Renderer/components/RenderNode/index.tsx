@@ -2,7 +2,6 @@ import styles from "./RenderNode.module.scss";
 import clsx from "clsx";
 import React, {
   SyntheticEvent,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -13,6 +12,7 @@ import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 interface RenderNodeProps {
   ast: AstNodeModelType | undefined;
   isEditMode?: boolean;
+  isParentDropable?: boolean;
   handleOnClick?: (ev: React.MouseEvent, node: AstNodeModelType) => void;
   handleOnDragStart?: (ev: React.DragEvent, node: AstNodeModelType) => void;
   handleOnDragOver?: (ev: React.DragEvent, node: AstNodeModelType) => void;
@@ -133,7 +133,7 @@ const findByIdAndRemoveSelf = (id: string) => {
 };
 
 const RenderNode: React.FC<RenderNodeProps> = observer(
-  ({ ast, isEditMode = false, ...p }) => {
+  ({ ast, isEditMode = false, isParentDropable = true, ...p }) => {
     const scrollPreventRenderTimeoutRef = useRef<
       NodeJS.Timeout | number | undefined
     >(undefined);
@@ -152,7 +152,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     if (!ast) return null;
     const isSelected = isEditMode && ast.isSelected;
     const draggable = isEditMode && ast.isSelected && !ast.isRootNode;
-    const dropable = isEditMode && ast.isContainerNode;
+    const dropable = isEditMode && isParentDropable && !isSelected && ast.isContainerNode;
 
     const node: AstNodeModelType = ast;
     const { type, props, children } = node;
@@ -204,6 +204,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
             key={child.uuid}
             ast={child}
             isEditMode={isEditMode}
+            isParentDropable={dropable}
             {...p}
           />
         );
