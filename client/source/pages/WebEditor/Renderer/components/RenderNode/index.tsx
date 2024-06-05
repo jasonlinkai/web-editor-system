@@ -2,6 +2,7 @@ import styles from "./RenderNode.module.scss";
 import clsx from "clsx";
 import React, {
   SyntheticEvent,
+  useCallback,
   useLayoutEffect,
   useRef,
   useState,
@@ -134,6 +135,11 @@ const findByIdAndRemoveSelf = (id: string) => {
 
 const RenderNode: React.FC<RenderNodeProps> = observer(
   ({ ast, isEditMode = false, isParentDropable = true, ...p }) => {
+    const prevResizerWidth = useRef<number>(0);
+    const resizerOb = useRef<ResizeObserver | undefined>(undefined);
+    const resizerPreventRenderTimeoutRef = useRef<
+    NodeJS.Timeout | number | undefined
+  >(undefined);
     const scrollPreventRenderTimeoutRef = useRef<
       NodeJS.Timeout | number | undefined
     >(undefined);
@@ -152,7 +158,8 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     if (!ast) return null;
     const isSelected = isEditMode && ast.isSelected;
     const draggable = isEditMode && ast.isSelected && !ast.isRootNode;
-    const dropable = isEditMode && isParentDropable && !isSelected && ast.isContainerNode;
+    const dropable =
+      isEditMode && isParentDropable && !isSelected && ast.isContainerNode;
 
     const node: AstNodeModelType = ast;
     const { type, props, children } = node;
@@ -216,23 +223,58 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     }
 
     useLayoutEffect(() => {
-      if (node.isSelected || node.isDragOvered) {
-        const renderer = document.getElementById("renderer");
-        if (renderer) {
-          const onScroll = (e: any) => {
-            clearTimeout(scrollPreventRenderTimeoutRef.current);
-            setIsScrolling(true);
-            scrollPreventRenderTimeoutRef.current = setTimeout(() => {
-              setIsScrolling(false);
-            }, 300);
-          };
-          renderer.addEventListener("scroll", onScroll);
-          return () => {
-            renderer.removeEventListener("scroll", onScroll);
-          };
+      const resizer = document.getElementById("resizer");
+      if (resizer) {
+        if (!resizerOb.current) {
+          resizerOb.current = new ResizeObserver(([change]) => {
+            const newWidth = Math.round(change.contentRect.width);
+            console.log('newWidth', newWidth);
+            if (newWidth !== prevResizerWidth.current) {
+              prevResizerWidth.current = newWidth;
+              clearTimeout(resizerPreventRenderTimeoutRef.current);
+              setIsScrolling(true);
+              resizerPreventRenderTimeoutRef.current = setTimeout(() => {
+                setIsScrolling(false);
+              }, 300);
+            }
+          });
         }
+        if (prevResizerWidth.current === 0) {
+          const { width } = resizer.getBoundingClientRect();
+          prevResizerWidth.current = Math.round(width);
+        }
+        if (node.isSelected || node.isDragOvered) {
+          resizerOb.current.observe(resizer);
+        } else {
+          resizerOb?.current?.unobserve(resizer);
+        }
+        return () => {
+          resizerOb?.current?.unobserve(resizer);
+        };
       }
     }, [node.isSelected, node.isDragOvered]);
+
+    const onScroll = useCallback((e: any) => {
+      clearTimeout(scrollPreventRenderTimeoutRef.current);
+      setIsScrolling(true);
+      scrollPreventRenderTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 300);
+    }, []);
+
+    useLayoutEffect(() => {
+      const renderer = document.getElementById("renderer");
+      if (renderer) {
+        if (node.isSelected || node.isDragOvered) {
+          renderer?.addEventListener("scroll", onScroll);
+        } else {
+          renderer?.removeEventListener("scroll", onScroll);
+        }
+        return () => {
+          renderer?.removeEventListener("scroll", onScroll);
+        };
+      }
+    }, [onScroll, node.isSelected, node.isDragOvered]);
 
     useLayoutEffect(() => {
       const clear = () => {

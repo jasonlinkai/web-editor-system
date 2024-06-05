@@ -150,7 +150,7 @@ const RendererWithWrap = observer(() => {
   if (!selectedPage) return null;
   const { editor } = selectedPage;
   return <div className={styles.rendererWithWrap}>
-    <div className={styles.resizer} style={{...editor.editorLayout}}>
+    <div id="resizer" className={styles.resizer} style={{...editor.editorLayout}}>
       <Renderer />
     </div>
   </div>;
