@@ -233,30 +233,19 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       }
     }, [node.isSelected, node.isDragOvered]);
 
-    useEffect(() => {
-      if (isScrolling) {
-        if (wrapperRef.current) {
-          wrapperRef.current.style.visibility = "hidden";
-        }
-        if (canvasRef.current) {
-          canvasRef.current.style.visibility = "hidden";
-        }
-      } else {
-        if (wrapperRef.current) {
-          wrapperRef.current.style.visibility = "visible";
-        }
-        if (canvasRef.current) {
-          canvasRef.current.style.visibility = "visible";
-        }
-      }
-    }, [isScrolling]);
-
     useLayoutEffect(() => {
+      const clear = () => {
+        if (canvasRef.current) {
+          findByIdAndRemoveSelf(canvasRef.current.id);
+          canvasRef.current = null;
+        }
+        if (wrapperRef.current) {
+          findByIdAndRemoveSelf(wrapperRef.current.id);
+          wrapperRef.current = null;
+        }
+      };
       if (domRef.current) {
-        if (node.isSelected || node.isDragOvered) {
-          if (canvasRef.current) {
-            findByIdAndRemoveSelf(canvasRef.current.id);
-          }
+        if (!isScrolling && (node.isSelected || node.isDragOvered)) {
           const newWrapper = genNewWrapperForElement(
             node.uuid,
             domRef.current,
@@ -275,26 +264,10 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
             renderer.appendChild(newCanvas);
           }
         } else {
-          if (canvasRef.current) {
-            findByIdAndRemoveSelf(canvasRef.current.id);
-            canvasRef.current = null;
-          }
-          if (wrapperRef.current) {
-            findByIdAndRemoveSelf(wrapperRef.current.id);
-            wrapperRef.current = null;
-          }
+          clear();
         }
       }
-      return () => {
-        if (canvasRef.current) {
-          findByIdAndRemoveSelf(canvasRef.current.id);
-          canvasRef.current = null;
-        }
-        if (wrapperRef.current) {
-          findByIdAndRemoveSelf(wrapperRef.current.id);
-          wrapperRef.current = null;
-        }
-      };
+      return clear;
     }, [
       node.uuid,
       node.isSelected,
