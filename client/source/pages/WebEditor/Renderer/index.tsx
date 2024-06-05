@@ -99,6 +99,8 @@ const Renderer: React.FC = observer(() => {
         );
         if (type === "move node") {
           // 防止元素把自己移入自己的操作
+          console.log('selectedAstNode', selectedAstNode?.uuid);
+          console.log('node', node?.uuid);
           if (selectedAstNode && selectedAstNode?.uuid !== node.uuid) {
             newNode = node.moveToChildren(selectedAstNode, insertIndex);
           }
@@ -115,8 +117,10 @@ const Renderer: React.FC = observer(() => {
           newNode = AstNodeModel.create(data);
           node.addToChildren(newNode, insertIndex);
         }
-        setSelectedAstNode(newNode);
-        (newNode as AstNodeModelType).setIsSelected(true);
+        if (newNode) {
+          setSelectedAstNode(newNode);
+          (newNode as AstNodeModelType).setIsSelected(true);
+        }
       },
       [
         selectedAstNode,
