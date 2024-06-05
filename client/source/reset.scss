@@ -5,14 +5,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scrollbar-width: none;
+  overscroll-behavior: none;
 }
 
 html {
   background-color: $background;
-}
-
-body {
-  overscroll-behavior: none;
 }
 
 h1,h2,h3,h4,h5,h6 {
