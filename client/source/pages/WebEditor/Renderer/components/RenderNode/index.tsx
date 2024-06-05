@@ -139,8 +139,8 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     const prevResizerWidth = useRef<number>(0);
     const resizerOb = useRef<ResizeObserver | undefined>(undefined);
     const resizerPreventRenderTimeoutRef = useRef<
-    NodeJS.Timeout | number | undefined
-  >(undefined);
+      NodeJS.Timeout | number | undefined
+    >(undefined);
     const scrollPreventRenderTimeoutRef = useRef<
       NodeJS.Timeout | number | undefined
     >(undefined);
@@ -160,7 +160,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     const isSelected = isEditMode && ast.isSelected;
     const draggable = isEditMode && ast.isSelected && !ast.isRootNode;
     const dropable =
-      isEditMode && isParentDropable && !isSelected && ast.isContainerNode;
+      isEditMode && isParentDropable && (!ast.isSelected || ast.isRootNode) && ast.isContainerNode;
 
     const node: AstNodeModelType = ast;
     const { type, props, children } = node;
@@ -229,7 +229,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
         if (!resizerOb.current) {
           resizerOb.current = new ResizeObserver(([change]) => {
             const newWidth = Math.round(change.contentRect.width);
-            console.log('newWidth', newWidth);
+            console.log("newWidth", newWidth);
             if (newWidth !== prevResizerWidth.current) {
               prevResizerWidth.current = newWidth;
               clearTimeout(resizerPreventRenderTimeoutRef.current);
