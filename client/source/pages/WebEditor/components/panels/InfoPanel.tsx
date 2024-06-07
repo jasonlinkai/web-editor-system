@@ -7,7 +7,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import Input from "source/shared-components/Input";
+import Input, { TextInput } from "source/shared-components/Input";
 import { AttributesEnum, SelfClosingNodeType } from "source/libs/types";
 import Button from "@mui/material/Button";
 
@@ -42,7 +42,7 @@ const InfoPanel = observer(() => {
             <InfoField label="uuid" value={node?.uuid || ""} />
             <InfoField label="parent" value={node?.parent?.uuid || ""} />
             {node?.isTextNode && (
-              <Input
+              <TextInput
                 label="content"
                 value={node?.content || ""}
                 onChange={(e) => {
@@ -52,7 +52,7 @@ const InfoPanel = observer(() => {
             )}
             {node?.type === SelfClosingNodeType.img && (
               <>
-                <Input
+                <TextInput
                   label="alt"
                   value={node?.props.attributes.alt || ""}
                   onChange={(e) => {
@@ -62,7 +62,7 @@ const InfoPanel = observer(() => {
                     });
                   }}
                 />
-                <Input
+                <TextInput
                   label="crossOrigin"
                   value={node?.props.attributes.crossOrigin || ""}
                   onChange={(e) => {
