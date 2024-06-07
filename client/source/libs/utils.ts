@@ -4,12 +4,11 @@ import {
 } from "./mobx/AstNodeModel";
 
 export const getRandomColor = () => {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+  const r = Math.round(255 * Math.random());
+  const g = Math.round(255 * Math.random());
+  const b = Math.round(255 * Math.random());
+  const a = 1 * Math.random();
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
 
 export const makeOptions = (values: string[]) => {

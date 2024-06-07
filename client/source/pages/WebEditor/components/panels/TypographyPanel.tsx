@@ -10,6 +10,7 @@ import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import Select from "source/shared-components/Select";
 import options from "source/shared-components/Select/options";
+import ColorInput from "@/shared-components/ColorInput";
 
 const TypographyPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -39,7 +40,7 @@ const TypographyPanel = observer(() => {
       >
         <div className={styles.panelItem}>
           <div className={styles.panelItemColumnArea}>
-            <TextInput
+            <ColorInput
               label="color"
               value={node?.props.style.color || ""}
               onChange={(e) =>

@@ -1,13 +1,14 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input, { SizeInput, TextInput } from "source/shared-components/Input";
+import Input, { SizeInput } from "source/shared-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import ColorInput from "@/shared-components/ColorInput";
 
 const LayoutPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -57,15 +58,15 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
-            <TextInput
+            <ColorInput
               label="bg-color"
               value={node?.props.style.backgroundColor || ""}
-              onChange={(e) =>
+              onChange={(e) => {
                 node?.updateStyle({
                   styleKey: StyleEnum.backgroundColor,
                   styleValue: e,
                 })
-              }
+              }}
             />
           </div>
         </div>
@@ -172,15 +173,15 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
-            <TextInput
-              label="color"
+            <ColorInput
+              label="border-color"
               value={node?.props.style.borderColor || ""}
-              onChange={(e) =>
+              onChange={(e) => {
                 node?.updateStyle({
                   styleKey: StyleEnum.borderColor,
                   styleValue: e,
                 })
-              }
+              }}
             />
           </div>
         </div>
