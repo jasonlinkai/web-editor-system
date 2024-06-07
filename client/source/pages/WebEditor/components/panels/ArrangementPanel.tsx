@@ -13,7 +13,7 @@ import options from "source/shared-components/Select/options";
 import { useState } from "react";
 import clsx from "clsx";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import Input from "source/shared-components/Input";
+import Input, { TextInput } from "source/shared-components/Input";
 import FormItemLabel from "@/shared-components/FormItemLabel";
 
 const ArrangementPanel = observer(() => {
@@ -63,11 +63,40 @@ const ArrangementPanel = observer(() => {
               <label className={styles.panelItemLabel}>Flex</label>
               <div className={styles.panelItemRowCenterArea}>
                 <Input
-                  label="flex"
-                  value={node?.props.style.flex || ""}
+                  label="basis"
+                  value={node?.props.style.flexBasis || ""}
+                  onChange={(e) => {
+                    console.log(e);
+                    node?.updateStyle({
+                      styleKey: StyleEnum.flexBasis,
+                      styleValue: e,
+                    })
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.panelItem}>
+              <div className={styles.panelItemRowCenterArea}>
+                <TextInput
+                  label="grow"
+                  value={node?.props.style.flexGrow || ""}
                   onChange={(e) =>
                     node?.updateStyle({
-                      styleKey: StyleEnum.flex,
+                      styleKey: StyleEnum.flexGrow,
+                      styleValue: e,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className={styles.panelItem}>
+              <div className={styles.panelItemRowCenterArea}>
+                <TextInput
+                  label="shrink"
+                  value={node?.props.style.flexShrink || ""}
+                  onChange={(e) =>
+                    node?.updateStyle({
+                      styleKey: StyleEnum.flexShrink,
                       styleValue: e,
                     })
                   }
