@@ -19,9 +19,11 @@ const SizerBar: React.FC = observer(() => {
     width: string | null
   ) => {
     if (width !== null) {
-      editor.setEditorLayout({
-        width,
-      });
+      if (Number(width.replace("px", "")) > editor.editorLayout.maxWidth) {
+        editor.editorLayout.setWidth(`${editor.editorLayout.maxWidth}px`);
+      } else {
+        editor.editorLayout.setWidth(width);
+      }
     }
   };
 
@@ -37,7 +39,7 @@ const SizerBar: React.FC = observer(() => {
           onChange={handleEditorLayoutWidth}
           aria-label="editor layout width"
         >
-          <ToggleButton size="small" value="100%" aria-label="100%">
+          <ToggleButton size="small" value="1440px" aria-label="1440px">
             <FaLaptop />
           </ToggleButton>
           <ToggleButton size="small" value="768px" aria-label="768px">
@@ -48,6 +50,9 @@ const SizerBar: React.FC = observer(() => {
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
+      <span>
+        {editor.editorLayout.width}
+      </span>
     </div>
   );
 });

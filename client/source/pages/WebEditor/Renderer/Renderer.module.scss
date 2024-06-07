@@ -22,3 +22,27 @@
   background-color: white;
   overflow: scroll;
 }
+
+.resizerIndicator {
+  cursor: ew-resize;
+  resize: horizontal;
+  border-top-right-radius: $gap1;
+  border-bottom-right-radius: $gap1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 50px;
+  padding: $gap1;
+  border: 1px solid $panel-border;
+  background-color: white;
+  &:hover {
+    border: 2px solid $active;
+    color: $active;
+  }
+}
+
+.resizerIndicatorHolded {
+  border: 2px solid $selected;
+  color: $selected;
+}

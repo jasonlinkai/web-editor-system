@@ -99,9 +99,6 @@ export const EditorModel = t
         }
       }
     },
-    setEditorLayout(layout: EditorLayoutModelType) {
-      self.editorLayout = layout;
-    },
     deleteSnippet(snippet: SnippetAstNodeModelType) {
       detach(snippet);
     },

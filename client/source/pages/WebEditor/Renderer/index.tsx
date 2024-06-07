@@ -1,11 +1,17 @@
 "use client";
 import styles from "./Renderer.module.scss";
-import React, { useCallback } from "react";
+import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModel, AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import RenderNode from "./components/RenderNode";
-import { ContainerNodeType, SelfClosingNodeType, TextNodeType } from "source/libs/types";
+import {
+  ContainerNodeType,
+  SelfClosingNodeType,
+  TextNodeType,
+} from "source/libs/types";
+import Icons from "@/shared-components/Icons";
+import clsx from "clsx";
 
 const findInsertIndex = (
   container: HTMLElement,
@@ -32,7 +38,8 @@ const findInsertIndex = (
 const Renderer: React.FC = observer(() => {
   const { selectedPage } = useStores();
   if (!selectedPage) return null;
-  const { ast, editor } = selectedPage;useStores();
+  const { ast, editor } = selectedPage;
+  useStores();
   const {
     selectedAstNode,
     setSelectedAstNode,
@@ -53,20 +60,17 @@ const Renderer: React.FC = observer(() => {
   const handleOnDragStart: (
     ev: React.DragEvent,
     node: AstNodeModelType
-  ) => void = useCallback(
-    (ev, node) => {
-      ev.stopPropagation();
-      ev.dataTransfer.effectAllowed = "move";
-      ev.dataTransfer.setData(
-        "application/json",
-        JSON.stringify({
-          type: "move node",
-          data: "",
-        })
-      );
-    },
-    []
-  );
+  ) => void = useCallback((ev, node) => {
+    ev.stopPropagation();
+    ev.dataTransfer.effectAllowed = "move";
+    ev.dataTransfer.setData(
+      "application/json",
+      JSON.stringify({
+        type: "move node",
+        data: "",
+      })
+    );
+  }, []);
 
   const handleOnDragOver: (
     ev: React.DragEvent,
@@ -145,14 +149,93 @@ const Renderer: React.FC = observer(() => {
 });
 
 const RendererWithWrap = observer(() => {
+  const editArea = useRef<HTMLDivElement>(null);
+  const resizerIndicatorStartXRef = useRef<number>(0);
+  const [isResizerIndicatorHolded, setIsResizerIndicatorHolded] =
+    useState(false);
   const { selectedPage } = useStores();
   if (!selectedPage) return null;
   const { editor } = selectedPage;
-  return <div className={styles.rendererWithWrap}>
-    <div id="resizer" className={styles.resizer} style={{...editor.editorLayout}}>
-      <Renderer />
+  useLayoutEffect(() => {
+    const resizeHandler = () => {
+      if (editArea.current) {
+        const nextMaxWidth = editArea.current.clientWidth - 20 - 30;
+        editor.editorLayout.setMaxWidth(editArea.current.clientWidth - 20 - 30);
+        if (
+          Number(editor.editorLayout.width.replace("px", "")) > nextMaxWidth
+        ) {
+          editor.editorLayout.setWidth(`${nextMaxWidth}px`);
+        }
+      }
+    };
+    window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, [editor]);
+  return (
+    <div
+      ref={editArea}
+      className={styles.rendererWithWrap}
+      onResize={() => {
+        if (editArea.current) {
+          editor.editorLayout.setMaxWidth(
+            editArea.current.clientWidth - 20 - 30
+          );
+        }
+      }}
+    >
+      <div
+        id="resizer"
+        className={styles.resizer}
+        style={{ ...editor.editorLayout }}
+      >
+        <Renderer />
+      </div>
+      <div
+        draggable={false}
+        className={clsx({
+          [styles.resizerIndicator]: true,
+          [styles.resizerIndicatorHolded]: isResizerIndicatorHolded,
+        })}
+        onMouseUp={() => {
+          setIsResizerIndicatorHolded(false);
+        }}
+        onMouseDown={(e) => {
+          if (editor.selectedAstNode) {
+            editor?.setSelectedAstNode(undefined);
+          }
+          resizerIndicatorStartXRef.current = e.clientX;
+          setIsResizerIndicatorHolded(true);
+        }}
+        onMouseLeave={(e) => {
+          setIsResizerIndicatorHolded(false);
+        }}
+        onMouseMove={(e) => {
+          if (isResizerIndicatorHolded) {
+            const movemoent = resizerIndicatorStartXRef.current - e.clientX;
+            resizerIndicatorStartXRef.current = e.clientX;
+
+            const prevEditorLayoutWidth = editor.editorLayout.width.replace(
+              "px",
+              ""
+            );
+            const nextCalculateWidth =
+              Number(prevEditorLayoutWidth) - movemoent * 2;
+
+            const nextEditorLayoutWidth =
+              nextCalculateWidth > editor.editorLayout.maxWidth
+                ? editor.editorLayout.maxWidth
+                : nextCalculateWidth;
+
+            editor.editorLayout.setWidth(`${nextEditorLayoutWidth}px`);
+          }
+        }}
+      >
+        <Icons.MdDragIndicator></Icons.MdDragIndicator>
+      </div>
     </div>
-  </div>;
+  );
 });
 
 export default RendererWithWrap;
