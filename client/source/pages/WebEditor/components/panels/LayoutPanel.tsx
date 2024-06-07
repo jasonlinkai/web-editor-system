@@ -9,6 +9,8 @@ import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import ColorInput from "@/shared-components/ColorInput";
+import Select from "@/shared-components/Select";
+import options from "@/shared-components/Select/options";
 
 const LayoutPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -163,7 +165,7 @@ const LayoutPanel = observer(() => {
         <div className={styles.panelItem}>
           <label className={styles.panelItemLabel}>Border</label>
           <div className={styles.panelItemColumnArea}>
-            <Input
+            <Select
               label="style"
               value={node?.props.style.borderStyle || ""}
               onChange={(e) =>
@@ -172,6 +174,7 @@ const LayoutPanel = observer(() => {
                   styleValue: e,
                 })
               }
+              options={options.borderStyle}
             />
             <ColorInput
               label="border-color"
