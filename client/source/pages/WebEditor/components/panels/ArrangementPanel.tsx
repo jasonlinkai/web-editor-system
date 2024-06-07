@@ -2,19 +2,19 @@
 import React from "react";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Icons from "@/shared-components/Icons";
-import Select from "source/shared-components/Select";
+import Icons from "@/editor-components/Icons";
+import Select from "source/editor-components/Select";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import ActionButton from "../ActionButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import InputButton from "@/shared-components/InputButton";
-import options from "source/shared-components/Select/options";
+import InputButton from "@/editor-components/InputButton";
+import options from "source/editor-components/Select/options";
 import { useState } from "react";
 import clsx from "clsx";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import Input, { TextInput } from "source/shared-components/Input";
-import FormItemLabel from "@/shared-components/FormItemLabel";
+import Input, { TextInput } from "source/editor-components/Input";
+import FormItemLabel from "@/editor-components/FormItemLabel";
 
 const ArrangementPanel = observer(() => {
   const { selectedPage } = useStores();

@@ -1,11 +1,11 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Select from "source/shared-components/Select";
+import Select from "source/editor-components/Select";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
-import options from "source/shared-components/Select/options";
-import Input from "source/shared-components/Input";
+import options from "source/editor-components/Select/options";
+import Input from "source/editor-components/Input";
 import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";

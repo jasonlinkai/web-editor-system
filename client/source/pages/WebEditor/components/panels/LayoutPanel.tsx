@@ -1,16 +1,16 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input, { SizeInput } from "source/shared-components/Input";
+import Input, { SizeInput } from "source/editor-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import ColorInput from "@/shared-components/ColorInput";
-import Select from "@/shared-components/Select";
-import options from "@/shared-components/Select/options";
+import ColorInput from "@/editor-components/ColorInput";
+import Select from "@/editor-components/Select";
+import options from "@/editor-components/Select/options";
 
 const LayoutPanel = observer(() => {
   const { selectedPage } = useStores();

@@ -2,7 +2,7 @@
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef } from "react";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import Dialog, { DialogRefType } from "source/shared-components/Dialog";
+import Dialog, { DialogRefType } from "source/editor-components/Dialog";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { makeOptions } from "source/libs/utils";

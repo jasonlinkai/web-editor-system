@@ -2,7 +2,7 @@
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef } from "react";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import Dialog, { DialogRefType } from "source/shared-components/Dialog";
+import Dialog, { DialogRefType } from "source/editor-components/Dialog";
 import Upload from "../Upload";
 
 const UploadModal = observer(() => {

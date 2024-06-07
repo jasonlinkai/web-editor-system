@@ -14,7 +14,7 @@ import {
   TextNodeType,
 } from "source/libs/types";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import Icons from "@/shared-components/Icons";
+import Icons from "@/editor-components/Icons";
 
 const NewNodePanel = observer(() => {
   const { selectedPage } = useStores();

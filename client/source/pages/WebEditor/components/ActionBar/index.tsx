@@ -18,8 +18,8 @@ import Button from "@mui/material/Button";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useRouter } from "next/navigation";
 import { getSnapshot } from "mobx-state-tree";
-import Snackbar from "source/shared-components/SnackBar";
-import ToolTip from "@/shared-components/ToolTip";
+import Snackbar from "source/editor-components/SnackBar";
+import ToolTip from "@/editor-components/ToolTip";
 
 export const actionBarHeight = 40;
 

@@ -1,5 +1,5 @@
 import { Backdrop } from "@mui/material";
-import Loading from "source/shared-components/Loading";
+import Loading from "source/editor-components/Loading";
 
 interface PageLoadingProps {
   visible: boolean;

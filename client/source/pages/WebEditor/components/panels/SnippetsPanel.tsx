@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { FaArrowUp, FaArrowDown, FaRegEye, FaTrash } from "react-icons/fa";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import Dailog, { DialogRefType } from "source/shared-components/Dialog";
+import Dailog, { DialogRefType } from "source/editor-components/Dialog";
 import RenderNode from "../../Renderer/components/RenderNode";
 import { recursiveClearUuid } from "source/libs/utils";
 

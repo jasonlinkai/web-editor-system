@@ -16,8 +16,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import { useStores, useStoresReload } from "source/libs/mobx/useMobxStateTreeStores";
 import TemplateGalleryModal from "./components/TemplateGalleryModal";
-import Snackbar from "source/shared-components/SnackBar";
-import Loading from "source/shared-components/Loading";
+import Snackbar from "source/editor-components/SnackBar";
+import Loading from "source/editor-components/Loading";
 import { LogoutOutlined } from "@mui/icons-material";
 
 const Home = observer(() => {

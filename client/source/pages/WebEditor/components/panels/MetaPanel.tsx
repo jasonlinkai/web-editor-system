@@ -1,7 +1,7 @@
 "use client";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import { TextInput } from "source/shared-components/Input";
+import { TextInput } from "source/editor-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useState } from "react";
 import clsx from "clsx";

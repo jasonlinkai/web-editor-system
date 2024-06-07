@@ -11,7 +11,7 @@ import {
   SelfClosingNodeType,
   TextNodeType,
 } from "source/libs/types";
-import Icons from "@/shared-components/Icons";
+import Icons from "@/editor-components/Icons";
 import clsx from "clsx";
 
 const findInsertIndex = (

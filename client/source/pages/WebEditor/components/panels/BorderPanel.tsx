@@ -1,14 +1,14 @@
 "use client"
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input from "source/shared-components/Input";
+import Input from "source/editor-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import ColorInput from "@/shared-components/ColorInput";
+import ColorInput from "@/editor-components/ColorInput";
 
 const BorderPanel = observer(() => {
   const { selectedPage } = useStores();
