@@ -152,6 +152,7 @@ export const AstNodeModel = t
   .actions((self) => ({
     setContent(content: string) {
       self.content = content;
+      self.changeValueTimeStamp = Date.now();
     },
     setParent(uuid: string) {
       self.parent = uuid;
