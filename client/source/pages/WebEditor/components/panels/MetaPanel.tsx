@@ -1,7 +1,7 @@
 "use client";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input from "source/shared-components/Input";
+import { TextInput } from "source/shared-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { useState } from "react";
 import clsx from "clsx";
@@ -35,7 +35,7 @@ const MetaPanel = observer(() => {
       >
         <div className={styles.panelItem}>
           <div className={styles.panelItemColumnArea}>
-            <Input
+            <TextInput
               label="description"
               value={selectedPage?.meta.description || ""}
               onChange={(e) => {
@@ -45,7 +45,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="keywords"
               value={selectedPage?.meta.keywords || ""}
               onChange={(e) => {
@@ -55,7 +55,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="author"
               value={selectedPage?.meta.author || ""}
               onChange={(e) => {
@@ -65,7 +65,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="ogTitle"
               value={selectedPage?.meta.ogTitle || ""}
               onChange={(e) => {
@@ -75,7 +75,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="ogType"
               value={selectedPage?.meta.ogType || ""}
               onChange={(e) => {
@@ -85,7 +85,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="ogImage"
               value={selectedPage?.meta.ogImage || ""}
               onChange={(e) => {
@@ -95,7 +95,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="ogUrl"
               value={selectedPage?.meta.ogUrl || ""}
               onChange={(e) => {
@@ -105,7 +105,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="ogDescription"
               value={selectedPage?.meta.ogDescription || ""}
               onChange={(e) => {
@@ -115,7 +115,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="twitterCard"
               value={selectedPage?.meta.twitterCard || ""}
               onChange={(e) => {
@@ -125,7 +125,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="twitterTitle"
               value={selectedPage?.meta.twitterTitle || ""}
               onChange={(e) => {
@@ -135,7 +135,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="twitterDescription"
               value={selectedPage?.meta.twitterDescription || ""}
               onChange={(e) => {
@@ -145,7 +145,7 @@ const MetaPanel = observer(() => {
                 });
               }}
             />
-            <Input
+            <TextInput
               label="twitterImage"
               value={selectedPage?.meta.twitterImage || ""}
               onChange={(e) => {
