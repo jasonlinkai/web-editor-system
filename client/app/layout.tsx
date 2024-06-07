@@ -1,10 +1,10 @@
-import "../source/reset.scss"
-import "../source/index.scss"
+import 'tailwindcss/tailwind.css'
+import "../styles/global.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "React App",
-  description: "Web site created with Next.js.",
+  title: "web-editor.js",
+  description: "An online web editor.",
 };
 
 export default function RootLayout({

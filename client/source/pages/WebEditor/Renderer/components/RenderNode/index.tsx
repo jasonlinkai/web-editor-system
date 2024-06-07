@@ -9,6 +9,8 @@ import React, {
 } from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
+import { ComponentNodeType } from "@/libs/types";
+import Carousel from "@/component_node/Carousel";
 
 interface RenderNodeProps {
   ast: AstNodeModelType | undefined;
@@ -160,7 +162,10 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     const isSelected = isEditMode && ast.isSelected;
     const draggable = isEditMode && ast.isSelected && !ast.isRootNode;
     const dropable =
-      isEditMode && isParentDropable && (!ast.isSelected || ast.isRootNode) && ast.isContainerNode;
+      isEditMode &&
+      isParentDropable &&
+      (!ast.isSelected || ast.isRootNode) &&
+      ast.isContainerNode;
 
     const node: AstNodeModelType = ast;
     const { type, props, children } = node;
@@ -204,7 +209,11 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     }
 
     let renderChildren;
-    if (node.isContainerNode) {
+    if (node.isComponentNode) {
+      if (node.type === ComponentNodeType.carousel) {
+        return <Carousel></Carousel>;
+      }
+    } else if (node.isContainerNode) {
       renderChildren = Array.isArray(children) ? children : [children];
       renderChildren = renderChildren.map((child) => {
         return (

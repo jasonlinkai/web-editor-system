@@ -17,10 +17,15 @@ export enum SelfClosingNodeType {
   video = "video",
 }
 
+export enum ComponentNodeType {
+  carousel = "carousel",
+}
+
 export type ElementType =
   | ContainerNodeType
   | TextNodeType
-  | SelfClosingNodeType;
+  | SelfClosingNodeType
+  | ComponentNodeType;
 
 export enum AttributesEnum {
   src = "src",

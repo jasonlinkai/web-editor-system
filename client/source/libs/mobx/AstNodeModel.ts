@@ -9,6 +9,7 @@ import {
 import { Event, EventNames } from "source/libs/event";
 import {
   AttributesEnum,
+  ComponentNodeType,
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
@@ -17,9 +18,12 @@ import { StyleEnum } from "source/libs/types";
 
 const AstNodeModelPropsAttributes = t.model("AstNodeModelPropsAttributes", {
   datanodetype: t.optional(t.string, ""),
+  // for image
   src: t.maybe(t.string),
   alt: t.maybe(t.string),
   crossOrigin: t.maybe(t.string),
+  // for carousel
+  images: t.maybe(t.array(t.string)),
 });
 
 export type AstNodeModelPropsAttributesType = Instance<
@@ -95,6 +99,7 @@ export const AstNodeModel = t
     uuid: t.identifier,
     parent: t.maybe(t.safeReference(t.late((): IAnyModelType => AstNodeModel))),
     type: t.enumeration([
+      "carousel",
       "div",
       "span",
       "h1",
@@ -134,6 +139,11 @@ export const AstNodeModel = t
     },
     get isRootNode() {
       return self.parent === undefined;
+    },
+    get isComponentNode() {
+      return Object.values(ComponentNodeType).includes(
+        self.type as ComponentNodeType
+      );
     },
     get isContainerNode() {
       return Object.values(ContainerNodeType).includes(

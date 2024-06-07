@@ -1,7 +1,11 @@
 import { v4 as uuid } from "uuid";
-import {
-  AstNodeModelSnapshotInType,
-} from "./mobx/AstNodeModel";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+import { AstNodeModelSnapshotInType } from "./mobx/AstNodeModel";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export const getRandomColor = () => {
   const r = Math.round(255 * Math.random());

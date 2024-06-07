@@ -6,6 +6,7 @@ import { AstNodeModel, AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import RenderNode from "./components/RenderNode";
 import {
+  ComponentNodeType,
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
@@ -46,6 +47,7 @@ const Renderer: React.FC = observer(() => {
     newContainerNode,
     newImageNode,
     newTextNode,
+    newCarouselNode,
   } = editor;
 
   const handleOnClick: (ev: React.MouseEvent, node: AstNodeModelType) => void =
@@ -113,6 +115,8 @@ const Renderer: React.FC = observer(() => {
             newNode = newTextNode();
           } else if (data.nodeType === SelfClosingNodeType.img) {
             newNode = newImageNode();
+          } else if (data.nodeType === ComponentNodeType.carousel) {
+            newNode = newCarouselNode();
           }
           node.addToChildren(newNode, insertIndex);
         } else if (type === "add new node from snippets") {
@@ -130,6 +134,7 @@ const Renderer: React.FC = observer(() => {
         newContainerNode,
         newImageNode,
         newTextNode,
+        newCarouselNode,
         setSelectedAstNode,
       ]
     );

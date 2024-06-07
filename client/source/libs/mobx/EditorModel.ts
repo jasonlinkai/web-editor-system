@@ -19,6 +19,7 @@ import {
   httpPostUploadImage,
 } from "source/libs/http";
 import {
+  ComponentNodeType,
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
@@ -204,11 +205,27 @@ export const EditorModel = t
         content: "please enter text",
       });
     };
+    const newCarouselNode = () => {
+      return AstNodeModel.create({
+        uuid: uuid(),
+        parent: undefined,
+        type: ComponentNodeType.carousel,
+        props: {
+          style: {
+            display: "block",
+          },
+          attributes: {
+            images: ["/test1", "/test2", "/test3"],
+          },
+        },
+      });
+    };
     return {
       deleteNode,
       newContainerNode,
       newImageNode,
       newTextNode,
+      newCarouselNode,
     };
   })
   //
