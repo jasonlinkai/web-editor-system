@@ -1,5 +1,4 @@
 import * as React from "react";
-import Image from "next/image";
 import { Card, CardContent } from "@/component_base/ui/card";
 import {
   Carousel,
@@ -9,17 +8,17 @@ import {
   CarouselPrevious,
 } from "@/component_base/ui/carousel";
 
-const CarouselComponent = ({ images = [] }: { images: string[] }) => {
+const CarouselComponent: React.FC<{
+  images?: string[];
+}> = ({ images = [] }) => {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className={"w-full min-h-60 bg-slate-100"}>
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={`${index}-${image}`}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <Image src={image} alt={image} />
-                </CardContent>
+                <CardContent className="flex aspect-square items-center justify-center p-6"></CardContent>
               </Card>
             </div>
           </CarouselItem>

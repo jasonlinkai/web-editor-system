@@ -14,11 +14,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(({ ast }) => {
   const node = ast;
   const { type, props, children } = node;
   let renderChildren;
-  if (node.isComponentNode) {
-    if (node.type === ComponentNodeType.carousel) {
-      return <Carousel images={props?.attributes?.images || []}></Carousel>;
-    }
-  } else if (node.isContainerNode) {
+  if (node.isContainerNode) {
     renderChildren = Array.isArray(children) ? children : [children];
     renderChildren = renderChildren.map((child) => {
       return <RenderNode key={child.uuid} ast={child} />;
@@ -27,9 +23,14 @@ const RenderNode: React.FC<RenderNodeProps> = observer(({ ast }) => {
     renderChildren = node.content;
   } else if (node.isSelfClosingNode) {
     renderChildren = undefined;
+  } else if (node.isComponentNode) {
+    renderChildren = [
+      <Carousel images={props?.attributes?.images || []}></Carousel>,
+    ];
   }
+
   return React.createElement(
-    type,
+    node.isComponentNode ? "div" : type,
     {
       ...props.attributes,
       style: props.style,

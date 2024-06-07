@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
-import { ComponentNodeType } from "@/libs/types";
 import Carousel from "@/component_node/Carousel";
 
 interface RenderNodeProps {
@@ -209,11 +208,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     }
 
     let renderChildren;
-    if (node.isComponentNode) {
-      if (node.type === ComponentNodeType.carousel) {
-        return <Carousel></Carousel>;
-      }
-    } else if (node.isContainerNode) {
+    if (node.isContainerNode) {
       renderChildren = Array.isArray(children) ? children : [children];
       renderChildren = renderChildren.map((child) => {
         return (
@@ -230,6 +225,12 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       renderChildren = node.content;
     } else if (node.isSelfClosingNode) {
       renderChildren = undefined;
+    } else if (node.isComponentNode) {
+      renderChildren = [
+        <Carousel
+          images={props?.attributes?.images || []}
+        ></Carousel>,
+      ];
     }
 
     useLayoutEffect(() => {
@@ -329,7 +330,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     ]);
 
     return React.createElement(
-      type,
+      node.isComponentNode ? "div" : type,
       {
         ref: domRef,
         ...props,

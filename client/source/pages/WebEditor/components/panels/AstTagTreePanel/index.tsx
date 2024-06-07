@@ -10,6 +10,7 @@ import { FaImage, FaVideo } from "react-icons/fa";
 import { LuContainer } from "react-icons/lu";
 import { GoTypography } from "react-icons/go";
 import { MdSmartButton } from "react-icons/md";
+import Icons from "@/editor-components/Icons";
 
 const getIcon = (type: AstNodeModelType["type"]) => {
   if (type === "div") {
@@ -41,6 +42,9 @@ const getIcon = (type: AstNodeModelType["type"]) => {
   }
   if (type === "video") {
     return FaVideo;
+  }
+  if (type === "carousel") {
+    return Icons.MdOutlineViewCarousel;
   }
   return null;
 };
