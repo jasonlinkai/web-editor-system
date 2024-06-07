@@ -7,7 +7,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import Input, { TextInput } from "source/shared-components/Input";
+import { TextInput } from "source/shared-components/Input";
 import { AttributesEnum, SelfClosingNodeType } from "source/libs/types";
 import Button from "@mui/material/Button";
 
