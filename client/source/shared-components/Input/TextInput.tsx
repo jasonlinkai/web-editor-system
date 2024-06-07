@@ -16,11 +16,20 @@ const TextInput = ({
   return (
     <FormItem>
       {label && <FormItemLabel>{label}</FormItemLabel>}
-      <input
-        className={styles.input}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flex: "1",
+          justifyContent: "flex-end",
+        }}
+      >
+        <input
+          className={styles.input}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </div>
     </FormItem>
   );
 };
