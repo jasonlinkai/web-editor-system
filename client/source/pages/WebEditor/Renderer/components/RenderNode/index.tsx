@@ -224,7 +224,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     }
 
     useLayoutEffect(() => {
-      const resizer = document.getElementById("resizer");
+      const resizer = document.getElementById("editArea");
       if (resizer) {
         if (!resizerOb.current) {
           resizerOb.current = new ResizeObserver(([change]) => {

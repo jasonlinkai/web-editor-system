@@ -175,6 +175,7 @@ const RendererWithWrap = observer(() => {
   }, [editor]);
   return (
     <div
+      id="editArea"
       ref={editArea}
       className={styles.rendererWithWrap}
       onResize={() => {
