@@ -185,14 +185,14 @@ export const AstNodeModel = t
     }) {
       self.props.style = {
         ...self.props.style,
-        [styleKey]: styleValue,
+        [styleKey]: styleValue || undefined,
       };
       self.changeValueTimeStamp = Date.now();
     },
     updateAttributes({ key, value }: { key: AttributesEnum; value: string }) {
       self.props.attributes = {
         ...self.props.attributes,
-        [key]: value,
+        [key]: value || undefined,
       };
       self.changeValueTimeStamp = Date.now();
     },

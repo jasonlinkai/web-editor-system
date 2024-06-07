@@ -90,7 +90,11 @@ const UnitInput = ({
             className={styles.input}
             value={value.replace(unit, "")}
             onChange={(e) => {
-              onChange(`${e.target.value}${unit}`);
+              if (e.target.value) {
+                onChange(`${e.target.value}${unit}`);
+              } else {
+                onChange("");
+              }
             }}
           />
         </div>
