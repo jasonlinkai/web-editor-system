@@ -44,10 +44,10 @@ const SelectedAndHoveredEffect = observer(
     updated: number | null;
   }) => {
     const { selectedPage } = useStores();
-    const [scrollTop, setScrollTop] = useState(0);
+    const [updatedTime, setUpdatedTime] = useState(0);
 
     const onScroll = useCallback((e: any) => {
-      setScrollTop(e.target.scrollTop);
+      setUpdatedTime(Date.now());
     }, []);
 
     useLayoutEffect(() => {
@@ -56,12 +56,13 @@ const SelectedAndHoveredEffect = observer(
         : isDragOvered
         ? "#1976d2"
         : "tranparent";
-      const dom = document.getElementById(uuid);
+      const doc = (document.getElementById("editorArea") as HTMLIFrameElement)
+        ?.contentWindow?.document;
+      if (!doc) return;
+      const dom = doc.getElementById(uuid);
       if (!dom) return;
       const rect = (dom as HTMLElement).getBoundingClientRect();
-      const effect = document.getElementById(
-        `effect-${uuid}`
-      ) as HTMLDivElement;
+      const effect = doc.getElementById(`effect-${uuid}`) as HTMLDivElement;
       effect.style.position = "fixed";
       effect.style.zIndex = "1";
       effect.style.top = `${rect.top}px`;
@@ -71,7 +72,7 @@ const SelectedAndHoveredEffect = observer(
       effect.style.backgroundColor = "transparent";
       effect.style.pointerEvents = "none";
       effect.style.border = `2px solid ${color}`;
-      const tag = document.getElementById(`tag-${uuid}`) as HTMLDivElement;
+      const tag = doc.getElementById(`tag-${uuid}`) as HTMLDivElement;
       tag.style.width = "fit-content";
       tag.style.backgroundColor = color;
       tag.style.color = "white";
@@ -79,9 +80,7 @@ const SelectedAndHoveredEffect = observer(
       tag.style.paddingLeft = "5px";
       tag.style.paddingRight = "5px";
       tag.style.borderBottomRightRadius = "5px";
-      const canvas = document.getElementById(
-        `canvas-${uuid}`
-      ) as HTMLCanvasElement;
+      const canvas = doc.getElementById(`canvas-${uuid}`) as HTMLCanvasElement;
       const paddingTop = getPaddingNumber(dom.style.paddingTop);
       const paddingBottom = getPaddingNumber(dom.style.paddingBottom);
       const paddingRight = getPaddingNumber(dom.style.paddingRight);
@@ -149,18 +148,18 @@ const SelectedAndHoveredEffect = observer(
       isDragOvered,
       selectedPage?.editor.editorLayout.width,
       updated,
-      scrollTop,
+      updatedTime,
       uuid,
     ]);
 
     useLayoutEffect(() => {
-      const renderer = document.getElementById("renderer");
-      if (renderer) {
-        renderer.addEventListener("scroll", onScroll);
-        return () => {
-          renderer.removeEventListener("scroll", onScroll);
-        };
-      }
+      const w = (document.getElementById("editorArea") as HTMLIFrameElement)
+        ?.contentWindow;
+      if (!w) return;
+      w.addEventListener("scroll", onScroll);
+      return () => {
+        w.removeEventListener("scroll", onScroll);
+      };
     }, [onScroll]);
 
     return (

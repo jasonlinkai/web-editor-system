@@ -28,7 +28,7 @@ const options = {
     { label: "not selected", value: "" },
     { label: "static", value: "static" },
     { label: "relative", value: "relative" },
-    // { label: "fixed", value: "fixed" },
+    { label: "fixed", value: "fixed" },
     { label: "absolute", value: "absolute" },
     { label: "sticky", value: "sticky" },
   ],

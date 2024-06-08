@@ -1,6 +1,13 @@
 "use client";
 import styles from "./Renderer.module.scss";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import ReactDom from "react-dom";
 import { observer } from "mobx-react-lite";
 import { AstNodeModel, AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
@@ -154,18 +161,73 @@ const Renderer: React.FC = observer(() => {
 });
 
 const RendererWithWrap = observer(() => {
-  const editArea = useRef<HTMLDivElement>(null);
+  return (
+    <div id="resizer" className={styles.resizer}>
+      <Renderer />
+    </div>
+  );
+});
+
+const RendererInFrame = () => {
+  const doc = (document.getElementById("editorArea") as HTMLIFrameElement)
+    ?.contentWindow?.document;
+  if (doc) {
+    const anchor = doc.body;
+    if (anchor) {
+      return ReactDom.createPortal(<RendererWithWrap />, anchor);
+    }
+  }
+  return null;
+};
+
+const RendererAnchor = observer(() => {
   const resizerIndicatorStartXRef = useRef<number>(0);
   const [isResizerIndicatorHolded, setIsResizerIndicatorHolded] =
     useState(false);
+  const wrapperRef = useRef<HTMLIFrameElement>(null);
+  const ref = useRef<HTMLIFrameElement>(null);
   const { selectedPage } = useStores();
   if (!selectedPage) return null;
   const { editor } = selectedPage;
+
+  useEffect(() => {
+    if (ref.current) {
+      const styleId = "insert-style";
+      const styleContent = `
+        * {
+          box-sizing: border-box;
+          margin: 0px;
+        }
+        html {
+          width: ${editor.editorLayout.width};
+          height: 100%;
+        }
+        body {
+          width: ${editor.editorLayout.width};
+          height: 100%;
+        };
+      `;
+      const oldStyleTag =
+        ref.current?.contentWindow?.document.getElementById(styleId);
+      if (oldStyleTag) {
+        oldStyleTag.textContent = styleContent;
+      } else {
+        const newStyleTag = document.createElement("style");
+        newStyleTag.id = styleId;
+        newStyleTag.textContent = styleContent;
+        ref.current?.contentDocument?.head.appendChild(newStyleTag);
+      }
+    }
+  }, [editor.editorLayout.width]);
+
   useLayoutEffect(() => {
     const resizeHandler = () => {
-      if (editArea.current) {
-        const nextMaxWidth = editArea.current.clientWidth - 20 - 30;
-        editor.editorLayout.setMaxWidth(editArea.current.clientWidth - 20 - 30);
+      if (wrapperRef.current) {
+        const nextMaxWidth = wrapperRef.current.clientWidth - 20 - 30;
+        console.log(nextMaxWidth);
+        editor.editorLayout.setMaxWidth(
+          wrapperRef.current.clientWidth - 20 - 30
+        );
         if (
           Number(editor.editorLayout.width.replace("px", "")) > nextMaxWidth
         ) {
@@ -178,26 +240,17 @@ const RendererWithWrap = observer(() => {
       window.removeEventListener("resize", resizeHandler);
     };
   }, [editor]);
+
   return (
-    <div
-      id="editArea"
-      ref={editArea}
-      className={styles.rendererWithWrap}
-      onResize={() => {
-        if (editArea.current) {
-          editor.editorLayout.setMaxWidth(
-            editArea.current.clientWidth - 20 - 30
-          );
-        }
-      }}
-    >
-      <div
-        id="resizer"
-        className={styles.resizer}
-        style={{ ...editor.editorLayout }}
-      >
-        <Renderer />
-      </div>
+    <div ref={wrapperRef} className={styles.rendererWithWrap}>
+      <iframe
+        ref={ref}
+        id="editorArea"
+        title="editorArea"
+        width={editor.editorLayout.width}
+        height="100%"
+      />
+      <RendererInFrame />
       <div
         draggable={false}
         className={clsx({
@@ -244,4 +297,4 @@ const RendererWithWrap = observer(() => {
   );
 });
 
-export default RendererWithWrap;
+export default RendererAnchor;
