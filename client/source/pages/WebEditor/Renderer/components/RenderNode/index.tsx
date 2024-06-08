@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import { observer } from "mobx-react-lite";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
-import Carousel from "@/component_node/Carousel";
 import { useStores } from "@/libs/mobx/useMobxStateTreeStores";
 
 interface RenderNodeProps {
@@ -249,10 +248,6 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
       renderChildren = node.content;
     } else if (node.isSelfClosingNode) {
       renderChildren = undefined;
-    } else if (node.isComponentNode) {
-      renderChildren = [
-        <Carousel images={props?.attributes?.images || []}></Carousel>,
-      ];
     }
 
     return (

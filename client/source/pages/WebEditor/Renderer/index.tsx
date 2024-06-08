@@ -146,24 +146,18 @@ const Renderer: React.FC = observer(() => {
       ]
     );
   return (
-    <div id="renderer" className={styles.renderer}>
-      <RenderNode
-        ast={ast}
-        isEditMode={true}
-        handleOnClick={handleOnClick}
-        handleOnDragStart={handleOnDragStart}
-        handleOnDragOver={handleOnDragOver}
-        handleOnDragLeave={handleOnDragLeave}
-        handleOnDrop={handleOnDrop}
-      />
-    </div>
-  );
-});
-
-const RendererWithWrap = observer(() => {
-  return (
-    <div id="resizer" className={styles.resizer}>
-      <Renderer />
+    <div className={styles.resizer}>
+      <div className={styles.renderer}>
+        <RenderNode
+          ast={ast}
+          isEditMode={true}
+          handleOnClick={handleOnClick}
+          handleOnDragStart={handleOnDragStart}
+          handleOnDragOver={handleOnDragOver}
+          handleOnDragLeave={handleOnDragLeave}
+          handleOnDrop={handleOnDrop}
+        />
+      </div>
     </div>
   );
 });
@@ -174,7 +168,7 @@ const RendererInFrame = () => {
   if (doc) {
     const anchor = doc.body;
     if (anchor) {
-      return ReactDom.createPortal(<RendererWithWrap />, anchor);
+      return ReactDom.createPortal(<Renderer />, anchor);
     }
   }
   return null;
@@ -192,12 +186,23 @@ const RendererAnchor = observer(() => {
 
   useEffect(() => {
     if (ref.current) {
+      const normalizeCssLink = document.createElement("link");
+      normalizeCssLink.href = "/normalize.css";
+      normalizeCssLink.rel = "stylesheet";
+      normalizeCssLink.type = "text/css";
+      ref.current?.contentDocument?.head.appendChild(normalizeCssLink);
+      const resetCssLink = document.createElement("link");
+      resetCssLink.href = "/reset.css";
+      resetCssLink.rel = "stylesheet";
+      resetCssLink.type = "text/css";
+      ref.current?.contentDocument?.head.appendChild(resetCssLink);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (ref.current) {
       const styleId = "insert-style";
       const styleContent = `
-        * {
-          box-sizing: border-box;
-          margin: 0px;
-        }
         html {
           width: ${editor.editorLayout.width};
           height: 100%;
@@ -224,7 +229,6 @@ const RendererAnchor = observer(() => {
     const resizeHandler = () => {
       if (wrapperRef.current) {
         const nextMaxWidth = wrapperRef.current.clientWidth - 20 - 30;
-        console.log(nextMaxWidth);
         editor.editorLayout.setMaxWidth(
           wrapperRef.current.clientWidth - 20 - 30
         );

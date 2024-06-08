@@ -1,6 +1,4 @@
 "use client";
-import Carousel from "@/component_node/Carousel";
-import { ComponentNodeType } from "@/libs/types";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
@@ -23,10 +21,6 @@ const RenderNode: React.FC<RenderNodeProps> = observer(({ ast }) => {
     renderChildren = node.content;
   } else if (node.isSelfClosingNode) {
     renderChildren = undefined;
-  } else if (node.isComponentNode) {
-    renderChildren = [
-      <Carousel images={props?.attributes?.images || []}></Carousel>,
-    ];
   }
 
   return React.createElement(

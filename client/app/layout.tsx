@@ -1,5 +1,5 @@
-import 'tailwindcss/tailwind.css'
-import "../styles/global.css";
+import "./normalize.css";
+import "./reset.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

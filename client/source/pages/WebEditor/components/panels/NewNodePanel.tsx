@@ -8,13 +8,13 @@ import { FaArrowUp, FaArrowDown, FaImage, FaUpload } from "react-icons/fa";
 import { LuContainer } from "react-icons/lu";
 import { GoTypography } from "react-icons/go";
 import {
-  ComponentNodeType,
+  // ComponentNodeType,
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
 } from "source/libs/types";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import Icons from "@/editor-components/Icons";
+// import Icons from "@/editor-components/Icons";
 
 const NewNodePanel = observer(() => {
   const { selectedPage } = useStores();
@@ -119,7 +119,7 @@ const NewNodePanel = observer(() => {
               <GoTypography />
               Text
             </div>
-            <div
+            {/* <div
               className={styles.panelItemActionRowBox}
               draggable
               style={{
@@ -140,7 +140,7 @@ const NewNodePanel = observer(() => {
             >
               <Icons.MdOutlineViewCarousel />
               Carousel
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

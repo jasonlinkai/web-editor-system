@@ -1,0 +1,6 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  scrollbar-width: none;
+  overscroll-behavior: none;
+}
