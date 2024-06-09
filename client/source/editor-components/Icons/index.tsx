@@ -5,7 +5,7 @@ import {
   LuAlignHorizontalSpaceBetween,
   LuAlignHorizontalSpaceAround,
 } from "react-icons/lu";
-import { MdDragIndicator, MdOutlineViewCarousel } from "react-icons/md";
+import { MdDragIndicator } from "react-icons/md";
 
 const Icons = {
   LuAlignHorizontalJustifyStart,
@@ -14,7 +14,6 @@ const Icons = {
   LuAlignHorizontalSpaceBetween,
   LuAlignHorizontalSpaceAround,
   MdDragIndicator,
-  MdOutlineViewCarousel,
 };
 
 export default Icons;

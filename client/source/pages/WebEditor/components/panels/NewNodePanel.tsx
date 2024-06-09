@@ -119,28 +119,6 @@ const NewNodePanel = observer(() => {
               <GoTypography />
               Text
             </div>
-            {/* <div
-              className={styles.panelItemActionRowBox}
-              draggable
-              style={{
-                cursor: "grab",
-              }}
-              onDragStart={(ev) => {
-                ev.dataTransfer.effectAllowed = "move";
-                ev.dataTransfer.setData(
-                  "application/json",
-                  JSON.stringify({
-                    type: "add new node",
-                    data: {
-                      nodeType: ComponentNodeType.carousel,
-                    },
-                  })
-                );
-              }}
-            >
-              <Icons.MdOutlineViewCarousel />
-              Carousel
-            </div> */}
           </div>
         </div>
       </div>

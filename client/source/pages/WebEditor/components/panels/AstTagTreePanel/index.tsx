@@ -43,9 +43,6 @@ const getIcon = (type: AstNodeModelType["type"]) => {
   if (type === "video") {
     return FaVideo;
   }
-  if (type === "carousel") {
-    return Icons.MdOutlineViewCarousel;
-  }
   return null;
 };
 

@@ -18,7 +18,6 @@ export enum SelfClosingNodeType {
 }
 
 export enum ComponentNodeType {
-  carousel = "carousel",
 }
 
 export type ElementType =

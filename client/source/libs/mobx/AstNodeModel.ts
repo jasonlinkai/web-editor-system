@@ -22,8 +22,6 @@ const AstNodeModelPropsAttributes = t.model("AstNodeModelPropsAttributes", {
   src: t.maybe(t.string),
   alt: t.maybe(t.string),
   crossOrigin: t.maybe(t.string),
-  // for carousel
-  images: t.maybe(t.array(t.string)),
 });
 
 export type AstNodeModelPropsAttributesType = Instance<
@@ -108,7 +106,6 @@ export const AstNodeModel = t
     uuid: t.identifier,
     parent: t.maybe(t.safeReference(t.late((): IAnyModelType => AstNodeModel))),
     type: t.enumeration([
-      "carousel",
       "div",
       "span",
       "h1",
