@@ -125,7 +125,7 @@ const LayoutPanel = observer(() => {
               onChange={(e) => {
                 node?.updateStyle({
                   styleKey: StyleEnum.backgroundImage,
-                  styleValue: `url(${e})`,
+                  styleValue: e ? `url(${e})` : "",
                 });
               }}
             />

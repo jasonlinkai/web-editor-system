@@ -6,6 +6,7 @@ import Dialog, { DialogRefType } from "source/editor-components/Dialog";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { makeOptions } from "source/libs/utils";
+import { MdClose } from "react-icons/md";
 
 const ImageGalleryModal = observer(
   ({
@@ -38,22 +39,47 @@ const ImageGalleryModal = observer(
           setVisible(false);
         }}
       >
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-          {makeOptions(displayImages).map((item) => (
-            <ImageListItem
+        <ImageList sx={{ width: 500, height: 500 }} cols={5} rowHeight={100}>
+          <ImageListItem
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onChange && onChange("");
+              setVisible(false);
+            }}
+          >
+            <div
               style={{
-                cursor: "pointer",
-              }}
-              key={item.value}
-              onClick={(e) => {
-                e.stopPropagation();
-                onChange && onChange(item.value);
-                setVisible(false);
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                border: `1px solid grey`
               }}
             >
-              <img src={`${item.value}`} alt={item.label} loading="lazy" />
-            </ImageListItem>
-          ))}
+              <MdClose />
+            </div>
+          </ImageListItem>
+          {makeOptions(displayImages).map((item) => {
+            return (
+              <ImageListItem
+                style={{
+                  cursor: "pointer",
+                }}
+                key={item.value}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onChange && onChange(item.value);
+                  setVisible(false);
+                }}
+              >
+                <img src={`${item.value}`} alt={item.label} loading="lazy" />
+              </ImageListItem>
+            );
+          })}
         </ImageList>
       </Dialog>
     );
