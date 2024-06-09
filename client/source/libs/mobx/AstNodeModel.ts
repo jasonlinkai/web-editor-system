@@ -146,11 +146,6 @@ export const AstNodeModel = t
     get isRootNode() {
       return self.parent === undefined;
     },
-    get isComponentNode() {
-      return Object.values(ComponentNodeType).includes(
-        self.type as ComponentNodeType
-      );
-    },
     get isContainerNode() {
       return Object.values(ContainerNodeType).includes(
         self.type as ContainerNodeType

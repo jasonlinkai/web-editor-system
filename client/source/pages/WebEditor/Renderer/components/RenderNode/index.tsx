@@ -253,7 +253,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
     return (
       <>
         {React.createElement(
-          node.isComponentNode ? "div" : type,
+          type,
           {
             id: node.uuid,
             ref: domRef,

@@ -24,7 +24,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(({ ast }) => {
   }
 
   return React.createElement(
-    node.isComponentNode ? "div" : type,
+    type,
     {
       ...props.attributes,
       style: props.style,

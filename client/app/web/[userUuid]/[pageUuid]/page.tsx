@@ -69,33 +69,33 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_PRIVATE_API_URL}/public/render-datas`,
-    {
-      method: "GET",
-    }
-  );
-  const { data: users }: Response<GetPublicRenderDatasResponseBody[]> =
-    await res.json();
-  const result = users.reduce((acc, u) => {
-    const { page: pages, ...user } = u;
-    if (pages) {
-      acc = [
-        ...acc,
-        ...pages.map((page) => {
-          return {
-            userUuid: `${user.uuid}`,
-            pageUuid: `${page.uuid}`,
-          };
-        }),
-      ];
-    }
-    return acc;
-  }, [] as PageParams[]);
+// export async function generateStaticParams() {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_PRIVATE_API_URL}/public/render-datas`,
+//     {
+//       method: "GET",
+//     }
+//   );
+//   const { data: users }: Response<GetPublicRenderDatasResponseBody[]> =
+//     await res.json();
+//   const result = users.reduce((acc, u) => {
+//     const { page: pages, ...user } = u;
+//     if (pages) {
+//       acc = [
+//         ...acc,
+//         ...pages.map((page) => {
+//           return {
+//             userUuid: `${user.uuid}`,
+//             pageUuid: `${page.uuid}`,
+//           };
+//         }),
+//       ];
+//     }
+//     return acc;
+//   }, [] as PageParams[]);
 
-  return result;
-}
+//   return result;
+// }
 
 async function getPage(params: PageParams) {
   const res = await fetch(

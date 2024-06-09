@@ -48,6 +48,7 @@ RUN echo ${PORT}
 
 WORKDIR /usr/app
 COPY . .
+RUN apk --no-cache add curl
 RUN yarn install
 RUN yarn build
 EXPOSE 3001
