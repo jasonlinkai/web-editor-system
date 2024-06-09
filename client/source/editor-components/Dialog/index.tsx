@@ -71,11 +71,17 @@ const Dailog = forwardRef<DialogRefType, DialogProps>(
         <Backdrop
           style={{ zIndex: 4}}
           open={isOpen}
-          onClick={closeDialog}
+          onClick={(e) => {
+            e.stopPropagation();
+            closeDialog();
+          }}
         ></Backdrop>
         <div className={styles.dialog}>
           <div className={styles.dialogContent}>
-            <div className={styles.dialogCloseButtonWrap} onClick={closeDialog}>
+            <div className={styles.dialogCloseButtonWrap} onClick={(e) => {
+              e.stopPropagation();
+              closeDialog();
+            }}>
               <MdClose className={styles.dialogCloseButton} />
             </div>
             {children}

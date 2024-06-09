@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
 import InfoField from "source/editor-components/InfoField";
@@ -9,7 +9,7 @@ import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { TextInput } from "source/editor-components/Input";
 import { AttributesEnum, SelfClosingNodeType } from "source/libs/types";
-import Button from "@mui/material/Button";
+import ImageSelect from "@/editor-components/ImageSelect";
 
 const InfoPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -72,14 +72,16 @@ const InfoPanel = observer(() => {
                     });
                   }}
                 />
-                <Button
-                  variant="text"
-                  onClick={() => {
-                    editor.setIsImageGalleryModalVisible(true);
+                <ImageSelect
+                  label="src"
+                  value={node?.props.attributes.src || ""}
+                  onChange={(e) => {
+                    node?.updateAttributes({
+                      key: AttributesEnum.src,
+                      value: e,
+                    });
                   }}
-                >
-                  choose image
-                </Button>
+                />
               </>
             )}
           </div>

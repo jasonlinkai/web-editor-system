@@ -6,7 +6,6 @@ import SizerBar from "./components/SizerBar";
 import Renderer from "./Renderer";
 import RightDrawer from "./components/Drawers/RightDrawer";
 import UploadModal from "./components/Modals/UploadModal";
-import ImageGalleryModal from "./components/Modals/ImageGalleryModal";
 import PageLoading from "source/editor-components/PageLoading";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { observer } from "mobx-react-lite";
@@ -26,7 +25,6 @@ const WebEditor: React.FC = observer(() => {
         <RightDrawer />
       </div>
       <UploadModal />
-      <ImageGalleryModal />
       <PageLoading visible={isPostPageLoading} />
     </div>
   );

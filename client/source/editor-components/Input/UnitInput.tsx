@@ -30,7 +30,7 @@ const InnerUnitInput = styled(TextField)({
     fontSize: "0.9rem",
     border: "0px",
     padding: "0px",
-    paddingLeft: "10px !important",
+    paddingLeft: "5px !important",
     paddingRight: "0px !important",
     borderRadius: "5px",
     backgroundColor: "white",

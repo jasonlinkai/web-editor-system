@@ -11,7 +11,17 @@ const InfoField = ({ label = "", value = "" }: InfoFieldProps) => {
   return (
     <FormItem>
       <FormItemLabel>{label}</FormItemLabel>
-      <span className={styles.infoField}>{value || "-"}</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flex: "1",
+          justifyContent: "flex-end",
+          overflow: "hidden",
+        }}
+      >
+        <span className={styles.infoField}>{value || "-"}</span>
+      </div>
     </FormItem>
   );
 };

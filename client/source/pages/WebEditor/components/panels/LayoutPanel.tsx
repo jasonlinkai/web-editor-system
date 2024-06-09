@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import styles from "./Panel.module.scss";
 import { observer } from "mobx-react-lite";
-import Input, { SizeInput } from "source/editor-components/Input";
+import Input, { SizeInput, TextInput } from "source/editor-components/Input";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import { StyleEnum } from "source/libs/types";
 import { useState } from "react";
@@ -9,8 +9,10 @@ import clsx from "clsx";
 import ActionButton from "../ActionButton";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import ColorInput from "@/editor-components/ColorInput";
+import ShadowInput from "@/editor-components/ShadowInput";
 import Select from "@/editor-components/Select";
 import options from "@/editor-components/Select/options";
+import ImageSelect from "@/editor-components/ImageSelect";
 
 const LayoutPanel = observer(() => {
   const { selectedPage } = useStores();
@@ -60,15 +62,119 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
+          </div>
+        </div>
+        <div className={styles.panelItem}>
+          <label className={styles.panelItemLabel}>Background</label>
+          <div className={styles.panelItemColumnArea}>
             <ColorInput
-              label="bg-color"
+              label="color"
               value={node?.props.style.backgroundColor || ""}
               onChange={(e) => {
                 node?.updateStyle({
                   styleKey: StyleEnum.backgroundColor,
                   styleValue: e,
-                })
+                });
               }}
+            />
+            <TextInput
+              label="position-x"
+              value={node?.props.style.backgroundPositionX || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundPositionX,
+                  styleValue: e,
+                });
+              }}
+            />
+            <TextInput
+              label="position-y"
+              value={node?.props.style.backgroundPositionY || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundPositionY,
+                  styleValue: e,
+                });
+              }}
+            />
+            <Select
+              label="attachment"
+              value={node?.props.style.backgroundAttachment || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundAttachment,
+                  styleValue: e,
+                });
+              }}
+              options={options.backgroundAttachment}
+            />
+            <Select
+              label="clip"
+              value={node?.props.style.backgroundClip || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundClip,
+                  styleValue: e,
+                });
+              }}
+              options={options.backgroundClip}
+            />
+            <ImageSelect
+              label="image"
+              value={node?.props.style.backgroundImage || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundImage,
+                  styleValue: `url(${e})`,
+                });
+              }}
+            />
+            <Select
+              label="origin"
+              value={node?.props.style.backgroundOrigin || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundOrigin,
+                  styleValue: e,
+                });
+              }}
+              options={options.backgroundOrigin}
+            />
+            <Select
+              label="repeat"
+              value={node?.props.style.backgroundRepeat || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundRepeat,
+                  styleValue: e,
+                });
+              }}
+              options={options.backgroundRepeat}
+            />
+            <TextInput
+              label="size"
+              value={node?.props.style.backgroundSize || ""}
+              onChange={(e) => {
+                node?.updateStyle({
+                  styleKey: StyleEnum.backgroundSize,
+                  styleValue: e,
+                });
+              }}
+            />
+          </div>
+        </div>
+        <div className={styles.panelItem}>
+          <label className={styles.panelItemLabel}>Box</label>
+          <div className={styles.panelItemColumnArea}>
+            <ShadowInput
+              label="shadow"
+              value={node?.props.style.boxShadow || ""}
+              onChange={(e) =>
+                node?.updateStyle({
+                  styleKey: StyleEnum.boxShadow,
+                  styleValue: e,
+                })
+              }
             />
           </div>
         </div>
@@ -183,7 +289,7 @@ const LayoutPanel = observer(() => {
                 node?.updateStyle({
                   styleKey: StyleEnum.borderColor,
                   styleValue: e,
-                })
+                });
               }}
             />
           </div>
