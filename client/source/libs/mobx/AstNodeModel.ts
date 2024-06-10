@@ -181,6 +181,12 @@ export const AstNodeModel = t
       };
       self.changeValueTimeStamp = Date.now();
     },
+    setClassName(
+      className: string,
+    ) {
+      self.props.className = className;
+      self.changeValueTimeStamp = Date.now();
+    },
     setAttributes(
       attributes: Partial<SnapshotOut<AstNodeModelPropsAttributesType>>
     ) {

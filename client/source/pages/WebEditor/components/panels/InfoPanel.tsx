@@ -41,6 +41,13 @@ const InfoPanel = observer(() => {
           <div className={styles.panelItemColumnArea}>
             <InfoField label="uuid" value={node?.uuid || ""} />
             <InfoField label="parent" value={node?.parent?.uuid || ""} />
+            <TextInput
+              label="class"
+              value={node?.props.className || ""}
+              onChange={(e) => {
+                node?.setClassName(e);
+              }}
+            />
             {node?.isTextNode && (
               <TextInput
                 label="content"

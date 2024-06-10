@@ -1,5 +1,6 @@
 import "./normalize.css";
 import "./reset.css";
+import "./animate.min.css"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

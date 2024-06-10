@@ -192,6 +192,11 @@ const RendererAnchor = observer(() => {
       resetCssLink.rel = "stylesheet";
       resetCssLink.type = "text/css";
       ref.current?.contentDocument?.head.appendChild(resetCssLink);
+      const animateCssLink = document.createElement("link");
+      animateCssLink.href = "/animate.min.css";
+      animateCssLink.rel = "stylesheet";
+      animateCssLink.type = "text/css";
+      ref.current?.contentDocument?.head.appendChild(animateCssLink);
     }
   }, []);
 
