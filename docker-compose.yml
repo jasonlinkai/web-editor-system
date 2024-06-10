@@ -67,6 +67,8 @@ services:
         NEXT_PUBLIC_CDN_URL: $NEXT_PUBLIC_CDN_URL
     ports:
       - 3000:3000
+    volumes:
+      - server_uploads:/usr/app/public/uploads
     depends_on:
       server:
         condition: service_healthy
@@ -77,6 +79,7 @@ services:
 
 volumes:
   db_data:
+  server_uploads:
 
 networks:
   app-network:
