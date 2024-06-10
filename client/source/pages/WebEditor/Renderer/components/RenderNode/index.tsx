@@ -93,6 +93,13 @@ const SelectedAndHoveredEffect = observer(
       if (!doc) return;
       const dom = doc.getElementById(uuid);
       if (!dom) return;
+      const wrapper = doc.getElementById(`wrapper-${uuid}`) as HTMLDivElement;
+      wrapper.style.position = "fixed";
+      wrapper.style.top = `${domRect.top}px`;
+      wrapper.style.left = `${domRect.left}px`;
+      wrapper.style.width = `${domRect.width}px`;
+      wrapper.style.height = `${domRect.height}px`;
+      wrapper.style.pointerEvents = "none";
       const effect = doc.getElementById(`effect-${uuid}`) as HTMLDivElement;
       effect.style.position = "fixed";
       effect.style.zIndex = "1";
@@ -177,8 +184,9 @@ const SelectedAndHoveredEffect = observer(
     }, [color, domRect, uuid]);
 
     return (
-      <div id={`effect-${uuid}`}>
+      <div id={`wrapper-${uuid}`}>
         <canvas id={`canvas-${uuid}`}></canvas>
+        <div id={`effect-${uuid}`} />
         <div id={`tag-${uuid}`}>{type}</div>
       </div>
     );
