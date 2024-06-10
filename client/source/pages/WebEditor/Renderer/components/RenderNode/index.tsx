@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, {
   SyntheticEvent,
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -31,43 +32,74 @@ const devicePixelRatio = window.devicePixelRatio || 1;
 const SelectedAndHoveredEffect = observer(
   ({
     uuid,
+    rect,
     type,
     isSelected = false,
     isDragOvered = false,
     updated,
   }: {
     uuid: string;
+    rect: DOMRect;
     type: string;
     isSelected: boolean;
     isDragOvered: boolean;
     updated: number | null;
   }) => {
     const { selectedPage } = useStores();
-    const [updatedTime, setUpdatedTime] = useState(0);
+    const [scrollTop, setScrollTop] = useState(Date.now());
+    const [domRect, setDomRect] = useState<DOMRect>(rect);
+
+    const color = isSelected
+      ? "rgb(250, 68, 68)"
+      : isDragOvered
+      ? "#1976d2"
+      : "tranparent";
 
     const onScroll = useCallback((e: any) => {
-      setUpdatedTime(Date.now());
+      setScrollTop(Date.now());
     }, []);
 
     useLayoutEffect(() => {
-      const color = isSelected
-        ? "rgb(250, 68, 68)"
-        : isDragOvered
-        ? "#1976d2"
-        : "tranparent";
+      const w = (document.getElementById("editorArea") as HTMLIFrameElement)
+        ?.contentWindow;
+      if (!w) return;
+      w.addEventListener("scroll", onScroll);
+      return () => {
+        w.removeEventListener("scroll", onScroll);
+      };
+    }, [onScroll]);
+
+    useEffect(() => {
       const doc = (document.getElementById("editorArea") as HTMLIFrameElement)
         ?.contentWindow?.document;
       if (!doc) return;
       const dom = doc.getElementById(uuid);
       if (!dom) return;
       const rect = (dom as HTMLElement).getBoundingClientRect();
+      setDomRect(rect);
+    }, [
+      uuid,
+      isSelected,
+      isDragOvered,
+      updated,
+      scrollTop,
+      selectedPage?.editor.editorLayout.width,
+    ]);
+
+    useLayoutEffect(() => {
+      if (!domRect) return;
+      const doc = (document.getElementById("editorArea") as HTMLIFrameElement)
+        ?.contentWindow?.document;
+      if (!doc) return;
+      const dom = doc.getElementById(uuid);
+      if (!dom) return;
       const effect = doc.getElementById(`effect-${uuid}`) as HTMLDivElement;
       effect.style.position = "fixed";
       effect.style.zIndex = "1";
-      effect.style.top = `${rect.top}px`;
-      effect.style.left = `${rect.left}px`;
-      effect.style.width = `${rect.width}px`;
-      effect.style.height = `${rect.height}px`;
+      effect.style.top = `${domRect.top}px`;
+      effect.style.left = `${domRect.left}px`;
+      effect.style.width = `${domRect.width}px`;
+      effect.style.height = `${domRect.height}px`;
       effect.style.backgroundColor = "transparent";
       effect.style.pointerEvents = "none";
       effect.style.border = `2px solid ${color}`;
@@ -88,14 +120,14 @@ const SelectedAndHoveredEffect = observer(
       const marginBottom = getPaddingNumber(dom.style.marginBottom);
       const marginRight = getPaddingNumber(dom.style.marginRight);
       const marginLeft = getPaddingNumber(dom.style.marginLeft);
-      const width = rect.width + marginLeft + marginRight;
-      const height = rect.height + marginTop + marginBottom;
+      const width = domRect.width + marginLeft + marginRight;
+      const height = domRect.height + marginTop + marginBottom;
       canvas.style.position = "fixed";
       canvas.style.zIndex = "-1";
-      canvas.style.top = `${rect.top - marginTop}px`;
-      canvas.style.bottom = `${rect.bottom}px`;
-      canvas.style.left = `${rect.left - marginLeft}px`;
-      canvas.style.right = `${rect.right}px`;
+      canvas.style.top = `${domRect.top - marginTop}px`;
+      canvas.style.bottom = `${domRect.bottom}px`;
+      canvas.style.left = `${domRect.left - marginLeft}px`;
+      canvas.style.right = `${domRect.right}px`;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       canvas.style.pointerEvents = "none";
@@ -142,24 +174,7 @@ const SelectedAndHoveredEffect = observer(
           height - (marginTop + marginBottom) - (paddingTop + paddingBottom)
         );
       }
-    }, [
-      isSelected,
-      isDragOvered,
-      selectedPage?.editor.editorLayout.width,
-      updated,
-      updatedTime,
-      uuid,
-    ]);
-
-    useLayoutEffect(() => {
-      const w = (document.getElementById("editorArea") as HTMLIFrameElement)
-        ?.contentWindow;
-      if (!w) return;
-      w.addEventListener("scroll", onScroll);
-      return () => {
-        w.removeEventListener("scroll", onScroll);
-      };
-    }, [onScroll]);
+    }, [color, domRect, uuid]);
 
     return (
       <div id={`effect-${uuid}`}>
@@ -172,7 +187,8 @@ const SelectedAndHoveredEffect = observer(
 
 const RenderNode: React.FC<RenderNodeProps> = observer(
   ({ ast, isEditMode = false, isParentDropable = true, ...p }) => {
-    const domRef = useRef<HTMLElement>(null);
+    const domRef = useRef<Element | null>(null);
+    const [, setRefUpdated] = useState(false);
     const {
       handleOnClick,
       handleOnDragStart,
@@ -256,7 +272,10 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
           type,
           {
             id: node.uuid,
-            ref: domRef,
+            ref: (r) => {
+              domRef.current = r;
+              setRefUpdated(true);
+            },
             ...props,
             ...editorEventListeners,
             ...{ ...props.attributes, datanodetype: type }, // datanodetpye是為了選中時::psesudo element content可以拿到節點類型
@@ -279,6 +298,7 @@ const RenderNode: React.FC<RenderNodeProps> = observer(
           <SelectedAndHoveredEffect
             uuid={node.uuid}
             type={type}
+            rect={domRef.current.getBoundingClientRect()}
             isSelected={node.isSelected}
             isDragOvered={node.isDragOvered}
             updated={node.changeValueTimeStamp}
