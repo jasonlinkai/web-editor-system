@@ -1,13 +1,12 @@
 import express, { Application } from "express";
 import Server from "./server";
 import ServerDataBase from "./database";
-import Auth from "./auth";
+import Auth from "./routes/auth";
 
 const main = async () => {
   const serverDatabase = new ServerDataBase();
   const app: Application = express();
-  const auth = new Auth(app, serverDatabase);
-  const server: Server = new Server(app, serverDatabase, auth);
+  const server: Server = new Server(app, serverDatabase);
   const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 
   app

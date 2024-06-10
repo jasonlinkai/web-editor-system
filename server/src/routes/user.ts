@@ -1,11 +1,7 @@
-import { Application, Router } from "express";
-import {
-  RequestWithAuth,
-} from "../typing";
+import { Router } from "express";
+import { RequestWithAuth } from "../typing";
 
-const registerUserRouter = (
-  app: Application,
-) => {
+const registerUserRouter = () => {
   const router = Router();
   router.get("/user", async (req: RequestWithAuth, res) => {
     try {
@@ -21,7 +17,7 @@ const registerUserRouter = (
       });
     }
   });
-  app.use(router);
+  return router;
 };
 
 export default registerUserRouter;

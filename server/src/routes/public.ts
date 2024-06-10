@@ -1,9 +1,8 @@
-import { Application, Request, Router } from "express";
+import { Request, Router } from "express";
 import ServerDatabase from "../database";
 import { GetPublicPageRequestQuery } from "../../http-types";
 
 const registerPublicRouter = (
-  app: Application,
   serverDatabase: ServerDatabase
 ) => {
   const router = Router();
@@ -67,7 +66,7 @@ const registerPublicRouter = (
       }
     }
   );
-  app.use(router);
+  return router;
 };
 
 export default registerPublicRouter;

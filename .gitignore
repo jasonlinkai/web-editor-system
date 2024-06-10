@@ -18,6 +18,7 @@ client/dist
 .env.development.local
 .env.test.local
 .env.production.local
+.env.ngrok.local
 .env.aws.local
 .env.ecs.local
 .env.ecs.server.local

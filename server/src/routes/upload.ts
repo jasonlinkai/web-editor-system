@@ -1,6 +1,6 @@
 import path from "path";
 import { v4 } from "uuid";
-import { Application, Router, Request } from "express";
+import { Router, Request } from "express";
 import AWS from "aws-sdk";
 import ServerDatabase from "../database";
 import type { RequestWithAuth } from "../typing";
@@ -13,7 +13,6 @@ type UploadPostRequest = RequestWithAuth<
   Request<{}, {}, {}, PostUploadRequestQuery>
 >;
 const registerUploadRouter = (
-  app: Application,
   serverDatabase: ServerDatabase
 ) => {
   const router = Router();
@@ -117,7 +116,7 @@ const registerUploadRouter = (
       });
     }
   });
-  app.use(router);
+  return router;
 };
 
 export default registerUploadRouter;

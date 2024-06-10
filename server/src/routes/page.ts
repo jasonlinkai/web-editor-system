@@ -1,4 +1,4 @@
-import { Application, Request, Router } from "express";
+import { Request, Router } from "express";
 import ServerDatabase from "../database";
 import type { RequestWithAuth } from "../typing";
 import type {
@@ -15,7 +15,6 @@ type PageDeleteRequest = RequestWithAuth<
 type PagePutRequest = RequestWithAuth<Request<{}, {}, PutPageRequestBody>>;
 
 const registerPageRouter = (
-  app: Application,
   serverDatabase: ServerDatabase
 ) => {
   const router = Router();
@@ -148,7 +147,7 @@ const registerPageRouter = (
       });
     }
   });
-  app.use(router);
+  return router;
 };
 
 export default registerPageRouter;

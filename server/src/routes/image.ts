@@ -1,11 +1,10 @@
-import { Application, Router } from "express";
+import { Router } from "express";
 import ServerDatabase from "../database";
 import {
   RequestWithAuth,
 } from "../typing";
 
 const registerUploadRouter = (
-  app: Application,
   serverDatabase: ServerDatabase
 ) => {
   const router = Router();
@@ -28,7 +27,7 @@ const registerUploadRouter = (
       });
     }
   });
-  app.use(router);
+  return router;
 };
 
 export default registerUploadRouter;
