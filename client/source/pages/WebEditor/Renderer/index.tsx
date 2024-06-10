@@ -13,7 +13,6 @@ import { AstNodeModel, AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
 import RenderNode from "./components/RenderNode";
 import {
-  ComponentNodeType,
   ContainerNodeType,
   SelfClosingNodeType,
   TextNodeType,
@@ -171,11 +170,12 @@ const RendererInFrame = () => {
 };
 
 const RendererAnchor = observer(() => {
+  const wrapperRef = useRef<HTMLIFrameElement>(null);
+  const ref = useRef<HTMLIFrameElement | null>(null);
   const resizerIndicatorStartXRef = useRef<number>(0);
   const [isResizerIndicatorHolded, setIsResizerIndicatorHolded] =
     useState(false);
-  const wrapperRef = useRef<HTMLIFrameElement>(null);
-  const ref = useRef<HTMLIFrameElement>(null);
+  const [updated, setUpdated] = useState(Date.now());
   const { selectedPage } = useStores();
   if (!selectedPage) return null;
   const { editor } = selectedPage;
@@ -244,13 +244,16 @@ const RendererAnchor = observer(() => {
   return (
     <div ref={wrapperRef} className={styles.rendererWithWrap}>
       <iframe
-        ref={ref}
+        ref={(r) => {
+          ref.current = r;
+          setUpdated(Date.now());
+        }}
         id="editorArea"
         title="editorArea"
         width={editor.editorLayout.width}
         height="100%"
       />
-      <RendererInFrame />
+      {ref.current && <RendererInFrame />}
       <div
         draggable={false}
         className={clsx({
