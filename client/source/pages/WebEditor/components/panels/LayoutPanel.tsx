@@ -52,7 +52,7 @@ const LayoutPanel = observer(() => {
                 })
               }
             />
-            <Input
+            <SizeInput
               label="height"
               value={node?.props.style.height || ""}
               onChange={(e) =>
