@@ -216,13 +216,6 @@ export const AstNodeModel = t
       };
       self.changeValueTimeStamp = Date.now();
     },
-    moveToChildren(child: any, index: number) {
-      child.parent.deletChild(child);
-      child.setParent(self.uuid);
-      self.children.splice(index, 0, child);
-      self.changeValueTimeStamp = Date.now();
-      return child;
-    },
     addToChildren(child: any, index: number) {
       child.setParent(self.uuid);
       self.children.splice(index, 0, child);
@@ -233,7 +226,19 @@ export const AstNodeModel = t
       detach(child);
       self.changeValueTimeStamp = Date.now();
     },
-  }));
+  })).actions((self) => {
+    const moveToChildren = (child: typeof self, index: number) => {
+      child.parent.deletChild(child);
+      child.setParent(self.uuid);
+      child.children.forEach((c) => c?.setParent(child.uuid))
+      self.children.splice(index, 0, child);
+      self.changeValueTimeStamp = Date.now();
+      return child;
+    }
+    return {
+      moveToChildren,
+    }
+  });
 
 export type AstNodeModelType = Instance<typeof AstNodeModel>;
 export type AstNodeModelSnapshotInType = SnapshotIn<typeof AstNodeModel>;

@@ -111,7 +111,10 @@ const Renderer: React.FC = observer(() => {
         if (type === "move node") {
           // 防止元素把自己移入自己的操作
           if (selectedAstNode && selectedAstNode?.uuid !== node.uuid) {
-            newNode = node.moveToChildren(selectedAstNode, insertIndex);
+            newNode = node.moveToChildren(
+              selectedAstNode,
+              insertIndex
+            ) as AstNodeModelType;
           }
         } else if (type === "add new node") {
           if (data.nodeType === ContainerNodeType.div) {
