@@ -81,6 +81,7 @@ const SnippetsPanel = observer(() => {
                       cursor: "grab",
                     }}
                     onDragStart={(ev) => {
+                      editor.setSelectedAstNode(undefined);
                       ev.dataTransfer.effectAllowed = "move";
                       ev.dataTransfer.setData(
                         "application/json",
