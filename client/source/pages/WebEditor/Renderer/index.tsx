@@ -84,6 +84,7 @@ const Renderer: React.FC = observer(() => {
         data: "",
       })
     );
+    ev.dataTransfer.setDragImage(ev.target as Element, 0, 0);
   }, []);
 
   const handleOnDragOver: (
@@ -186,15 +187,10 @@ const RendererAnchor = observer(() => {
   const [isResizerIndicatorHolded, setIsResizerIndicatorHolded] =
     useState(false);
   const [updated, setUpdated] = useState(Date.now());
-  const {
-    selectedPage,
-  } = useStores();
+  const { selectedPage } = useStores();
   if (!selectedPage) return null;
   const { undoAst, redoAst, editor } = selectedPage;
-  const {
-    selectedAstNode,
-    pushToSnippets,
-  } = editor;
+  const { selectedAstNode, pushToSnippets } = editor;
 
   const onShortCutDeleteHandler = useCallback(() => {
     if (selectedAstNode?.isSelfCanBeDeleted) {
