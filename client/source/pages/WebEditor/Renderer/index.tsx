@@ -221,7 +221,6 @@ const RendererAnchor = observer(() => {
       const handleShortCutFromIframe = (
         ev: MessageEvent<{ type: IframePostMessageEventType }>
       ) => {
-        console.log("ev", ev);
         switch (ev.data.type) {
           case IframePostMessageEventType.TRIGGER_SHORTCUT_DELETE_SELECTED_NODE:
             onShortCutDeleteHandler();
