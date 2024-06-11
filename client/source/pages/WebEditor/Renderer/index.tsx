@@ -192,11 +192,12 @@ const RendererAnchor = observer(() => {
       resetCssLink.rel = "stylesheet";
       resetCssLink.type = "text/css";
       ref.current?.contentDocument?.head.appendChild(resetCssLink);
-      const animateCssLink = document.createElement("link");
-      animateCssLink.href = "/animate.min.css";
-      animateCssLink.rel = "stylesheet";
-      animateCssLink.type = "text/css";
-      ref.current?.contentDocument?.head.appendChild(animateCssLink);
+      // 這邊不讓動畫跑在編輯器上，會有位置跑掉的問題
+      // const animateCssLink = document.createElement("link");
+      // animateCssLink.href = "/animate.min.css";
+      // animateCssLink.rel = "stylesheet";
+      // animateCssLink.type = "text/css";
+      // ref.current?.contentDocument?.head.appendChild(animateCssLink);
     }
   }, []);
 

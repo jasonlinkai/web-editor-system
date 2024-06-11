@@ -50,6 +50,7 @@ const NewNodePanel = observer(() => {
                 cursor: "grab",
               }}
               onDragStart={(ev) => {
+                editor.setSelectedAstNode(undefined);
                 ev.dataTransfer.effectAllowed = "move";
                 ev.dataTransfer.setData(
                   "application/json",
@@ -81,6 +82,7 @@ const NewNodePanel = observer(() => {
                   cursor: "grab",
                 }}
                 onDragStart={(ev) => {
+                  editor.setSelectedAstNode(undefined);
                   ev.dataTransfer.effectAllowed = "move";
                   ev.dataTransfer.setData(
                     "application/json",
@@ -104,6 +106,7 @@ const NewNodePanel = observer(() => {
                 cursor: "grab",
               }}
               onDragStart={(ev) => {
+                editor.setSelectedAstNode(undefined);
                 ev.dataTransfer.effectAllowed = "move";
                 ev.dataTransfer.setData(
                   "application/json",
