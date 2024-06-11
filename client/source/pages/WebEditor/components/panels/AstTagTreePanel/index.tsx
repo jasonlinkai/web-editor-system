@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import clsx from "clsx";
 import { AstNodeModelType } from "source/libs/mobx/AstNodeModel";
 import { useStores } from "source/libs/mobx/useMobxStateTreeStores";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaImage, FaVideo } from "react-icons/fa";
 import { LuContainer } from "react-icons/lu";
 import { GoTypography } from "react-icons/go";
@@ -49,6 +49,7 @@ const getIcon = (type: AstNodeModelType["type"]) => {
 const AstTagTree = observer(
   ({ node }: { node: AstNodeModelType; level?: number }) => {
     const { selectedPage } = useStores();
+    const [isHiddenChildren, setIsHiddenChildren] = useState(false);
     if (!selectedPage) return null;
     const { editor } = selectedPage;
     const { setSelectedAstNode } = editor;
@@ -83,11 +84,26 @@ const AstTagTree = observer(
             },
           ])}
         >
+          {isHiddenChildren ? (
+            <Icons.IoMdArrowDropup
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsHiddenChildren(false);
+              }}
+            />
+          ) : (
+            <Icons.IoMdArrowDropdown
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsHiddenChildren(true);
+              }}
+            />
+          )}
           {Icon && <Icon style={{ marginRight: "0.4rem" }} />}
           {node.type}
         </div>
 
-        {isContainerNode && (
+        {!isHiddenChildren && isContainerNode && (
           <>
             {node.children.map((child: AstNodeModelType) => {
               return (
