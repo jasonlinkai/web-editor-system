@@ -37,6 +37,9 @@ export type AstNodeModelPropsAttributesSnapshotOutType = SnapshotOut<
 const AstNodeModelPropsStyle = t.model("AstNodeModelPropsStyle", {
   width: t.maybe(t.string),
   height: t.maybe(t.string),
+  maxWidth: t.maybe(t.string),
+  maxHeight: t.maybe(t.string),
+  minWidth: t.maybe(t.string),
   minHeight: t.maybe(t.string),
   display: t.maybe(t.string),
   flexBasis: t.maybe(t.string),
@@ -181,9 +184,7 @@ export const AstNodeModel = t
       };
       self.changeValueTimeStamp = Date.now();
     },
-    setClassName(
-      className: string,
-    ) {
+    setClassName(className: string) {
       self.props.className = className;
       self.changeValueTimeStamp = Date.now();
     },
@@ -226,18 +227,19 @@ export const AstNodeModel = t
       detach(child);
       self.changeValueTimeStamp = Date.now();
     },
-  })).actions((self) => {
+  }))
+  .actions((self) => {
     const moveToChildren = (child: typeof self, index: number) => {
       child.parent.deletChild(child);
       child.setParent(self.uuid);
-      child.children.forEach((c) => c?.setParent(child.uuid))
+      child.children.forEach((c) => c?.setParent(child.uuid));
       self.children.splice(index, 0, child);
       self.changeValueTimeStamp = Date.now();
       return child;
-    }
+    };
     return {
       moveToChildren,
-    }
+    };
   });
 
 export type AstNodeModelType = Instance<typeof AstNodeModel>;

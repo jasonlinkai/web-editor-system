@@ -34,6 +34,10 @@ export enum AttributesEnum {
 export enum StyleEnum {
   width = "width",
   height = "height",
+  maxWidth = "maxWidth",
+  maxHeight = "maxHeight",
+  minWidth = "minWidth",
+  minHeight = "minHeight",
   display = "display",
   flexBasis = "flexBasis",
   flexGrow = "flexGrow",

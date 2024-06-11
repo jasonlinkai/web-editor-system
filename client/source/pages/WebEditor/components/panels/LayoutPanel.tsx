@@ -43,7 +43,7 @@ const LayoutPanel = observer(() => {
         <div className={styles.panelItem}>
           <div className={styles.panelItemColumnArea}>
             <SizeInput
-              label="width"
+              label="w"
               value={node?.props.style.width || ""}
               onChange={(e) =>
                 node?.updateStyle({
@@ -53,11 +53,51 @@ const LayoutPanel = observer(() => {
               }
             />
             <SizeInput
-              label="height"
+              label="h"
               value={node?.props.style.height || ""}
               onChange={(e) =>
                 node?.updateStyle({
                   styleKey: StyleEnum.height,
+                  styleValue: e,
+                })
+              }
+            />
+            <SizeInput
+              label="max-w"
+              value={node?.props.style.maxWidth || ""}
+              onChange={(e) =>
+                node?.updateStyle({
+                  styleKey: StyleEnum.maxWidth,
+                  styleValue: e,
+                })
+              }
+            />
+            <SizeInput
+              label="max-h"
+              value={node?.props.style.maxHeight || ""}
+              onChange={(e) =>
+                node?.updateStyle({
+                  styleKey: StyleEnum.maxHeight,
+                  styleValue: e,
+                })
+              }
+            />
+            <SizeInput
+              label="min-w"
+              value={node?.props.style.minWidth || ""}
+              onChange={(e) =>
+                node?.updateStyle({
+                  styleKey: StyleEnum.minWidth,
+                  styleValue: e,
+                })
+              }
+            />
+            <SizeInput
+              label="min-h"
+              value={node?.props.style.minHeight || ""}
+              onChange={(e) =>
+                node?.updateStyle({
+                  styleKey: StyleEnum.minHeight,
                   styleValue: e,
                 })
               }
