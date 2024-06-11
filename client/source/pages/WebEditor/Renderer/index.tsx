@@ -20,6 +20,13 @@ import {
 import Icons from "@/editor-components/Icons";
 import clsx from "clsx";
 
+enum IframePostMessageEventType {
+  "TRIGGER_SHORTCUT_DELETE_SELECTED_NODE" = "TRIGGER_SHORTCUT_DELETE_SELECTED_NODE",
+  "TRIGGER_SHORTCUT_UNDO" = "TRIGGER_SHORTCUT_UNDO",
+  "TRIGGER_SHORTCUT_REDO" = "TRIGGER_SHORTCUT_REDO",
+  "TRIGGER_SHORTCUT_ADD_TO_SNIPPETS" = "TRIGGER_SHORTCUT_ADD_TO_SNIPPETS",
+}
+
 const findInsertIndex = (
   container: HTMLElement,
   dragX: number,
@@ -179,12 +186,61 @@ const RendererAnchor = observer(() => {
   const [isResizerIndicatorHolded, setIsResizerIndicatorHolded] =
     useState(false);
   const [updated, setUpdated] = useState(Date.now());
-  const { selectedPage } = useStores();
+  const {
+    selectedPage,
+  } = useStores();
   if (!selectedPage) return null;
-  const { editor } = selectedPage;
+  const { undoAst, redoAst, editor } = selectedPage;
+  const {
+    selectedAstNode,
+    pushToSnippets,
+  } = editor;
+
+  const onShortCutDeleteHandler = useCallback(() => {
+    if (selectedAstNode?.isSelfCanBeDeleted) {
+      selectedAstNode.parent.deletChild(selectedAstNode);
+    }
+  }, [selectedAstNode]);
+
+  const onShortCutUndoHandler = useCallback(() => {
+    undoAst();
+  }, [undoAst]);
+
+  const onShortCutRedoHandler = useCallback(() => {
+    redoAst();
+  }, [redoAst]);
+
+  const onShortCutAddToSnippetsHandler = useCallback(() => {
+    if (selectedAstNode) {
+      pushToSnippets(selectedAstNode);
+    }
+  }, [selectedAstNode, pushToSnippets]);
 
   useEffect(() => {
     if (ref.current) {
+      const handleShortCutFromIframe = (
+        ev: MessageEvent<{ type: IframePostMessageEventType }>
+      ) => {
+        console.log("ev", ev);
+        switch (ev.data.type) {
+          case IframePostMessageEventType.TRIGGER_SHORTCUT_DELETE_SELECTED_NODE:
+            onShortCutDeleteHandler();
+            return;
+          case IframePostMessageEventType.TRIGGER_SHORTCUT_UNDO:
+            onShortCutUndoHandler();
+            return;
+          case IframePostMessageEventType.TRIGGER_SHORTCUT_REDO:
+            onShortCutRedoHandler();
+            return;
+          case IframePostMessageEventType.TRIGGER_SHORTCUT_ADD_TO_SNIPPETS:
+            onShortCutAddToSnippetsHandler();
+            return;
+          default:
+            break;
+        }
+      };
+      window.addEventListener("message", handleShortCutFromIframe);
+
       const normalizeCssLink = document.createElement("link");
       normalizeCssLink.href = "/normalize.css";
       normalizeCssLink.rel = "stylesheet";
@@ -201,8 +257,61 @@ const RendererAnchor = observer(() => {
       // animateCssLink.rel = "stylesheet";
       // animateCssLink.type = "text/css";
       // ref.current?.contentDocument?.head.appendChild(animateCssLink);
+      const shortcutScript = document.createElement("script");
+      shortcutScript.type = "text/javascript";
+      shortcutScript.innerHTML = `
+        window.addEventListener("keyup", function(e) {
+          if (e.ctrlKey && e.key === "Backspace") {
+            window.parent.postMessage(
+              {
+                type: "${IframePostMessageEventType.TRIGGER_SHORTCUT_DELETE_SELECTED_NODE}",
+              },
+              "*"
+            );
+          }
+        });
+        window.addEventListener("keyup", function(e) {
+          if (e.ctrlKey && e.key === "z") {
+            window.parent.postMessage(
+              {
+                type: "${IframePostMessageEventType.TRIGGER_SHORTCUT_UNDO}",
+              },
+              "*"
+            );
+          }
+        });
+        window.addEventListener("keyup", function(e) {
+          if (e.ctrlKey && e.key === "r") {
+            window.parent.postMessage(
+              {
+                type: "${IframePostMessageEventType.TRIGGER_SHORTCUT_REDO}",
+              },
+              "*"
+            );
+          }
+        });
+        window.addEventListener("keyup", function(e) {
+          if (e.ctrlKey && e.key === "f") {
+            window.parent.postMessage(
+              {
+                type: "${IframePostMessageEventType.TRIGGER_SHORTCUT_ADD_TO_SNIPPETS}",
+              },
+              "*"
+            );
+          }
+        });
+      `;
+      ref.current?.contentDocument?.head.appendChild(shortcutScript);
+      return () => {
+        window.removeEventListener("message", handleShortCutFromIframe);
+      };
     }
-  }, []);
+  }, [
+    onShortCutDeleteHandler,
+    onShortCutUndoHandler,
+    onShortCutRedoHandler,
+    onShortCutAddToSnippetsHandler,
+  ]);
 
   useEffect(() => {
     if (ref.current) {
