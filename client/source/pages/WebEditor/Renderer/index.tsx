@@ -334,25 +334,29 @@ const RendererAnchor = observer(() => {
     }
   }, [editor.editorLayout.width]);
 
-  useLayoutEffect(() => {
-    const resizeHandler = () => {
-      if (wrapperRef.current) {
-        const nextMaxWidth = wrapperRef.current.clientWidth - 20 - 30;
-        editor.editorLayout.setMaxWidth(
-          wrapperRef.current.clientWidth - 20 - 30
-        );
-        if (
-          Number(editor.editorLayout.width.replace("px", "")) > nextMaxWidth
-        ) {
-          editor.editorLayout.setWidth(`${nextMaxWidth}px`);
-        }
+  const resizeHandler = useCallback(() => {
+    if (wrapperRef.current) {
+      //
+      // 獲取編輯區視口最大寬度
+      //
+      const wrapperMax = wrapperRef.current.clientWidth - 20 - 30;
+      editor.editorLayout.setMaxWidth(wrapperMax);
+
+      //
+      // 假如當前編輯區大小大於最大寬度，則將之設置為最大寬度
+      //
+      if (Number(editor.editorLayout.width.replace("px", "")) > wrapperMax) {
+        editor.editorLayout.setWidth(`${wrapperMax}px`);
       }
-    };
+    }
+  }, [editor]);
+
+  useLayoutEffect(() => {
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [editor]);
+  }, [resizeHandler]);
 
   return (
     <div ref={wrapperRef} className={styles.rendererWithWrap}>
@@ -390,20 +394,16 @@ const RendererAnchor = observer(() => {
           if (isResizerIndicatorHolded) {
             const movemoent = resizerIndicatorStartXRef.current - e.clientX;
             resizerIndicatorStartXRef.current = e.clientX;
-
             const prevEditorLayoutWidth = editor.editorLayout.width.replace(
               "px",
               ""
             );
-            const nextCalculateWidth =
-              Number(prevEditorLayoutWidth) - movemoent * 2;
-
-            const nextEditorLayoutWidth =
-              nextCalculateWidth > editor.editorLayout.maxWidth
-                ? editor.editorLayout.maxWidth
-                : nextCalculateWidth;
-
-            editor.editorLayout.setWidth(`${nextEditorLayoutWidth}px`);
+            const nextWidth = Number(prevEditorLayoutWidth) - movemoent * 2;
+            if (nextWidth > editor.editorLayout.maxWidth) {
+              editor.editorLayout.setWidth(`${editor.editorLayout.maxWidth}px`);
+            } else {
+              editor.editorLayout.setWidth(`${nextWidth}px`);
+            }
           }
         }}
       >
