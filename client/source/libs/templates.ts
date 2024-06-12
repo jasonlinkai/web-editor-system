@@ -1,5 +1,5 @@
 const resumeAstTemplate = {
-  uuid: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+  uuid: "a67d5432-8577-43f7-a89b-42f06f100395",
   type: "div",
   events: {},
   props: {
@@ -20,8 +20,8 @@ const resumeAstTemplate = {
   },
   children: [
     {
-      uuid: "08865b80-57a7-4e52-90ee-21dca3d490ad",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "0351d950-5bc7-4062-9f15-362c5957d79d",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
@@ -44,12 +44,12 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "8f642f44-479e-4287-bc9f-931443e68a3f",
-          parent: "08865b80-57a7-4e52-90ee-21dca3d490ad",
+          uuid: "20bfceee-76e6-44f2-9750-a538acf3d982",
+          parent: "0351d950-5bc7-4062-9f15-362c5957d79d",
           type: "div",
           events: {},
           props: {
-            className: "animate__animated animate__fadeIn",
+            className: "",
             style: {
               width: "150px",
               height: "auto",
@@ -74,8 +74,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "4a02bbb2-52ba-46a6-bdfc-bbe26bfa332d",
-              parent: "8f642f44-479e-4287-bc9f-931443e68a3f",
+              uuid: "f7c7ea76-7d7e-45a3-a7d8-8b04dcf60943",
+              parent: "20bfceee-76e6-44f2-9750-a538acf3d982",
               type: "img",
               events: {},
               props: {
@@ -112,12 +112,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "82032cd5-6204-41a8-bfe7-4155d00aec71",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "7172d8d0-ad7f-41b4-9547-a62a9eaf7be6",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -135,8 +135,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "74fd0552-c4cc-4d56-afc9-ae85a419bdfb",
-          parent: "82032cd5-6204-41a8-bfe7-4155d00aec71",
+          uuid: "f8326ae1-ec88-4fdd-ae6d-4b8a51a96e17",
+          parent: "7172d8d0-ad7f-41b4-9547-a62a9eaf7be6",
           type: "span",
           events: {},
           props: {
@@ -160,8 +160,8 @@ const resumeAstTemplate = {
           content: "基本資料",
         },
         {
-          uuid: "ead4455a-0f71-4f85-a94f-030bf6cef52c",
-          parent: "82032cd5-6204-41a8-bfe7-4155d00aec71",
+          uuid: "3c58367c-a9c2-4ba9-af00-05d113f181a2",
+          parent: "7172d8d0-ad7f-41b4-9547-a62a9eaf7be6",
           type: "div",
           events: {},
           props: {
@@ -180,8 +180,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
-              parent: "ead4455a-0f71-4f85-a94f-030bf6cef52c",
+              uuid: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
+              parent: "3c58367c-a9c2-4ba9-af00-05d113f181a2",
               type: "div",
               events: {},
               props: {
@@ -199,8 +199,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "e245f821-1f6f-44c8-adbe-815b9a68e716",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "c070509a-d200-4e99-b922-90387da0399a",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -217,8 +217,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "3d2dfac7-8363-430d-b400-fdd4405fc6a5",
-                      parent: "e245f821-1f6f-44c8-adbe-815b9a68e716",
+                      uuid: "8a5d42a5-2732-48ad-8390-a81ad37cb4b3",
+                      parent: "c070509a-d200-4e99-b922-90387da0399a",
                       type: "span",
                       events: {},
                       props: {
@@ -230,8 +230,8 @@ const resumeAstTemplate = {
                       content: "姓名:",
                     },
                     {
-                      uuid: "7fe284c9-8bda-47ab-a26a-9508fb98f32e",
-                      parent: "e245f821-1f6f-44c8-adbe-815b9a68e716",
+                      uuid: "5fc06bd2-fd1f-4868-a288-4074e3f98093",
+                      parent: "c070509a-d200-4e99-b922-90387da0399a",
                       type: "span",
                       events: {},
                       props: {
@@ -249,8 +249,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "1847e34e-9cc7-45cc-a915-65885ad62308",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "ebbd9e7d-5055-4772-9d9b-f67f217d76a9",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -267,8 +267,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "21da98b0-d0b3-4757-a70f-07ff0bb79307",
-                      parent: "1847e34e-9cc7-45cc-a915-65885ad62308",
+                      uuid: "27137762-820a-4c38-9e1e-df6f69891035",
+                      parent: "ebbd9e7d-5055-4772-9d9b-f67f217d76a9",
                       type: "span",
                       events: {},
                       props: {
@@ -280,8 +280,8 @@ const resumeAstTemplate = {
                       content: "手機:",
                     },
                     {
-                      uuid: "e7d87e48-7f32-4160-bf21-f3b25c086c9a",
-                      parent: "1847e34e-9cc7-45cc-a915-65885ad62308",
+                      uuid: "2dcc2e1c-8f34-46bd-b694-a11535321c84",
+                      parent: "ebbd9e7d-5055-4772-9d9b-f67f217d76a9",
                       type: "span",
                       events: {},
                       props: {
@@ -299,8 +299,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "adfbb63a-e5c5-45d9-8089-2f8c61ef5791",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "ff6b301e-8f66-4c20-8cdd-63fbaa3c8026",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -317,8 +317,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "0de8fdfc-0746-4eec-bab0-b6039c5f693f",
-                      parent: "adfbb63a-e5c5-45d9-8089-2f8c61ef5791",
+                      uuid: "97c0e7db-8844-467c-836b-b2328963e039",
+                      parent: "ff6b301e-8f66-4c20-8cdd-63fbaa3c8026",
                       type: "span",
                       events: {},
                       props: {
@@ -330,8 +330,8 @@ const resumeAstTemplate = {
                       content: "生日:",
                     },
                     {
-                      uuid: "066cec29-f7cd-4397-b63a-54292ea45e0d",
-                      parent: "adfbb63a-e5c5-45d9-8089-2f8c61ef5791",
+                      uuid: "29b0bb1f-a19b-4c33-8081-7c5c5a02eed1",
+                      parent: "ff6b301e-8f66-4c20-8cdd-63fbaa3c8026",
                       type: "span",
                       events: {},
                       props: {
@@ -349,8 +349,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "79d89a03-8b3c-4c96-a63d-1c41b2abf968",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "260f7d94-026e-4bbc-836b-3e1c2995a194",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -367,8 +367,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "ab2b7499-222d-487f-bc49-cfa170b9ec65",
-                      parent: "79d89a03-8b3c-4c96-a63d-1c41b2abf968",
+                      uuid: "70d1b518-d593-42dd-b46c-9282d9898902",
+                      parent: "260f7d94-026e-4bbc-836b-3e1c2995a194",
                       type: "span",
                       events: {},
                       props: {
@@ -380,8 +380,8 @@ const resumeAstTemplate = {
                       content: "github: ",
                     },
                     {
-                      uuid: "e686f3f7-730e-425e-b4a5-fc7bfeddf2cc",
-                      parent: "79d89a03-8b3c-4c96-a63d-1c41b2abf968",
+                      uuid: "b4877cdd-bbea-4b6c-aa84-79411f020bcf",
+                      parent: "260f7d94-026e-4bbc-836b-3e1c2995a194",
                       type: "span",
                       events: {},
                       props: {
@@ -399,8 +399,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "baf5e63a-1f8f-40ff-a688-d13945466ba7",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "f1b7bc00-65f2-4868-ad28-ec004e9d5516",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -417,8 +417,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "7ff64c5e-f789-44ca-876c-7047e6d9611e",
-                      parent: "baf5e63a-1f8f-40ff-a688-d13945466ba7",
+                      uuid: "857acb58-9737-4e36-9d18-45287c284061",
+                      parent: "f1b7bc00-65f2-4868-ad28-ec004e9d5516",
                       type: "span",
                       events: {},
                       props: {
@@ -430,8 +430,8 @@ const resumeAstTemplate = {
                       content: "信箱:",
                     },
                     {
-                      uuid: "e8ccf4ef-04dd-4ee3-be1a-aeab81838013",
-                      parent: "baf5e63a-1f8f-40ff-a688-d13945466ba7",
+                      uuid: "bfc28a6e-1438-4675-886c-0b7894666425",
+                      parent: "f1b7bc00-65f2-4868-ad28-ec004e9d5516",
                       type: "span",
                       events: {},
                       props: {
@@ -449,8 +449,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "b7e64923-6d20-4629-9115-6c6e40308cba",
-                  parent: "a907a341-2293-4f6a-ba5e-e7d52e87ffd2",
+                  uuid: "d195bd79-d9d2-4765-bbe7-d8b5fa8438f4",
+                  parent: "e4ce14cf-e776-4c21-989b-03d8b48f1671",
                   type: "div",
                   events: {},
                   props: {
@@ -467,8 +467,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "47045202-b393-4e1e-afa9-aec2dae3a669",
-                      parent: "b7e64923-6d20-4629-9115-6c6e40308cba",
+                      uuid: "49374db9-3710-41f4-8dec-d888a0e378ed",
+                      parent: "d195bd79-d9d2-4765-bbe7-d8b5fa8438f4",
                       type: "span",
                       events: {},
                       props: {
@@ -480,8 +480,8 @@ const resumeAstTemplate = {
                       content: "Web Design IDE:",
                     },
                     {
-                      uuid: "9ef62e8a-5650-4708-abea-f1db2db91c20",
-                      parent: "b7e64923-6d20-4629-9115-6c6e40308cba",
+                      uuid: "ecef6460-13c8-430d-9074-0f04008b2685",
+                      parent: "d195bd79-d9d2-4765-bbe7-d8b5fa8438f4",
                       type: "span",
                       events: {},
                       props: {
@@ -509,12 +509,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "4867b61f-3dc2-4721-ae76-59f8fa974820",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn animate__delay-2s",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -532,8 +532,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "5dbeab69-7a54-46df-b3cd-b778bc6c7f23",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "e7c12c73-2078-4831-b73f-e7034ba68e14",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -557,8 +557,8 @@ const resumeAstTemplate = {
           content: "自傳",
         },
         {
-          uuid: "fab70045-eeaa-45cc-8afc-155128012cfd",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "53ad73b0-e97a-4ab2-8043-833de607c555",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -570,8 +570,8 @@ const resumeAstTemplate = {
           content: "您好，我是Jacky。",
         },
         {
-          uuid: "efcdafb7-a1df-41fa-9a45-7f3e434ed896",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "49b985a8-fa31-4cf8-bd78-a3dbcf5ade1c",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -583,8 +583,8 @@ const resumeAstTemplate = {
           content: "目前您所看見的履歷是使用我自建的網頁設計視覺化IDE所建立。",
         },
         {
-          uuid: "cea3c005-bf73-47f8-8607-fb1517304e48",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "b3df15ce-2cbc-4cfa-8363-87c0df402817",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -597,8 +597,8 @@ const resumeAstTemplate = {
             "如有興趣可以訪問(https://zebra-central-incredibly.ngrok-free.app/backend/login)。",
         },
         {
-          uuid: "e7953150-ea87-4d9b-88c1-390456d2a915",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "4864a04c-e418-4200-8313-63ebf3e424ec",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -611,8 +611,8 @@ const resumeAstTemplate = {
             "個性認真、負責、好奇、追根究底。  透過上網自學，轉職前端工程師，擁有強大的自學能力。",
         },
         {
-          uuid: "0e84499b-4859-462e-920b-17c862107be9",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "5e973e72-8b18-4f0d-bb32-71c410c82e3b",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -625,8 +625,8 @@ const resumeAstTemplate = {
             "軟體開發經驗6年，善於與同事進行溝通，熟悉前端JS及衍伸之各種開發工具。",
         },
         {
-          uuid: "17961ec5-2a20-4513-9c36-c611be42a4fa",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "551aa9a5-f022-4ea8-9ab1-6955f873d905",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -639,8 +639,8 @@ const resumeAstTemplate = {
             "夠熟稔的使用Git進行多人協作、版本控制，了解基本的Linux操作指令。",
         },
         {
-          uuid: "8036b053-f542-40b0-afaa-3c71970364b2",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "48f79834-d65c-43f4-9a38-be1d049e1f79",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -653,8 +653,8 @@ const resumeAstTemplate = {
             "個性認真、負責、好奇、追根究底。  透過上網自學，轉職前端工程師，擁有強大的自學能力。",
         },
         {
-          uuid: "7829c1b0-61bf-44b1-850c-81b0857617ec",
-          parent: "9b536f5b-c417-4991-b7c5-6c3cc28ed17a",
+          uuid: "925deef5-5235-4f73-b8c1-aba5677838bf",
+          parent: "4867b61f-3dc2-4721-ae76-59f8fa974820",
           type: "span",
           events: {},
           props: {
@@ -669,12 +669,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "daa4b923-8a11-4b3b-adf9-2120d61958e1",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "41b094d3-82ad-4933-b459-dc7269ed492e",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn animate__delay-4s",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -692,8 +692,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "6316caf0-9d64-4ec7-9ceb-3eaaac76b7b2",
-          parent: "daa4b923-8a11-4b3b-adf9-2120d61958e1",
+          uuid: "9455fc84-11ff-4389-b0ef-3640a70be17c",
+          parent: "41b094d3-82ad-4933-b459-dc7269ed492e",
           type: "span",
           events: {},
           props: {
@@ -717,8 +717,8 @@ const resumeAstTemplate = {
           content: "學歷",
         },
         {
-          uuid: "f0f2b843-0745-48ca-abfa-3d1b0ea7a8ad",
-          parent: "daa4b923-8a11-4b3b-adf9-2120d61958e1",
+          uuid: "48ab0ddc-c7e9-4537-9cbb-55807061b6d1",
+          parent: "41b094d3-82ad-4933-b459-dc7269ed492e",
           type: "div",
           events: {},
           props: {
@@ -734,8 +734,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "c2695b4e-aa86-48ee-9350-18212eb04759",
-              parent: "f0f2b843-0745-48ca-abfa-3d1b0ea7a8ad",
+              uuid: "b1255fce-49df-419c-a94f-d369b2da7831",
+              parent: "48ab0ddc-c7e9-4537-9cbb-55807061b6d1",
               type: "span",
               events: {},
               props: {
@@ -747,8 +747,8 @@ const resumeAstTemplate = {
               content: "世新大學",
             },
             {
-              uuid: "485dbfc8-f9c9-43e3-ab0f-3c487330ddc1",
-              parent: "f0f2b843-0745-48ca-abfa-3d1b0ea7a8ad",
+              uuid: "56f498ff-3fc5-4788-8edf-38bfc1b68f09",
+              parent: "48ab0ddc-c7e9-4537-9cbb-55807061b6d1",
               type: "span",
               events: {},
               props: {
@@ -760,8 +760,8 @@ const resumeAstTemplate = {
               content: "觀光餐旅管理組",
             },
             {
-              uuid: "a85ed058-28f2-40f0-aa6c-09b3b7729a92",
-              parent: "f0f2b843-0745-48ca-abfa-3d1b0ea7a8ad",
+              uuid: "ce2a8390-a3ef-4fa8-9a14-16e40bbee0fc",
+              parent: "48ab0ddc-c7e9-4537-9cbb-55807061b6d1",
               type: "span",
               events: {},
               props: {
@@ -783,12 +783,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "5d5106a7-5369-41ff-928b-029adffc2830",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "c12dbaf3-37a4-4c2e-9d60-4cc56e40ee26",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn animate__delay-5s",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -806,8 +806,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "5c3336fe-97ca-41ef-8083-62fcca21d1ea",
-          parent: "5d5106a7-5369-41ff-928b-029adffc2830",
+          uuid: "af4d9b56-c39c-4df8-9a0f-093344d3ac6b",
+          parent: "c12dbaf3-37a4-4c2e-9d60-4cc56e40ee26",
           type: "span",
           events: {},
           props: {
@@ -831,8 +831,8 @@ const resumeAstTemplate = {
           content: "技能",
         },
         {
-          uuid: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
-          parent: "5d5106a7-5369-41ff-928b-029adffc2830",
+          uuid: "995ee92a-b087-4288-bc24-048d3e63da56",
+          parent: "c12dbaf3-37a4-4c2e-9d60-4cc56e40ee26",
           type: "div",
           events: {},
           props: {
@@ -850,8 +850,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "7657b645-32e7-4572-ae7a-7879c3a28757",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "85eae381-a94e-4bf9-9101-a6712636a88d",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -870,8 +870,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "ba3d5fa8-eca6-4326-92e7-d35309ccfd09",
-                  parent: "7657b645-32e7-4572-ae7a-7879c3a28757",
+                  uuid: "87bd0c7a-b1af-482b-8215-102c87f88c98",
+                  parent: "85eae381-a94e-4bf9-9101-a6712636a88d",
                   type: "span",
                   events: {},
                   props: {
@@ -883,8 +883,8 @@ const resumeAstTemplate = {
                   content: "React",
                 },
                 {
-                  uuid: "b0ddc079-4f63-4222-bee7-0bc82ac53be4",
-                  parent: "7657b645-32e7-4572-ae7a-7879c3a28757",
+                  uuid: "2f2d20be-6346-4e83-8db5-e7bdcc36af9c",
+                  parent: "85eae381-a94e-4bf9-9101-a6712636a88d",
                   type: "span",
                   events: {},
                   props: {
@@ -899,8 +899,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "4c393f51-092d-488d-a239-de97181e4896",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "2dbb672b-596c-4cc4-8008-fe9e5dbffd9d",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -919,8 +919,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "837c88f7-4bae-416b-b5fe-e79c3a5a8eed",
-                  parent: "4c393f51-092d-488d-a239-de97181e4896",
+                  uuid: "68914051-f3db-4977-ac4a-2aeec26a831d",
+                  parent: "2dbb672b-596c-4cc4-8008-fe9e5dbffd9d",
                   type: "span",
                   events: {},
                   props: {
@@ -932,8 +932,8 @@ const resumeAstTemplate = {
                   content: "Vue2",
                 },
                 {
-                  uuid: "7671b2ce-0a13-4e42-95cb-102ef5418451",
-                  parent: "4c393f51-092d-488d-a239-de97181e4896",
+                  uuid: "2ad14d0f-50da-4fd4-a247-2c73671186de",
+                  parent: "2dbb672b-596c-4cc4-8008-fe9e5dbffd9d",
                   type: "span",
                   events: {},
                   props: {
@@ -948,8 +948,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "4140ec39-ad17-40b5-b0fb-a004bf376a4e",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "89e8f362-f05a-4bdd-8347-b5b6cd3f9d0c",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -967,8 +967,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "89b375c9-2213-4d22-9817-83c6676c6cb7",
-                  parent: "4140ec39-ad17-40b5-b0fb-a004bf376a4e",
+                  uuid: "b2e14262-c379-498f-ac0c-814c41b6099b",
+                  parent: "89e8f362-f05a-4bdd-8347-b5b6cd3f9d0c",
                   type: "span",
                   events: {},
                   props: {
@@ -980,8 +980,8 @@ const resumeAstTemplate = {
                   content: "Angular.js",
                 },
                 {
-                  uuid: "b0f78b5f-250c-4a7f-af22-7bc56a4e2ca8",
-                  parent: "4140ec39-ad17-40b5-b0fb-a004bf376a4e",
+                  uuid: "d00affae-3e04-4012-957f-689ce0e1f8dd",
+                  parent: "89e8f362-f05a-4bdd-8347-b5b6cd3f9d0c",
                   type: "span",
                   events: {},
                   props: {
@@ -996,8 +996,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "66d89e3f-c58b-4a2a-b9f6-d9bfb0a9500f",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "118878ee-9893-4ecc-9f1b-2b60fb775ff9",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1016,8 +1016,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "f23f930b-1804-48ce-87cb-85ebfbd5bc1b",
-                  parent: "66d89e3f-c58b-4a2a-b9f6-d9bfb0a9500f",
+                  uuid: "541d6bd6-9c1a-42d3-8ce4-d0837f5892e8",
+                  parent: "118878ee-9893-4ecc-9f1b-2b60fb775ff9",
                   type: "span",
                   events: {},
                   props: {
@@ -1029,8 +1029,8 @@ const resumeAstTemplate = {
                   content: "ReactNative",
                 },
                 {
-                  uuid: "b7d04902-7b8d-407f-90e4-4b04a8449670",
-                  parent: "66d89e3f-c58b-4a2a-b9f6-d9bfb0a9500f",
+                  uuid: "4a8284a4-c95a-4287-b5ab-f28031a8bc3c",
+                  parent: "118878ee-9893-4ecc-9f1b-2b60fb775ff9",
                   type: "span",
                   events: {},
                   props: {
@@ -1045,8 +1045,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "9fbaed04-3be0-4841-8c3a-fcfbe1487c2d",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "ab499b31-6bc5-451f-993c-b7522a05ff5d",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1065,8 +1065,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "1cbd0879-2722-44bf-bafd-4b71a2a62cde",
-                  parent: "9fbaed04-3be0-4841-8c3a-fcfbe1487c2d",
+                  uuid: "120ccdfd-0462-4111-9f08-bd527869c665",
+                  parent: "ab499b31-6bc5-451f-993c-b7522a05ff5d",
                   type: "span",
                   events: {},
                   props: {
@@ -1078,8 +1078,8 @@ const resumeAstTemplate = {
                   content: "Cocos2d.js",
                 },
                 {
-                  uuid: "e9609987-81f8-43ff-ad8a-db929432d498",
-                  parent: "9fbaed04-3be0-4841-8c3a-fcfbe1487c2d",
+                  uuid: "d777e3f7-532d-44ab-a803-83ac64d5704c",
+                  parent: "ab499b31-6bc5-451f-993c-b7522a05ff5d",
                   type: "span",
                   events: {},
                   props: {
@@ -1094,8 +1094,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "9a8f7b77-d1eb-4139-8e69-c5df26d3f5c0",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "efa3caad-723d-4499-970d-403b5eaaff62",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1114,8 +1114,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "0f31c8c4-f8d7-4f4b-96f1-0f52184d7723",
-                  parent: "9a8f7b77-d1eb-4139-8e69-c5df26d3f5c0",
+                  uuid: "993d4689-2567-4ebe-811d-4a545d4b49c5",
+                  parent: "efa3caad-723d-4499-970d-403b5eaaff62",
                   type: "span",
                   events: {},
                   props: {
@@ -1127,8 +1127,8 @@ const resumeAstTemplate = {
                   content: "Typescript",
                 },
                 {
-                  uuid: "35939f9b-76ae-4395-9a96-ad8efa0723a7",
-                  parent: "9a8f7b77-d1eb-4139-8e69-c5df26d3f5c0",
+                  uuid: "7f60dbc7-95c2-4a7c-b82d-3f245c1a00b0",
+                  parent: "efa3caad-723d-4499-970d-403b5eaaff62",
                   type: "span",
                   events: {},
                   props: {
@@ -1143,8 +1143,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "278dda1a-77b4-45e0-83a0-6e8cc2be98e4",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "eaaa1af4-dec0-47ea-9e37-11128abebc2a",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1163,8 +1163,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "e16c9059-7d18-49de-a9e4-8d9a6808ae47",
-                  parent: "278dda1a-77b4-45e0-83a0-6e8cc2be98e4",
+                  uuid: "a370c8f9-3025-49d2-8e41-3f358ce84b20",
+                  parent: "eaaa1af4-dec0-47ea-9e37-11128abebc2a",
                   type: "span",
                   events: {},
                   props: {
@@ -1176,8 +1176,8 @@ const resumeAstTemplate = {
                   content: "JavaScript",
                 },
                 {
-                  uuid: "a83193d6-655f-4142-9db1-5a37fe1721bc",
-                  parent: "278dda1a-77b4-45e0-83a0-6e8cc2be98e4",
+                  uuid: "75915bd7-8f0b-4f0e-9083-cc8caa107ed9",
+                  parent: "eaaa1af4-dec0-47ea-9e37-11128abebc2a",
                   type: "span",
                   events: {},
                   props: {
@@ -1192,8 +1192,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "70882818-57b9-4ded-83e7-ccd7e38f1207",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "cfabe774-cc6a-4c8e-a1da-409f134cacd0",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1212,8 +1212,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "a189e48d-f605-4dd7-87e9-c2f19fbb83b0",
-                  parent: "70882818-57b9-4ded-83e7-ccd7e38f1207",
+                  uuid: "09e09810-c32a-450b-a042-50480c9204b5",
+                  parent: "cfabe774-cc6a-4c8e-a1da-409f134cacd0",
                   type: "span",
                   events: {},
                   props: {
@@ -1225,8 +1225,8 @@ const resumeAstTemplate = {
                   content: "SASS",
                 },
                 {
-                  uuid: "9e738645-bf9c-416f-9f09-16ed61d70d89",
-                  parent: "70882818-57b9-4ded-83e7-ccd7e38f1207",
+                  uuid: "ae60fa88-eb5d-416e-b514-59e90586f139",
+                  parent: "cfabe774-cc6a-4c8e-a1da-409f134cacd0",
                   type: "span",
                   events: {},
                   props: {
@@ -1241,8 +1241,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "7c9f64e4-00e8-45e7-90d6-6308511b70f3",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "2d32b562-3d3d-413b-9f14-90db9c2767f7",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1261,8 +1261,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "e391e629-3ea3-45c4-bea7-156d2f71726f",
-                  parent: "7c9f64e4-00e8-45e7-90d6-6308511b70f3",
+                  uuid: "671e0c86-d27d-42fe-ac45-5d5d49509f59",
+                  parent: "2d32b562-3d3d-413b-9f14-90db9c2767f7",
                   type: "span",
                   events: {},
                   props: {
@@ -1274,8 +1274,8 @@ const resumeAstTemplate = {
                   content: "CSSinJS",
                 },
                 {
-                  uuid: "82700e02-f6f8-45bb-96c8-ae643d33116d",
-                  parent: "7c9f64e4-00e8-45e7-90d6-6308511b70f3",
+                  uuid: "ccac4ee7-096c-4004-b24f-05488ffafd89",
+                  parent: "2d32b562-3d3d-413b-9f14-90db9c2767f7",
                   type: "span",
                   events: {},
                   props: {
@@ -1290,8 +1290,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "dd72d43c-ab78-463a-9471-9934bd018c92",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "db234cba-511b-4be5-b4e1-c669daac241a",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1310,8 +1310,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "fa348b7e-14b8-4097-a2b9-5c9310976139",
-                  parent: "dd72d43c-ab78-463a-9471-9934bd018c92",
+                  uuid: "5c4bb784-744b-4498-ac4b-c026835ccd8b",
+                  parent: "db234cba-511b-4be5-b4e1-c669daac241a",
                   type: "span",
                   events: {},
                   props: {
@@ -1323,8 +1323,8 @@ const resumeAstTemplate = {
                   content: "AWS",
                 },
                 {
-                  uuid: "e49acf5b-ed7a-4a4d-bed0-34a2151d7d0a",
-                  parent: "dd72d43c-ab78-463a-9471-9934bd018c92",
+                  uuid: "8b82541c-1aeb-40f2-ab8b-8822763146af",
+                  parent: "db234cba-511b-4be5-b4e1-c669daac241a",
                   type: "span",
                   events: {},
                   props: {
@@ -1339,8 +1339,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "3b13557b-65e7-4f45-be96-9e49f69c703b",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "cb857121-18f4-4972-bba9-85e98707accb",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1359,8 +1359,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "53323745-c402-4218-a5fe-80d7930c811b",
-                  parent: "3b13557b-65e7-4f45-be96-9e49f69c703b",
+                  uuid: "5e1b8e62-e79a-4766-8533-5c172d65cef9",
+                  parent: "cb857121-18f4-4972-bba9-85e98707accb",
                   type: "span",
                   events: {},
                   props: {
@@ -1372,8 +1372,8 @@ const resumeAstTemplate = {
                   content: "Docker",
                 },
                 {
-                  uuid: "a992821a-82c2-4f32-b181-8876b41db83e",
-                  parent: "3b13557b-65e7-4f45-be96-9e49f69c703b",
+                  uuid: "89072afa-dc4a-4f3f-97eb-1035d1ad3cfc",
+                  parent: "cb857121-18f4-4972-bba9-85e98707accb",
                   type: "span",
                   events: {},
                   props: {
@@ -1388,8 +1388,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "e8db3745-095e-4a21-b7b9-680724930ddd",
-              parent: "c781fd5d-7cfd-4a17-aba3-de3298dc45c2",
+              uuid: "753aa4c0-c236-4943-b742-45904d70f047",
+              parent: "995ee92a-b087-4288-bc24-048d3e63da56",
               type: "div",
               events: {},
               props: {
@@ -1408,8 +1408,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "7bbceb73-5027-48c1-8201-4c9dc614de67",
-                  parent: "e8db3745-095e-4a21-b7b9-680724930ddd",
+                  uuid: "306637d7-1197-4f67-8e2c-8f130cce061b",
+                  parent: "753aa4c0-c236-4943-b742-45904d70f047",
                   type: "span",
                   events: {},
                   props: {
@@ -1421,8 +1421,8 @@ const resumeAstTemplate = {
                   content: "Git",
                 },
                 {
-                  uuid: "d0e3ccbe-6036-454f-a0f5-027992065f07",
-                  parent: "e8db3745-095e-4a21-b7b9-680724930ddd",
+                  uuid: "8203d0cf-67fd-40af-b128-436852ec6694",
+                  parent: "753aa4c0-c236-4943-b742-45904d70f047",
                   type: "span",
                   events: {},
                   props: {
@@ -1443,12 +1443,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "5f81759e-f504-47ee-9459-94ce613937ba",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn animate__delay-5s",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -1466,8 +1466,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "494abda7-7017-46fb-a3aa-e23388507739",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "741000ee-616e-4462-b587-eb39ec2e1042",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "span",
           events: {},
           props: {
@@ -1491,8 +1491,8 @@ const resumeAstTemplate = {
           content: "經歷",
         },
         {
-          uuid: "14fdb6b6-d327-423a-9247-789fc936aa61",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "4ba61b2f-48d4-4f1f-8f26-20a59cd43e5a",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
@@ -1508,8 +1508,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "c760ea34-72e4-4e66-afec-a9f97a115cb1",
-              parent: "14fdb6b6-d327-423a-9247-789fc936aa61",
+              uuid: "f6626f32-e8f1-478b-ab5e-55768824fedd",
+              parent: "4ba61b2f-48d4-4f1f-8f26-20a59cd43e5a",
               type: "span",
               events: {},
               props: {
@@ -1525,8 +1525,8 @@ const resumeAstTemplate = {
               content: "2022-03 ~ 2024-03",
             },
             {
-              uuid: "839cfb5b-76d2-48aa-a5ce-c180df82d9a2",
-              parent: "14fdb6b6-d327-423a-9247-789fc936aa61",
+              uuid: "9ecd6f6b-1fb3-43bb-bc62-bb197b64db62",
+              parent: "4ba61b2f-48d4-4f1f-8f26-20a59cd43e5a",
               type: "span",
               events: {},
               props: {
@@ -1542,8 +1542,8 @@ const resumeAstTemplate = {
               content: "米约科技",
             },
             {
-              uuid: "08557e67-7362-4262-829b-50df5e6f9070",
-              parent: "14fdb6b6-d327-423a-9247-789fc936aa61",
+              uuid: "9518f5cb-7e02-4822-b179-da254b8ec98a",
+              parent: "4ba61b2f-48d4-4f1f-8f26-20a59cd43e5a",
               type: "span",
               events: {},
               props: {
@@ -1563,8 +1563,8 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "c0c55e9a-bb35-46a7-b8ff-028569771505",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
@@ -1583,8 +1583,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "408a2cd0-e3cb-48aa-a515-bc8ed01c8cf7",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "d1cf3c46-e8a3-4b34-8e1e-2eed1b54affb",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "span",
               events: {},
               props: {
@@ -1600,8 +1600,8 @@ const resumeAstTemplate = {
               content: "西瓜棋牌",
             },
             {
-              uuid: "917d363b-c672-47f2-8a12-c2e4686cae35",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "09f0cd96-22de-472e-8759-fd9353166b85",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "div",
               events: {},
               props: {
@@ -1619,8 +1619,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "ebc7583c-c4e2-44a6-95c5-cff742aca795",
-                  parent: "917d363b-c672-47f2-8a12-c2e4686cae35",
+                  uuid: "3758bd7b-be73-49d9-822c-cac329d3ab0e",
+                  parent: "09f0cd96-22de-472e-8759-fd9353166b85",
                   type: "span",
                   events: {},
                   props: {
@@ -1632,8 +1632,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "ff0e35a9-0e9a-4c13-b149-635008b9911d",
-                  parent: "917d363b-c672-47f2-8a12-c2e4686cae35",
+                  uuid: "ad148588-8d4b-4815-9fa4-4b2a97051254",
+                  parent: "09f0cd96-22de-472e-8759-fd9353166b85",
                   type: "span",
                   events: {},
                   props: {
@@ -1649,8 +1649,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "a28e845b-8147-4546-868e-116cc983ee32",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "1df097a3-8f9d-489c-b438-d6d5ac41d659",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "div",
               events: {},
               props: {
@@ -1668,8 +1668,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "ce84be80-84c9-4de8-a868-f4144639f710",
-                  parent: "a28e845b-8147-4546-868e-116cc983ee32",
+                  uuid: "b5d05044-075f-41b6-97f8-f9a12c229016",
+                  parent: "1df097a3-8f9d-489c-b438-d6d5ac41d659",
                   type: "span",
                   events: {},
                   props: {
@@ -1681,8 +1681,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "a3af146c-8d35-478f-9704-12c204a041ef",
-                  parent: "a28e845b-8147-4546-868e-116cc983ee32",
+                  uuid: "e0eb0273-bd8c-4fd8-9c98-8847ee70d283",
+                  parent: "1df097a3-8f9d-489c-b438-d6d5ac41d659",
                   type: "span",
                   events: {},
                   props: {
@@ -1697,8 +1697,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "44dfe19a-71b4-4c12-834b-15152383b820",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "436ed872-3bc8-4b2f-866a-67a74852841d",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "div",
               events: {},
               props: {
@@ -1716,8 +1716,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "8b302e6e-fef6-4790-9a68-b4f196dd86e5",
-                  parent: "44dfe19a-71b4-4c12-834b-15152383b820",
+                  uuid: "66d6cca7-b762-4e43-98b4-9b206c25ebe5",
+                  parent: "436ed872-3bc8-4b2f-866a-67a74852841d",
                   type: "span",
                   events: {},
                   props: {
@@ -1729,8 +1729,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "0397f025-44e2-4265-ac24-67da746058f4",
-                  parent: "44dfe19a-71b4-4c12-834b-15152383b820",
+                  uuid: "34ec239d-f0eb-4018-b347-a611474f04eb",
+                  parent: "436ed872-3bc8-4b2f-866a-67a74852841d",
                   type: "span",
                   events: {},
                   props: {
@@ -1745,8 +1745,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "3d78908f-d9bb-4454-883d-368b7f19ddc6",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "ed907406-aedc-4a17-bef8-cab46871961a",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "div",
               events: {},
               props: {
@@ -1764,8 +1764,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "454ebb83-fcdb-4b7d-ad50-95850b3591d2",
-                  parent: "3d78908f-d9bb-4454-883d-368b7f19ddc6",
+                  uuid: "ec6b3247-3be5-4168-9979-e696700c7593",
+                  parent: "ed907406-aedc-4a17-bef8-cab46871961a",
                   type: "span",
                   events: {},
                   props: {
@@ -1777,8 +1777,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "f1df4ae9-b3a7-4176-aaed-cd1a9dba7c98",
-                  parent: "3d78908f-d9bb-4454-883d-368b7f19ddc6",
+                  uuid: "e349b780-6a95-4531-a44c-7d35624a8539",
+                  parent: "ed907406-aedc-4a17-bef8-cab46871961a",
                   type: "span",
                   events: {},
                   props: {
@@ -1794,8 +1794,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "a93adb87-1390-4c48-a51c-cf03858807d0",
-              parent: "c0c55e9a-bb35-46a7-b8ff-028569771505",
+              uuid: "945e4012-73a8-4140-8c8b-7b9adf97c48d",
+              parent: "99c72f98-aec5-4fc9-a7b5-f9f8c805fec6",
               type: "div",
               events: {},
               props: {
@@ -1813,8 +1813,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "78071c1e-b4e7-42bd-83e3-9a9e63bbf052",
-                  parent: "a93adb87-1390-4c48-a51c-cf03858807d0",
+                  uuid: "2fedb135-8847-47d6-9a57-d12e27995519",
+                  parent: "945e4012-73a8-4140-8c8b-7b9adf97c48d",
                   type: "span",
                   events: {},
                   props: {
@@ -1826,8 +1826,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "36181d6b-73d7-4565-97d4-8d6c5cf78108",
-                  parent: "a93adb87-1390-4c48-a51c-cf03858807d0",
+                  uuid: "11e6fe1a-6453-4b92-a129-18d37bc20b85",
+                  parent: "945e4012-73a8-4140-8c8b-7b9adf97c48d",
                   type: "span",
                   events: {},
                   props: {
@@ -1846,8 +1846,8 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "2bc15f76-1c45-4371-9974-b7277d2077de",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
@@ -1866,8 +1866,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "0ce0e167-c71f-4e76-9633-1127852e5f6f",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "3b927341-c534-475c-8b4f-a05424ef76dd",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "span",
               events: {},
               props: {
@@ -1883,8 +1883,8 @@ const resumeAstTemplate = {
               content: "喜鵲聊天",
             },
             {
-              uuid: "471bd12d-9c28-4718-af7e-c0fc9e5f3bf8",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "f84f57aa-5a70-4c1a-b483-46d33eed34e2",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -1902,8 +1902,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "bd5ab84d-0419-4f23-8e89-541f172c45b2",
-                  parent: "471bd12d-9c28-4718-af7e-c0fc9e5f3bf8",
+                  uuid: "4842553a-8f03-4e95-9546-858e7e343552",
+                  parent: "f84f57aa-5a70-4c1a-b483-46d33eed34e2",
                   type: "span",
                   events: {},
                   props: {
@@ -1915,8 +1915,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "333c6387-702c-40f8-8bb8-5bf2cef8ff8b",
-                  parent: "471bd12d-9c28-4718-af7e-c0fc9e5f3bf8",
+                  uuid: "b79618b0-ccfe-4043-ae25-2a2dee44171d",
+                  parent: "f84f57aa-5a70-4c1a-b483-46d33eed34e2",
                   type: "span",
                   events: {},
                   props: {
@@ -1932,8 +1932,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "a5b6487f-4166-432f-bbb1-b1668f198381",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "8e16187d-7d83-4e60-b998-0dfddb7431b2",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -1951,8 +1951,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "0ae8e76f-b368-4c21-aa65-8c183b35d35d",
-                  parent: "a5b6487f-4166-432f-bbb1-b1668f198381",
+                  uuid: "3c1a584d-3176-4fec-b037-dc0304987f04",
+                  parent: "8e16187d-7d83-4e60-b998-0dfddb7431b2",
                   type: "span",
                   events: {},
                   props: {
@@ -1964,8 +1964,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "3e5a1aff-e741-4bab-b895-20ac72acb4a8",
-                  parent: "a5b6487f-4166-432f-bbb1-b1668f198381",
+                  uuid: "85b74b6c-3e48-4d42-9ae4-e1ac7838fe3f",
+                  parent: "8e16187d-7d83-4e60-b998-0dfddb7431b2",
                   type: "span",
                   events: {},
                   props: {
@@ -1980,8 +1980,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "6c8c84be-9d89-460d-b1e1-6f026b7ad9f1",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "d20d9785-d45b-4db4-8253-cf9650da8843",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -1999,8 +1999,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "8b44e0fc-6859-4d0f-80ee-28f34d852fe4",
-                  parent: "6c8c84be-9d89-460d-b1e1-6f026b7ad9f1",
+                  uuid: "81facbd5-a361-4f04-9869-d3f27e0aa114",
+                  parent: "d20d9785-d45b-4db4-8253-cf9650da8843",
                   type: "span",
                   events: {},
                   props: {
@@ -2012,8 +2012,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "2ad323ec-1475-4ea0-bf7f-8e0f5c379475",
-                  parent: "6c8c84be-9d89-460d-b1e1-6f026b7ad9f1",
+                  uuid: "177bd281-85d1-4c2a-836e-8568b08acefa",
+                  parent: "d20d9785-d45b-4db4-8253-cf9650da8843",
                   type: "span",
                   events: {},
                   props: {
@@ -2029,8 +2029,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "d794392c-34bf-4c0b-889e-4abf27824ea5",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "44a648a4-c985-407e-ae63-1058a591c85f",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -2048,8 +2048,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "b94e15f9-1613-4735-a5c6-c24b41061011",
-                  parent: "d794392c-34bf-4c0b-889e-4abf27824ea5",
+                  uuid: "2741c24a-7b49-4be8-a4cc-2c49d0918c81",
+                  parent: "44a648a4-c985-407e-ae63-1058a591c85f",
                   type: "span",
                   events: {},
                   props: {
@@ -2061,8 +2061,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "99e972b5-178a-400a-b4d2-0143afdb786a",
-                  parent: "d794392c-34bf-4c0b-889e-4abf27824ea5",
+                  uuid: "3b599dfa-6fc4-4da3-826a-b142a6a677f5",
+                  parent: "44a648a4-c985-407e-ae63-1058a591c85f",
                   type: "span",
                   events: {},
                   props: {
@@ -2077,8 +2077,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "84e6924e-0dda-410d-b339-767b32976c4a",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "e2dd5af0-3d66-4a26-aa4d-6a85f6242678",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -2096,8 +2096,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "17b0da6b-3cd6-4964-98da-62d80c7e7bee",
-                  parent: "84e6924e-0dda-410d-b339-767b32976c4a",
+                  uuid: "3bea13d9-00ec-4273-bede-bf8c098b2d52",
+                  parent: "e2dd5af0-3d66-4a26-aa4d-6a85f6242678",
                   type: "span",
                   events: {},
                   props: {
@@ -2109,8 +2109,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "36b333e5-f0bc-499c-8e6c-f4812222df67",
-                  parent: "84e6924e-0dda-410d-b339-767b32976c4a",
+                  uuid: "2cb657a0-e67a-4499-8282-b57ee1183ed2",
+                  parent: "e2dd5af0-3d66-4a26-aa4d-6a85f6242678",
                   type: "span",
                   events: {},
                   props: {
@@ -2126,8 +2126,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "3bdcd7ae-4d4a-42ea-9217-a4e6e1b8d9ee",
-              parent: "67a45e1e-b82d-4f93-8247-cd8405c5c09b",
+              uuid: "10c9529a-dc67-4b21-8a00-9d672bad04a7",
+              parent: "2bc15f76-1c45-4371-9974-b7277d2077de",
               type: "div",
               events: {},
               props: {
@@ -2145,8 +2145,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "0d3db953-2459-44ec-9b86-f50d688fc19f",
-                  parent: "3bdcd7ae-4d4a-42ea-9217-a4e6e1b8d9ee",
+                  uuid: "67a86790-7103-44f1-b916-dc8e98b9c6b9",
+                  parent: "10c9529a-dc67-4b21-8a00-9d672bad04a7",
                   type: "span",
                   events: {},
                   props: {
@@ -2158,8 +2158,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "6e5362fd-2a81-4037-bee8-1d49469b17f8",
-                  parent: "3bdcd7ae-4d4a-42ea-9217-a4e6e1b8d9ee",
+                  uuid: "c94a0127-1da8-4605-a8bd-2ab8f54eca82",
+                  parent: "10c9529a-dc67-4b21-8a00-9d672bad04a7",
                   type: "span",
                   events: {},
                   props: {
@@ -2177,12 +2177,12 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "2921ef10-554e-4122-bf59-9e45cf0711ed",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "21afdee6-e15d-4730-af78-08ff4df2cf6c",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
-            className: "animate__animated animate__fadeIn animate__delay-5s",
+            className: "",
             style: {
               width: "100%",
               height: "auto",
@@ -2196,8 +2196,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "ca4ad963-9229-4118-bb50-d767e527b170",
-              parent: "2921ef10-554e-4122-bf59-9e45cf0711ed",
+              uuid: "1292563a-cc3f-4c29-95bf-f30c906bbf50",
+              parent: "21afdee6-e15d-4730-af78-08ff4df2cf6c",
               type: "div",
               events: {},
               props: {
@@ -2213,8 +2213,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "b5a5b1e1-3f5e-42c7-a47c-51a655ad2fc6",
-                  parent: "ca4ad963-9229-4118-bb50-d767e527b170",
+                  uuid: "b9fbfc96-9781-45fc-88af-5eeec1854393",
+                  parent: "1292563a-cc3f-4c29-95bf-f30c906bbf50",
                   type: "span",
                   events: {},
                   props: {
@@ -2230,8 +2230,8 @@ const resumeAstTemplate = {
                   content: "2021-03 ~ 2022-03",
                 },
                 {
-                  uuid: "9177ffa3-b4b5-4465-9361-64ca7024bc9a",
-                  parent: "ca4ad963-9229-4118-bb50-d767e527b170",
+                  uuid: "9947e01b-6e35-4254-ad7f-600456b79fd9",
+                  parent: "1292563a-cc3f-4c29-95bf-f30c906bbf50",
                   type: "span",
                   events: {},
                   props: {
@@ -2247,8 +2247,8 @@ const resumeAstTemplate = {
                   content: "怡和科技",
                 },
                 {
-                  uuid: "a796e6a0-04bb-4cc6-ae9a-215a7dec97c8",
-                  parent: "ca4ad963-9229-4118-bb50-d767e527b170",
+                  uuid: "f75c4442-5bb7-416d-8dd1-d2d7bf6b7467",
+                  parent: "1292563a-cc3f-4c29-95bf-f30c906bbf50",
                   type: "span",
                   events: {},
                   props: {
@@ -2268,8 +2268,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
-              parent: "2921ef10-554e-4122-bf59-9e45cf0711ed",
+              uuid: "02814092-15c2-483f-8839-c6c19e4b153d",
+              parent: "21afdee6-e15d-4730-af78-08ff4df2cf6c",
               type: "div",
               events: {},
               props: {
@@ -2288,8 +2288,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "65e733c4-f8f0-4f91-988a-a2b6ce297a33",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "5444b6b1-d3fa-44d4-a3b5-b9283aa2cf23",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "span",
                   events: {},
                   props: {
@@ -2305,8 +2305,8 @@ const resumeAstTemplate = {
                   content: "多商戶架構之彩票遊戲前台及其Headless CMS後台",
                 },
                 {
-                  uuid: "5d4f5546-01f9-4fcc-9857-f7bd91cab54a",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "9241fa43-35de-472a-8ef8-3cb1b0dd7f80",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "div",
                   events: {},
                   props: {
@@ -2324,8 +2324,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "d4737dfd-8b33-4442-8164-82d6e371ab1d",
-                      parent: "5d4f5546-01f9-4fcc-9857-f7bd91cab54a",
+                      uuid: "6f6fa3cb-4485-44d0-90dd-4c2d8867e3c3",
+                      parent: "9241fa43-35de-472a-8ef8-3cb1b0dd7f80",
                       type: "span",
                       events: {},
                       props: {
@@ -2337,8 +2337,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "1dd4c2fc-9ff1-4cce-bffb-c8031d5ea5eb",
-                      parent: "5d4f5546-01f9-4fcc-9857-f7bd91cab54a",
+                      uuid: "f101c62e-3219-462c-b5ac-715a0a2ab973",
+                      parent: "9241fa43-35de-472a-8ef8-3cb1b0dd7f80",
                       type: "span",
                       events: {},
                       props: {
@@ -2353,8 +2353,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "d2143425-774e-4685-a6fb-df6f4b8c84bb",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "d26c717d-7d7c-4fac-b9c2-1582b41357e0",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "div",
                   events: {},
                   props: {
@@ -2372,8 +2372,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "f242b31e-d680-4c06-85e0-6087fdd12030",
-                      parent: "d2143425-774e-4685-a6fb-df6f4b8c84bb",
+                      uuid: "87ed43d6-0f06-4ac1-ae43-e35aafce30d7",
+                      parent: "d26c717d-7d7c-4fac-b9c2-1582b41357e0",
                       type: "span",
                       events: {},
                       props: {
@@ -2385,8 +2385,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "21304f3b-4a5f-466c-8e2f-8cc0ba945e16",
-                      parent: "d2143425-774e-4685-a6fb-df6f4b8c84bb",
+                      uuid: "6c378415-cadc-4e22-9c11-b3453f63a157",
+                      parent: "d26c717d-7d7c-4fac-b9c2-1582b41357e0",
                       type: "span",
                       events: {},
                       props: {
@@ -2401,8 +2401,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "c2ad4b30-95b5-4b02-9dde-01ad99507b06",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "25bfa6b5-ea22-471b-8acc-3a7f4dbf1718",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "div",
                   events: {},
                   props: {
@@ -2420,8 +2420,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "6c169ef6-80df-4ca2-bfb5-0c2fa2c9fa9b",
-                      parent: "c2ad4b30-95b5-4b02-9dde-01ad99507b06",
+                      uuid: "581f8eb6-a143-4773-98f6-51f366f69ece",
+                      parent: "25bfa6b5-ea22-471b-8acc-3a7f4dbf1718",
                       type: "span",
                       events: {},
                       props: {
@@ -2433,8 +2433,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "5c871de1-151b-4451-9b90-ae0f47b99950",
-                      parent: "c2ad4b30-95b5-4b02-9dde-01ad99507b06",
+                      uuid: "5c3eb186-22c9-434f-a503-b9bc613cab3f",
+                      parent: "25bfa6b5-ea22-471b-8acc-3a7f4dbf1718",
                       type: "span",
                       events: {},
                       props: {
@@ -2449,8 +2449,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "9fa360b5-12dc-418a-8a1f-27c5bd2cc0d6",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "f023020b-424e-4526-9de5-5bb1f7caf75d",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "div",
                   events: {},
                   props: {
@@ -2468,8 +2468,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "a9a058cb-3c1c-4223-a497-db660e24ed34",
-                      parent: "9fa360b5-12dc-418a-8a1f-27c5bd2cc0d6",
+                      uuid: "4566ed52-946c-4dcf-8936-b3974aa633e3",
+                      parent: "f023020b-424e-4526-9de5-5bb1f7caf75d",
                       type: "span",
                       events: {},
                       props: {
@@ -2481,8 +2481,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "30b05a47-fdac-4a3c-bf15-bb382f118665",
-                      parent: "9fa360b5-12dc-418a-8a1f-27c5bd2cc0d6",
+                      uuid: "94204aec-c4f4-4717-aca3-ca505304c41f",
+                      parent: "f023020b-424e-4526-9de5-5bb1f7caf75d",
                       type: "span",
                       events: {},
                       props: {
@@ -2497,8 +2497,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "07234e80-24c8-4cfc-910e-65cbc4b896d8",
-                  parent: "88a6923c-36f0-4f55-adcf-aa8e32a3ba37",
+                  uuid: "86ca122e-c169-449e-95b5-5433eecc243d",
+                  parent: "02814092-15c2-483f-8839-c6c19e4b153d",
                   type: "div",
                   events: {},
                   props: {
@@ -2516,8 +2516,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "920f62f3-da37-4d8d-a702-923edd821f0f",
-                      parent: "07234e80-24c8-4cfc-910e-65cbc4b896d8",
+                      uuid: "71b455c7-702a-4840-8421-707e041bb1f6",
+                      parent: "86ca122e-c169-449e-95b5-5433eecc243d",
                       type: "span",
                       events: {},
                       props: {
@@ -2529,8 +2529,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "398b26a4-13b1-4e55-b2a5-3d0ad888c679",
-                      parent: "07234e80-24c8-4cfc-910e-65cbc4b896d8",
+                      uuid: "1b55f350-30ec-43b8-a688-52c8a40232f8",
+                      parent: "86ca122e-c169-449e-95b5-5433eecc243d",
                       type: "span",
                       events: {},
                       props: {
@@ -2552,12 +2552,12 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "980b3a49-f68e-41a2-bb30-8789facc6a85",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "5032f00b-1f3c-4648-8a82-8c85a05d3698",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
-            className: "animate__animated animate__fadeIn animate__delay-5s",
+            className: "",
             style: {
               width: "100%",
               height: "auto",
@@ -2575,8 +2575,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "36b5dcd4-39a0-4208-b0c7-5ec9bfd54623",
-              parent: "980b3a49-f68e-41a2-bb30-8789facc6a85",
+              uuid: "c7b09d5c-4eda-42e1-9743-9d57ec6174ac",
+              parent: "5032f00b-1f3c-4648-8a82-8c85a05d3698",
               type: "div",
               events: {},
               props: {
@@ -2592,8 +2592,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "9387749b-7636-4cd2-91aa-8544c2cc7c82",
-                  parent: "36b5dcd4-39a0-4208-b0c7-5ec9bfd54623",
+                  uuid: "a4d86e48-e9de-43b5-ac94-4cafc7d38b49",
+                  parent: "c7b09d5c-4eda-42e1-9743-9d57ec6174ac",
                   type: "span",
                   events: {},
                   props: {
@@ -2609,8 +2609,8 @@ const resumeAstTemplate = {
                   content: "2020-03 ~ 2021-03",
                 },
                 {
-                  uuid: "74da25dd-3a2d-4616-848e-d954099acd55",
-                  parent: "36b5dcd4-39a0-4208-b0c7-5ec9bfd54623",
+                  uuid: "a7883ac7-9788-40d9-8bfa-516a13df2854",
+                  parent: "c7b09d5c-4eda-42e1-9743-9d57ec6174ac",
                   type: "span",
                   events: {},
                   props: {
@@ -2626,8 +2626,8 @@ const resumeAstTemplate = {
                   content: "華澳科技",
                 },
                 {
-                  uuid: "b93e039e-1fa4-4f6a-bb4d-b0d544f0a1ca",
-                  parent: "36b5dcd4-39a0-4208-b0c7-5ec9bfd54623",
+                  uuid: "7c838cc8-b26a-4a26-abf6-7ee832d53888",
+                  parent: "c7b09d5c-4eda-42e1-9743-9d57ec6174ac",
                   type: "span",
                   events: {},
                   props: {
@@ -2647,8 +2647,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "a8703c13-3372-4e59-960d-6592459837df",
-              parent: "980b3a49-f68e-41a2-bb30-8789facc6a85",
+              uuid: "10630851-2682-4f99-b0a8-29f4e0b713da",
+              parent: "5032f00b-1f3c-4648-8a82-8c85a05d3698",
               type: "div",
               events: {},
               props: {
@@ -2667,8 +2667,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "d11ad70e-d8a5-49eb-9d77-9157f25a650a",
-                  parent: "a8703c13-3372-4e59-960d-6592459837df",
+                  uuid: "f53a90b9-dc1a-47a2-a1fc-219c3a5f9fb1",
+                  parent: "10630851-2682-4f99-b0a8-29f4e0b713da",
                   type: "span",
                   events: {},
                   props: {
@@ -2684,8 +2684,8 @@ const resumeAstTemplate = {
                   content: "Web彩票遊戲前後台",
                 },
                 {
-                  uuid: "23aaf4b9-e698-4a39-891c-0fabf936aabd",
-                  parent: "a8703c13-3372-4e59-960d-6592459837df",
+                  uuid: "1ca4068c-9552-4bf2-b6c5-c3b32b0c9a57",
+                  parent: "10630851-2682-4f99-b0a8-29f4e0b713da",
                   type: "div",
                   events: {},
                   props: {
@@ -2703,8 +2703,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "f3ab4b94-1cbe-4c82-bd51-0f3635a320bd",
-                      parent: "23aaf4b9-e698-4a39-891c-0fabf936aabd",
+                      uuid: "435bf502-9bc6-4a54-b5e3-3ce49dcdd225",
+                      parent: "1ca4068c-9552-4bf2-b6c5-c3b32b0c9a57",
                       type: "span",
                       events: {},
                       props: {
@@ -2716,8 +2716,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "3ede3bb7-c8d8-47a4-99f3-b9f4b35c0893",
-                      parent: "23aaf4b9-e698-4a39-891c-0fabf936aabd",
+                      uuid: "91015719-32cc-4a83-b508-ecdec9e397ea",
+                      parent: "1ca4068c-9552-4bf2-b6c5-c3b32b0c9a57",
                       type: "span",
                       events: {},
                       props: {
@@ -2732,8 +2732,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "ac74d6ec-0ddf-499e-bcb5-b11ac53ffbd0",
-                  parent: "a8703c13-3372-4e59-960d-6592459837df",
+                  uuid: "14773f73-d627-4080-8891-d52e6b2d3598",
+                  parent: "10630851-2682-4f99-b0a8-29f4e0b713da",
                   type: "div",
                   events: {},
                   props: {
@@ -2751,8 +2751,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "0e8fc861-8b4f-4868-ae83-975bf2bf1181",
-                      parent: "ac74d6ec-0ddf-499e-bcb5-b11ac53ffbd0",
+                      uuid: "3d6ccc39-7ed6-468d-90a8-e7d4a9528534",
+                      parent: "14773f73-d627-4080-8891-d52e6b2d3598",
                       type: "span",
                       events: {},
                       props: {
@@ -2764,8 +2764,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "29069bc3-d91c-4160-9db2-616822093843",
-                      parent: "ac74d6ec-0ddf-499e-bcb5-b11ac53ffbd0",
+                      uuid: "0301f649-9e64-4f2e-a96d-cad5fb2cf3f0",
+                      parent: "14773f73-d627-4080-8891-d52e6b2d3598",
                       type: "span",
                       events: {},
                       props: {
@@ -2780,8 +2780,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "c7e2af05-e4ce-47f3-9e55-e87fef1d1fc4",
-                  parent: "a8703c13-3372-4e59-960d-6592459837df",
+                  uuid: "54ac35bd-f8c9-4961-96b1-ed160acf8909",
+                  parent: "10630851-2682-4f99-b0a8-29f4e0b713da",
                   type: "div",
                   events: {},
                   props: {
@@ -2799,8 +2799,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "f3e42c10-9334-486b-a79e-2026d8b6d5d3",
-                      parent: "c7e2af05-e4ce-47f3-9e55-e87fef1d1fc4",
+                      uuid: "e360e96e-7705-40c9-8de8-15b5a103e972",
+                      parent: "54ac35bd-f8c9-4961-96b1-ed160acf8909",
                       type: "span",
                       events: {},
                       props: {
@@ -2812,8 +2812,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "bd51784b-b2b9-464c-bf3a-2085eea95b9e",
-                      parent: "c7e2af05-e4ce-47f3-9e55-e87fef1d1fc4",
+                      uuid: "9a36fbfb-175b-4805-b697-f3921cccc0e2",
+                      parent: "54ac35bd-f8c9-4961-96b1-ed160acf8909",
                       type: "span",
                       events: {},
                       props: {
@@ -2831,8 +2831,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "6a404f09-31f3-4c6c-88a9-9b4df0c70d68",
-              parent: "980b3a49-f68e-41a2-bb30-8789facc6a85",
+              uuid: "f14ed744-f13c-4915-84eb-f8649e3289ab",
+              parent: "5032f00b-1f3c-4648-8a82-8c85a05d3698",
               type: "div",
               events: {},
               props: {
@@ -2851,8 +2851,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "f491336f-4a6d-472f-8502-8512f1db72e1",
-                  parent: "6a404f09-31f3-4c6c-88a9-9b4df0c70d68",
+                  uuid: "7b6e6589-f81c-4edf-b1b5-61ae491f5ae4",
+                  parent: "f14ed744-f13c-4915-84eb-f8649e3289ab",
                   type: "span",
                   events: {},
                   props: {
@@ -2868,8 +2868,8 @@ const resumeAstTemplate = {
                   content: "WebViewApp開發維護",
                 },
                 {
-                  uuid: "0e165238-719f-43d1-a9f2-8253a8b96aaa",
-                  parent: "6a404f09-31f3-4c6c-88a9-9b4df0c70d68",
+                  uuid: "ab2b204f-275d-4336-bac7-933566627687",
+                  parent: "f14ed744-f13c-4915-84eb-f8649e3289ab",
                   type: "div",
                   events: {},
                   props: {
@@ -2887,8 +2887,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "dfc8f8a0-8ba5-4122-a4ce-85c3353f2a7d",
-                      parent: "0e165238-719f-43d1-a9f2-8253a8b96aaa",
+                      uuid: "a6b270ca-b112-4389-85df-a4deac1a7e64",
+                      parent: "ab2b204f-275d-4336-bac7-933566627687",
                       type: "span",
                       events: {},
                       props: {
@@ -2900,8 +2900,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "0fef3996-2c30-44cf-85a4-0a495b5b3659",
-                      parent: "0e165238-719f-43d1-a9f2-8253a8b96aaa",
+                      uuid: "8afcc5fe-7494-4043-8b9f-2fdb33858f09",
+                      parent: "ab2b204f-275d-4336-bac7-933566627687",
                       type: "span",
                       events: {},
                       props: {
@@ -2916,8 +2916,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "786c4731-9e42-4fb8-9d00-51a0962e0f5a",
-                  parent: "6a404f09-31f3-4c6c-88a9-9b4df0c70d68",
+                  uuid: "667c6a21-fb17-49cc-98c6-5710af8bb6f3",
+                  parent: "f14ed744-f13c-4915-84eb-f8649e3289ab",
                   type: "div",
                   events: {},
                   props: {
@@ -2935,8 +2935,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "0e35459c-1a23-46ed-a6d4-618ef548e118",
-                      parent: "786c4731-9e42-4fb8-9d00-51a0962e0f5a",
+                      uuid: "10583e63-d798-4a27-a6e2-d52fc5dc5b1f",
+                      parent: "667c6a21-fb17-49cc-98c6-5710af8bb6f3",
                       type: "span",
                       events: {},
                       props: {
@@ -2948,8 +2948,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "41d40b41-8d00-4131-8312-0c513586f423",
-                      parent: "786c4731-9e42-4fb8-9d00-51a0962e0f5a",
+                      uuid: "24ce167a-692f-458f-aacb-23277dca7aaf",
+                      parent: "667c6a21-fb17-49cc-98c6-5710af8bb6f3",
                       type: "span",
                       events: {},
                       props: {
@@ -2964,8 +2964,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "924094be-6324-465a-b0f9-8e040bfbcc6a",
-                  parent: "6a404f09-31f3-4c6c-88a9-9b4df0c70d68",
+                  uuid: "92594751-8b62-4630-9960-7b5e0c5ef25a",
+                  parent: "f14ed744-f13c-4915-84eb-f8649e3289ab",
                   type: "div",
                   events: {},
                   props: {
@@ -2983,8 +2983,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "b0cc8122-79ab-4611-8cd3-7f7e5e8f80bb",
-                      parent: "924094be-6324-465a-b0f9-8e040bfbcc6a",
+                      uuid: "665236ad-614f-4830-9505-301f400b1d4b",
+                      parent: "92594751-8b62-4630-9960-7b5e0c5ef25a",
                       type: "span",
                       events: {},
                       props: {
@@ -2996,8 +2996,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "f0ec12a7-9a98-420d-9f9d-d46e6ad780f0",
-                      parent: "924094be-6324-465a-b0f9-8e040bfbcc6a",
+                      uuid: "3e1d760a-ba6f-40d7-8892-1bcc62f4b334",
+                      parent: "92594751-8b62-4630-9960-7b5e0c5ef25a",
                       type: "span",
                       events: {},
                       props: {
@@ -3018,12 +3018,12 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "0bf4630d-b761-4b3c-89ce-6481d7c85718",
-          parent: "bf460608-aa08-4c8f-82bd-ef99e7227c0e",
+          uuid: "366c8708-3b7c-4d22-b26e-dd480cff04f6",
+          parent: "5f81759e-f504-47ee-9459-94ce613937ba",
           type: "div",
           events: {},
           props: {
-            className: "animate__animated animate__fadeIn animate__delay-5s",
+            className: "",
             style: {
               width: "100%",
               height: "auto",
@@ -3041,8 +3041,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "711a1777-789d-4f20-9f4a-0caa971add36",
-              parent: "0bf4630d-b761-4b3c-89ce-6481d7c85718",
+              uuid: "e092d815-1a91-48f1-9510-d316c41404d6",
+              parent: "366c8708-3b7c-4d22-b26e-dd480cff04f6",
               type: "div",
               events: {},
               props: {
@@ -3058,8 +3058,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "8e88a2e2-149a-41e9-953a-643a769a84bf",
-                  parent: "711a1777-789d-4f20-9f4a-0caa971add36",
+                  uuid: "17d6d4e1-b664-4382-bd40-bcfcda4b2037",
+                  parent: "e092d815-1a91-48f1-9510-d316c41404d6",
                   type: "span",
                   events: {},
                   props: {
@@ -3075,8 +3075,8 @@ const resumeAstTemplate = {
                   content: "2018-04 ~ 2020-03",
                 },
                 {
-                  uuid: "b67728cd-cae9-4913-b1e0-6a2d4d83eb8c",
-                  parent: "711a1777-789d-4f20-9f4a-0caa971add36",
+                  uuid: "a6a79247-f238-4f0e-a0ee-0b1fc666c91e",
+                  parent: "e092d815-1a91-48f1-9510-d316c41404d6",
                   type: "span",
                   events: {},
                   props: {
@@ -3092,8 +3092,8 @@ const resumeAstTemplate = {
                   content: "金貝科技",
                 },
                 {
-                  uuid: "043669d1-12f0-4fe1-9d22-9cd96256f87f",
-                  parent: "711a1777-789d-4f20-9f4a-0caa971add36",
+                  uuid: "00f2cc6f-2700-4f9e-839f-caf65f1d9b38",
+                  parent: "e092d815-1a91-48f1-9510-d316c41404d6",
                   type: "span",
                   events: {},
                   props: {
@@ -3113,8 +3113,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
-              parent: "0bf4630d-b761-4b3c-89ce-6481d7c85718",
+              uuid: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
+              parent: "366c8708-3b7c-4d22-b26e-dd480cff04f6",
               type: "div",
               events: {},
               props: {
@@ -3133,8 +3133,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "35ef5bc0-d8e4-4e6c-a79e-e02a00fcb017",
-                  parent: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
+                  uuid: "a2c077ed-2a4c-4282-a13c-c89dae07761a",
+                  parent: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
                   type: "span",
                   events: {},
                   props: {
@@ -3150,8 +3150,8 @@ const resumeAstTemplate = {
                   content: "彩票遊戲H5/APP",
                 },
                 {
-                  uuid: "9d0344c3-a19e-46eb-b603-7c24aeab9600",
-                  parent: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
+                  uuid: "be7a9868-6baa-4653-b9ea-59e89e3390bc",
+                  parent: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
                   type: "div",
                   events: {},
                   props: {
@@ -3169,8 +3169,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "66ccb8df-2b0a-486b-ae3e-91998958e6e5",
-                      parent: "9d0344c3-a19e-46eb-b603-7c24aeab9600",
+                      uuid: "88cb54b7-e4da-43ab-8823-401145500436",
+                      parent: "be7a9868-6baa-4653-b9ea-59e89e3390bc",
                       type: "span",
                       events: {},
                       props: {
@@ -3182,8 +3182,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "8e19c618-8511-4de9-927d-7fecfc425105",
-                      parent: "9d0344c3-a19e-46eb-b603-7c24aeab9600",
+                      uuid: "6a03697f-d3c8-477d-a675-fec01ab4eb2a",
+                      parent: "be7a9868-6baa-4653-b9ea-59e89e3390bc",
                       type: "span",
                       events: {},
                       props: {
@@ -3199,8 +3199,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "1268b285-5b44-4c33-9ff0-df9af7546aa2",
-                  parent: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
+                  uuid: "ebd783d9-efe0-478d-9fe1-5a8777e1ae8e",
+                  parent: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
                   type: "div",
                   events: {},
                   props: {
@@ -3218,8 +3218,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "ea64c325-960a-4ca2-b8f9-ee9ef1b8e78c",
-                      parent: "1268b285-5b44-4c33-9ff0-df9af7546aa2",
+                      uuid: "9a9f26ad-a388-4bd8-b159-fd49e5b5baee",
+                      parent: "ebd783d9-efe0-478d-9fe1-5a8777e1ae8e",
                       type: "span",
                       events: {},
                       props: {
@@ -3231,8 +3231,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "c84534b9-d270-4b2f-b9cf-49ba4258d6ff",
-                      parent: "1268b285-5b44-4c33-9ff0-df9af7546aa2",
+                      uuid: "763ff690-43b8-4169-8679-d9316d6bc4cf",
+                      parent: "ebd783d9-efe0-478d-9fe1-5a8777e1ae8e",
                       type: "span",
                       events: {},
                       props: {
@@ -3247,8 +3247,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "46f9cd0f-c3ed-4d06-8144-5713d7eab849",
-                  parent: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
+                  uuid: "1ba60c01-c19b-4eda-8b40-f27db839b216",
+                  parent: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
                   type: "div",
                   events: {},
                   props: {
@@ -3266,8 +3266,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "2f9b3b1a-23a8-4109-a7ee-747f051c6217",
-                      parent: "46f9cd0f-c3ed-4d06-8144-5713d7eab849",
+                      uuid: "dc20de9f-3ea9-457f-972b-b6faed272cfa",
+                      parent: "1ba60c01-c19b-4eda-8b40-f27db839b216",
                       type: "span",
                       events: {},
                       props: {
@@ -3279,8 +3279,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "47019cca-c669-4323-938b-d9cb61a6740b",
-                      parent: "46f9cd0f-c3ed-4d06-8144-5713d7eab849",
+                      uuid: "53f21a04-58be-4610-9a62-5a0fc33efa13",
+                      parent: "1ba60c01-c19b-4eda-8b40-f27db839b216",
                       type: "span",
                       events: {},
                       props: {
@@ -3295,8 +3295,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "2c875370-4f62-4a7f-846f-b97a1f174771",
-                  parent: "e766cb92-e70e-4f2e-a7e4-a6399c474340",
+                  uuid: "62fef5d4-3e4d-47cf-9b48-30af7435be70",
+                  parent: "351e8535-a6b1-41d6-aebd-2b4392a99a51",
                   type: "div",
                   events: {},
                   props: {
@@ -3314,8 +3314,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "10872e6c-f581-437d-aeda-4954d1b68831",
-                      parent: "2c875370-4f62-4a7f-846f-b97a1f174771",
+                      uuid: "a955010c-c8ac-42c4-b97f-5dec621dda97",
+                      parent: "62fef5d4-3e4d-47cf-9b48-30af7435be70",
                       type: "span",
                       events: {},
                       props: {
@@ -3327,8 +3327,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "88b1a70c-f713-4f80-bc40-30d1f95aa00a",
-                      parent: "2c875370-4f62-4a7f-846f-b97a1f174771",
+                      uuid: "64130f56-d831-4cfe-96e4-121a9ba5a2e8",
+                      parent: "62fef5d4-3e4d-47cf-9b48-30af7435be70",
                       type: "span",
                       events: {},
                       props: {
@@ -3346,8 +3346,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "0d9044c1-aa99-499f-ae27-a66f667f3d20",
-              parent: "0bf4630d-b761-4b3c-89ce-6481d7c85718",
+              uuid: "8f5c4019-69a6-42b2-862e-eb562d93a007",
+              parent: "366c8708-3b7c-4d22-b26e-dd480cff04f6",
               type: "div",
               events: {},
               props: {
@@ -3366,8 +3366,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "55344b44-d1a9-41e3-b3d1-33a4b9fe6fe3",
-                  parent: "0d9044c1-aa99-499f-ae27-a66f667f3d20",
+                  uuid: "2ee4b923-d20b-4942-9aca-2b32bfc1ae80",
+                  parent: "8f5c4019-69a6-42b2-862e-eb562d93a007",
                   type: "span",
                   events: {},
                   props: {
@@ -3383,8 +3383,8 @@ const resumeAstTemplate = {
                   content: "彩票遊戲Headless CMS主客戶後台",
                 },
                 {
-                  uuid: "3f981edd-aba5-4c0e-8bea-4f6602cb53cc",
-                  parent: "0d9044c1-aa99-499f-ae27-a66f667f3d20",
+                  uuid: "2cb1f475-c757-44b9-ace2-5865291bfe98",
+                  parent: "8f5c4019-69a6-42b2-862e-eb562d93a007",
                   type: "div",
                   events: {},
                   props: {
@@ -3402,8 +3402,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "65452a3a-cb3f-439d-9140-dae85e13f6c8",
-                      parent: "3f981edd-aba5-4c0e-8bea-4f6602cb53cc",
+                      uuid: "9365dd1a-638d-49f3-82d0-0c689acd9074",
+                      parent: "2cb1f475-c757-44b9-ace2-5865291bfe98",
                       type: "span",
                       events: {},
                       props: {
@@ -3415,8 +3415,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "d0570b53-f6e5-4544-ad4e-374a73f381b1",
-                      parent: "3f981edd-aba5-4c0e-8bea-4f6602cb53cc",
+                      uuid: "9b95864b-022f-4c8a-929d-cf1ecd33daf9",
+                      parent: "2cb1f475-c757-44b9-ace2-5865291bfe98",
                       type: "span",
                       events: {},
                       props: {
@@ -3431,8 +3431,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "4edbe03d-4e47-43a7-970a-2523dc169397",
-                  parent: "0d9044c1-aa99-499f-ae27-a66f667f3d20",
+                  uuid: "aa8b6772-412d-44f2-9e4f-92c8d4ccada6",
+                  parent: "8f5c4019-69a6-42b2-862e-eb562d93a007",
                   type: "div",
                   events: {},
                   props: {
@@ -3450,8 +3450,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "2023127a-0540-4bdc-bc83-e6cc64981e46",
-                      parent: "4edbe03d-4e47-43a7-970a-2523dc169397",
+                      uuid: "e6aeef9b-3893-4333-8df6-018a896db232",
+                      parent: "aa8b6772-412d-44f2-9e4f-92c8d4ccada6",
                       type: "span",
                       events: {},
                       props: {
@@ -3463,8 +3463,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "24e4cad3-01e4-44cc-a1fe-bd0e2d659270",
-                      parent: "4edbe03d-4e47-43a7-970a-2523dc169397",
+                      uuid: "466839ba-91a7-4775-bed5-17bcd1adb254",
+                      parent: "aa8b6772-412d-44f2-9e4f-92c8d4ccada6",
                       type: "span",
                       events: {},
                       props: {
@@ -3479,8 +3479,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "6d9d972b-969e-4118-88ca-83b5f508efb7",
-                  parent: "0d9044c1-aa99-499f-ae27-a66f667f3d20",
+                  uuid: "09c6385e-cb57-47b1-821f-3e4d4a744053",
+                  parent: "8f5c4019-69a6-42b2-862e-eb562d93a007",
                   type: "div",
                   events: {},
                   props: {
@@ -3498,8 +3498,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "95daf168-8db5-4428-816f-9da68b967d5f",
-                      parent: "6d9d972b-969e-4118-88ca-83b5f508efb7",
+                      uuid: "c2d9d975-5a4b-4991-9c63-83b8ca6c5a61",
+                      parent: "09c6385e-cb57-47b1-821f-3e4d4a744053",
                       type: "span",
                       events: {},
                       props: {
@@ -3511,8 +3511,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "cf14f87b-3888-4d81-9081-0ac939285592",
-                      parent: "6d9d972b-969e-4118-88ca-83b5f508efb7",
+                      uuid: "49cf61af-1aa1-40de-90b0-2acb2df3e634",
+                      parent: "09c6385e-cb57-47b1-821f-3e4d4a744053",
                       type: "span",
                       events: {},
                       props: {
@@ -3531,8 +3531,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
-              parent: "0bf4630d-b761-4b3c-89ce-6481d7c85718",
+              uuid: "530293ca-cc32-4267-b222-9e5b5fd21661",
+              parent: "366c8708-3b7c-4d22-b26e-dd480cff04f6",
               type: "div",
               events: {},
               props: {
@@ -3551,8 +3551,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "71e6e864-26e8-4781-9edd-a9db796e5162",
-                  parent: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
+                  uuid: "898ae040-731a-43bc-a804-c59703f5bfb5",
+                  parent: "530293ca-cc32-4267-b222-9e5b5fd21661",
                   type: "span",
                   events: {},
                   props: {
@@ -3568,8 +3568,8 @@ const resumeAstTemplate = {
                   content: "招財貓棋牌APP",
                 },
                 {
-                  uuid: "fd5d8b80-e683-40c1-ad4b-2040921485cd",
-                  parent: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
+                  uuid: "affdb8e0-8a20-4db7-9c8f-5005cb051277",
+                  parent: "530293ca-cc32-4267-b222-9e5b5fd21661",
                   type: "div",
                   events: {},
                   props: {
@@ -3587,8 +3587,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "c8970a9c-2456-4a47-86ce-12b9111d8600",
-                      parent: "fd5d8b80-e683-40c1-ad4b-2040921485cd",
+                      uuid: "689b3690-ccdc-4670-a23b-4f2e8a845bdf",
+                      parent: "affdb8e0-8a20-4db7-9c8f-5005cb051277",
                       type: "span",
                       events: {},
                       props: {
@@ -3600,8 +3600,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "41e4b7f1-fa93-4d0d-ac4b-c123b80d0109",
-                      parent: "fd5d8b80-e683-40c1-ad4b-2040921485cd",
+                      uuid: "9989f8ac-74da-4c84-9b51-c628a271f7b1",
+                      parent: "affdb8e0-8a20-4db7-9c8f-5005cb051277",
                       type: "span",
                       events: {},
                       props: {
@@ -3617,8 +3617,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "5ddb1123-41e1-40b8-a939-ad9cf7f19463",
-                  parent: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
+                  uuid: "02fbd509-9438-4f9a-867a-53fc2d1170e4",
+                  parent: "530293ca-cc32-4267-b222-9e5b5fd21661",
                   type: "div",
                   events: {},
                   props: {
@@ -3636,8 +3636,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "6de1f120-805d-46c7-a4d4-103fd2da5378",
-                      parent: "5ddb1123-41e1-40b8-a939-ad9cf7f19463",
+                      uuid: "7f3cdf25-ba85-4de4-8a98-b09f141cb2d0",
+                      parent: "02fbd509-9438-4f9a-867a-53fc2d1170e4",
                       type: "span",
                       events: {},
                       props: {
@@ -3649,8 +3649,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "ff760349-7d7f-4fe5-a58d-26913454362e",
-                      parent: "5ddb1123-41e1-40b8-a939-ad9cf7f19463",
+                      uuid: "f18b3915-4cbb-4f07-81ec-777a33ef7633",
+                      parent: "02fbd509-9438-4f9a-867a-53fc2d1170e4",
                       type: "span",
                       events: {},
                       props: {
@@ -3665,8 +3665,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "e91ab1bf-d886-4613-b82a-db533990bde9",
-                  parent: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
+                  uuid: "34b1649d-0396-4c07-9d1f-3b1ef7ae07d6",
+                  parent: "530293ca-cc32-4267-b222-9e5b5fd21661",
                   type: "div",
                   events: {},
                   props: {
@@ -3684,8 +3684,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "6a6e2c75-6de6-4c11-9cd8-18a0796832ee",
-                      parent: "e91ab1bf-d886-4613-b82a-db533990bde9",
+                      uuid: "73f57b69-f54d-4d62-96fd-29228efccadf",
+                      parent: "34b1649d-0396-4c07-9d1f-3b1ef7ae07d6",
                       type: "span",
                       events: {},
                       props: {
@@ -3697,8 +3697,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "bbb78da5-24b3-4b33-b8d9-b1fbb39b991e",
-                      parent: "e91ab1bf-d886-4613-b82a-db533990bde9",
+                      uuid: "63ca41f7-e411-44b6-96e0-b7ba50745aa4",
+                      parent: "34b1649d-0396-4c07-9d1f-3b1ef7ae07d6",
                       type: "span",
                       events: {},
                       props: {
@@ -3713,8 +3713,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "008e70ce-2fb1-428b-8fe4-fd5a5f27e064",
-                  parent: "852c44af-edc4-47a0-9ca3-4fc3761cf9dd",
+                  uuid: "e566be7f-6bc4-4e64-9ec1-c343180f61eb",
+                  parent: "530293ca-cc32-4267-b222-9e5b5fd21661",
                   type: "div",
                   events: {},
                   props: {
@@ -3732,8 +3732,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "4db3262c-7358-4624-b842-360d16cc5b91",
-                      parent: "008e70ce-2fb1-428b-8fe4-fd5a5f27e064",
+                      uuid: "9f66d5ab-0399-4f4f-9e00-d36f6a39cb29",
+                      parent: "e566be7f-6bc4-4e64-9ec1-c343180f61eb",
                       type: "span",
                       events: {},
                       props: {
@@ -3745,8 +3745,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "d1026674-a178-4ff6-9eee-fca7d4ae8823",
-                      parent: "008e70ce-2fb1-428b-8fe4-fd5a5f27e064",
+                      uuid: "536c5676-d916-420d-acc8-3f2051fba246",
+                      parent: "e566be7f-6bc4-4e64-9ec1-c343180f61eb",
                       type: "span",
                       events: {},
                       props: {
@@ -3770,12 +3770,12 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "e7835f72-7236-40c8-8a78-f9c36b9a84fa",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "2ab5b2e7-b268-4ee5-a7ab-e37e0b36bbfa",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
-        className: "animate__animated animate__fadeIn animate__delay-5s",
+        className: "",
         style: {
           width: "100%",
           height: "auto",
@@ -3793,8 +3793,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "6e11bcbc-4276-4bdc-9483-fe6fd115a23f",
-          parent: "e7835f72-7236-40c8-8a78-f9c36b9a84fa",
+          uuid: "4f9b87a0-c1b5-4600-be00-6de35ab3349f",
+          parent: "2ab5b2e7-b268-4ee5-a7ab-e37e0b36bbfa",
           type: "span",
           events: {},
           props: {
@@ -3818,8 +3818,8 @@ const resumeAstTemplate = {
           content: "Side Projects",
         },
         {
-          uuid: "f7bbc447-4a86-4721-8fce-da1bb45b731f",
-          parent: "e7835f72-7236-40c8-8a78-f9c36b9a84fa",
+          uuid: "8f70ca46-3c56-4d8e-8fe4-22eeed4804ac",
+          parent: "2ab5b2e7-b268-4ee5-a7ab-e37e0b36bbfa",
           type: "div",
           events: {},
           props: {
@@ -3835,8 +3835,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "1d1c5e28-9625-4137-89bd-019325c9ca15",
-              parent: "f7bbc447-4a86-4721-8fce-da1bb45b731f",
+              uuid: "4b35981b-9b99-4f40-8cd6-0c2fbbf12a63",
+              parent: "8f70ca46-3c56-4d8e-8fe4-22eeed4804ac",
               type: "span",
               events: {},
               props: {
@@ -3852,8 +3852,8 @@ const resumeAstTemplate = {
               content: "2024-05 ~ web-editor.js ",
             },
             {
-              uuid: "eae8348b-f460-4c61-bf70-6aae73f4b180",
-              parent: "f7bbc447-4a86-4721-8fce-da1bb45b731f",
+              uuid: "61b7a4ce-af26-49b6-9e1f-ef0c1d1dafcb",
+              parent: "8f70ca46-3c56-4d8e-8fe4-22eeed4804ac",
               type: "span",
               events: {},
               props: {
@@ -3872,8 +3872,8 @@ const resumeAstTemplate = {
           content: "",
         },
         {
-          uuid: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
-          parent: "e7835f72-7236-40c8-8a78-f9c36b9a84fa",
+          uuid: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
+          parent: "2ab5b2e7-b268-4ee5-a7ab-e37e0b36bbfa",
           type: "div",
           events: {},
           props: {
@@ -3892,8 +3892,8 @@ const resumeAstTemplate = {
           },
           children: [
             {
-              uuid: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
-              parent: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
+              uuid: "0bdcf135-662b-4ffd-b55f-346bab952b61",
+              parent: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
               type: "div",
               events: {},
               props: {
@@ -3912,8 +3912,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "65bd1cce-c29a-4738-a58b-96d503ee8f54",
-                  parent: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
+                  uuid: "07132e75-46ac-495e-821f-ca9cbcd1e0d6",
+                  parent: "0bdcf135-662b-4ffd-b55f-346bab952b61",
                   type: "span",
                   events: {},
                   props: {
@@ -3929,8 +3929,8 @@ const resumeAstTemplate = {
                   content: "功能",
                 },
                 {
-                  uuid: "94c727cf-45dc-4e5d-85a6-fde96de58b65",
-                  parent: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
+                  uuid: "1aa3fa33-b18a-4518-9982-99d9cc975f1f",
+                  parent: "0bdcf135-662b-4ffd-b55f-346bab952b61",
                   type: "div",
                   events: {},
                   props: {
@@ -3948,8 +3948,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "09b80fcc-85ee-4a00-967a-b52ba3d82744",
-                      parent: "94c727cf-45dc-4e5d-85a6-fde96de58b65",
+                      uuid: "bb917dee-0258-41d9-a593-bd5bdedd11ef",
+                      parent: "1aa3fa33-b18a-4518-9982-99d9cc975f1f",
                       type: "span",
                       events: {},
                       props: {
@@ -3961,8 +3961,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "c6694144-60bd-491a-aefa-37e37573d0cb",
-                      parent: "94c727cf-45dc-4e5d-85a6-fde96de58b65",
+                      uuid: "cefb6e31-da26-4a05-89ea-defcffbde4b7",
+                      parent: "1aa3fa33-b18a-4518-9982-99d9cc975f1f",
                       type: "span",
                       events: {},
                       props: {
@@ -3977,8 +3977,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "d4173212-dbaf-4c5c-8d59-e4957ee0f086",
-                  parent: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
+                  uuid: "7bed7014-7246-41a1-9282-4da0a7ae2220",
+                  parent: "0bdcf135-662b-4ffd-b55f-346bab952b61",
                   type: "div",
                   events: {},
                   props: {
@@ -3996,8 +3996,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "6730ed20-a60b-4432-a0d4-1b6a418897be",
-                      parent: "d4173212-dbaf-4c5c-8d59-e4957ee0f086",
+                      uuid: "151f8f3e-adee-452f-a7de-e1306064995a",
+                      parent: "7bed7014-7246-41a1-9282-4da0a7ae2220",
                       type: "span",
                       events: {},
                       props: {
@@ -4009,8 +4009,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "db0f6d01-3e99-496f-a24d-c132862c4e77",
-                      parent: "d4173212-dbaf-4c5c-8d59-e4957ee0f086",
+                      uuid: "ebf3d5cc-c621-47e0-b3d3-39c7a799c06c",
+                      parent: "7bed7014-7246-41a1-9282-4da0a7ae2220",
                       type: "span",
                       events: {},
                       props: {
@@ -4025,8 +4025,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "70db40af-f139-480c-8dc8-aac04eb34e3e",
-                  parent: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
+                  uuid: "7d235214-b39e-475c-8537-a79ecdb25540",
+                  parent: "0bdcf135-662b-4ffd-b55f-346bab952b61",
                   type: "div",
                   events: {},
                   props: {
@@ -4044,8 +4044,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "fe39d4f0-b9f5-4e2c-a875-ad29d4dd792b",
-                      parent: "70db40af-f139-480c-8dc8-aac04eb34e3e",
+                      uuid: "b7c849df-e75c-4429-84ee-0eafff167371",
+                      parent: "7d235214-b39e-475c-8537-a79ecdb25540",
                       type: "span",
                       events: {},
                       props: {
@@ -4057,8 +4057,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "102f3bb8-29f4-455c-8f90-15d7132e4ee6",
-                      parent: "70db40af-f139-480c-8dc8-aac04eb34e3e",
+                      uuid: "84252f4e-4180-42df-9e8b-d2fa9b4e96c0",
+                      parent: "7d235214-b39e-475c-8537-a79ecdb25540",
                       type: "span",
                       events: {},
                       props: {
@@ -4073,8 +4073,8 @@ const resumeAstTemplate = {
                   content: "",
                 },
                 {
-                  uuid: "557ddcd1-8dab-4d84-81ff-53802240cc0b",
-                  parent: "ba4db1c2-d7ba-47a2-8622-692f8fae2b3e",
+                  uuid: "f295025e-0353-494b-9fee-785d6672db28",
+                  parent: "0bdcf135-662b-4ffd-b55f-346bab952b61",
                   type: "div",
                   events: {},
                   props: {
@@ -4092,8 +4092,8 @@ const resumeAstTemplate = {
                   },
                   children: [
                     {
-                      uuid: "cdfd3d1d-fbbc-4421-8a06-68b9352a0a64",
-                      parent: "557ddcd1-8dab-4d84-81ff-53802240cc0b",
+                      uuid: "c14dac96-20fc-4e13-9de3-1f48a513948e",
+                      parent: "f295025e-0353-494b-9fee-785d6672db28",
                       type: "span",
                       events: {},
                       props: {
@@ -4105,8 +4105,8 @@ const resumeAstTemplate = {
                       content: "・",
                     },
                     {
-                      uuid: "50d46add-f72b-4b0a-837c-693affaf722e",
-                      parent: "557ddcd1-8dab-4d84-81ff-53802240cc0b",
+                      uuid: "a0519403-22e9-456b-87c6-051f3896ca77",
+                      parent: "f295025e-0353-494b-9fee-785d6672db28",
                       type: "span",
                       events: {},
                       props: {
@@ -4124,8 +4124,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "c74039fb-d9ed-432c-b405-124b07f0d4e6",
-              parent: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
+              uuid: "4ee2c0a0-2318-4ae9-a91b-342d4dc55a92",
+              parent: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
               type: "span",
               events: {},
               props: {
@@ -4141,8 +4141,8 @@ const resumeAstTemplate = {
               content: "使用技術",
             },
             {
-              uuid: "d066bd16-9faf-40db-bd1d-69585ed54712",
-              parent: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
+              uuid: "4ed29e71-92b2-4b70-bfc6-d2948d13894a",
+              parent: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
               type: "div",
               events: {},
               props: {
@@ -4160,8 +4160,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "7a823dc7-942b-483b-bbf0-1a7ede15ca4e",
-                  parent: "d066bd16-9faf-40db-bd1d-69585ed54712",
+                  uuid: "11793807-11db-4bde-b7ef-61dccf089ab3",
+                  parent: "4ed29e71-92b2-4b70-bfc6-d2948d13894a",
                   type: "span",
                   events: {},
                   props: {
@@ -4173,8 +4173,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "c861810a-00b3-428e-8467-962d8d18fa9b",
-                  parent: "d066bd16-9faf-40db-bd1d-69585ed54712",
+                  uuid: "36923ade-cffb-4d39-b03a-9371c921f4a7",
+                  parent: "4ed29e71-92b2-4b70-bfc6-d2948d13894a",
                   type: "span",
                   events: {},
                   props: {
@@ -4190,8 +4190,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "9f706fe0-187f-4c0c-be55-31ae05754e79",
-              parent: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
+              uuid: "ac90304b-5b00-44e7-b0a0-61725654aea3",
+              parent: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
               type: "div",
               events: {},
               props: {
@@ -4209,8 +4209,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "29c63e38-0532-47c9-a0d0-bbaecfe84610",
-                  parent: "9f706fe0-187f-4c0c-be55-31ae05754e79",
+                  uuid: "12901c7f-25fb-40e8-a8ff-079ffe760514",
+                  parent: "ac90304b-5b00-44e7-b0a0-61725654aea3",
                   type: "span",
                   events: {},
                   props: {
@@ -4222,8 +4222,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "eda592ad-4a1f-4208-a3a1-1d1ec7bcd254",
-                  parent: "9f706fe0-187f-4c0c-be55-31ae05754e79",
+                  uuid: "6047c546-a71d-45e1-85bc-908f03b3de50",
+                  parent: "ac90304b-5b00-44e7-b0a0-61725654aea3",
                   type: "span",
                   events: {},
                   props: {
@@ -4238,8 +4238,8 @@ const resumeAstTemplate = {
               content: "",
             },
             {
-              uuid: "38e5a948-a68c-4140-a114-e06220e164ed",
-              parent: "11fdede3-f7cd-4ab0-8451-e1eae5511265",
+              uuid: "6ef7d59d-5f42-4b65-b228-3777d27f2308",
+              parent: "4ee5da6b-36a0-4ae4-b37a-e3765a2023d0",
               type: "div",
               events: {},
               props: {
@@ -4257,8 +4257,8 @@ const resumeAstTemplate = {
               },
               children: [
                 {
-                  uuid: "46b5133e-d37e-41c2-b0a7-d35c1bd3f0b5",
-                  parent: "38e5a948-a68c-4140-a114-e06220e164ed",
+                  uuid: "19a53e3a-55c4-4bec-96e8-3340ad0686b9",
+                  parent: "6ef7d59d-5f42-4b65-b228-3777d27f2308",
                   type: "span",
                   events: {},
                   props: {
@@ -4270,8 +4270,8 @@ const resumeAstTemplate = {
                   content: "・",
                 },
                 {
-                  uuid: "bfa64d22-383d-4550-8e6c-6e1842ee1b48",
-                  parent: "38e5a948-a68c-4140-a114-e06220e164ed",
+                  uuid: "770ec16f-2fd2-4f8c-a5f0-5a4a27089ab6",
+                  parent: "6ef7d59d-5f42-4b65-b228-3777d27f2308",
                   type: "span",
                   events: {},
                   props: {
@@ -4293,8 +4293,8 @@ const resumeAstTemplate = {
       content: "",
     },
     {
-      uuid: "e97758fb-b85c-4496-a27c-c6cea781240f",
-      parent: "a9535b9a-c31b-4c91-9fab-b8b5f34fb0b7",
+      uuid: "c53c93cd-c18e-4c07-bb27-63552fc486af",
+      parent: "a67d5432-8577-43f7-a89b-42f06f100395",
       type: "div",
       events: {},
       props: {
@@ -4316,8 +4316,8 @@ const resumeAstTemplate = {
       },
       children: [
         {
-          uuid: "5f42999e-61c4-4d82-8b81-01218591827d",
-          parent: "e97758fb-b85c-4496-a27c-c6cea781240f",
+          uuid: "f151d5b9-b3cc-4717-a962-2c12804c7d18",
+          parent: "c53c93cd-c18e-4c07-bb27-63552fc486af",
           type: "span",
           events: {},
           props: {
